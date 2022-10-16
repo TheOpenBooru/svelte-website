@@ -5,10 +5,9 @@
 	export let title:string = "";
 	export let description: string = "";
 	export let keywords: string[] = [];
-	export let image: Types.Image|null = null;
-	export let video: Types.Video|null = null;
+	export let media: Types.Media|null = null;
 
-  const SiteUrl = "http://localhost:5173";
+  const SiteUrl = "https://ptr.openbooru.org";
   const SiteName = "Open Booru";
   const SiteDescription = "The Open Booru";
 
@@ -24,30 +23,37 @@
     <meta name="keywords" content={keywords.join(", ")}/>
     <meta name="author" content="Ben Brady" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
-                
-    {#if path}<link rel="canonical" href={SiteUrl + path} />{/if}
+    <link rel="canonical" href={SiteUrl + path} />
     
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content={SiteName} />
     <meta property="og:title" content={RenderedTitle} />
     <meta property="og:description" content={RenderedDescription} />
-    {#if path} <meta property="og:url" content={path} />{/if}
-    
-    {#if image} <meta property="og:image" content={image.url} /> {/if}
-    {#if image} <meta property="og:image:width" content={image.width.toString()} />{/if}
-    {#if image} <meta property="og:image:height" content={image.height.toString()} />{/if}
-    {#if image} <meta property="og:image:secure_url" content={image.url} />{/if}
-    {#if video} <meta property="og:video" content={video.url} />{/if}
-    
+    <meta property="og:url" content={path} />
+
     <meta property="twitter:title" content={RenderedTitle} />
     <meta property="twitter:description" content={RenderedDescription}/>
-    {#if path} <meta property="twitter:url" content={SiteUrl + path} />{/if}
+    <meta property="twitter:url" content={SiteUrl + path} />
     
-    {#if image} <meta property="twitter:card" content="summary_large_image" />{/if}
-    {#if image} <meta property="twitter:image" content={image.url} />{/if}
-                
-    {#if video} <meta property="twitter:card" content="player" />{/if}
-    {#if video} <meta property="twitter:player" content={video.url} />{/if}
-    {#if video} <meta property="twitter:player:width" content={video.width.toString()} />{/if}
-    {#if video} <meta property="twitter:player:height" content={video.height.toString()} />{/if}
+    {#if media?.type == "image" || media?.type == "animation"}
+      <meta property="og:image:url" content={media.url} />
+      <meta property="og:image:secure_url" content={media.url} />
+      <meta property="og:image:width" content={media.width.toString()} />
+      <meta property="og:image:height" content={media.height.toString()} />
+      <meta property="og:image:type" content={media.mimetype} />
+
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:image" content={media.url} />
+    {:else if media?.type == "video"}
+      <meta property="og:video:url" content={media.url} />
+      <meta property="og:video:secure_url"  content={media.url} />
+      <meta property="og:video:type" content={media.mimetype} />
+      <meta property="og:video:width" content={media.width.toString()} />
+      <meta property="og:video:height" content={media.height.toString()} />
+
+      <meta property="twitter:card" content="player" />
+      <meta property="twitter:player" content={media.url} />
+      <meta property="twitter:player:width" content={media.width.toString()} />
+      <meta property="twitter:player:height" content={media.height.toString()} />
+    {/if}
 </svelte:head>

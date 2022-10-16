@@ -13,5 +13,6 @@
   description={`${post.tags.join(", ")}`}
   keywords={["post", "media", "openbooru"].concat(post.tags)}
   path={`/post/${post.id}`}
+  media={post.full}
 />
 <PostPage {post}/>
