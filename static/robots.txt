@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Allow: /post/
+Allow: /posts
+Allow: /info
+Allow: /auth/login
+Allow: /auth/register
+Disallow: /error
+Disallow: /500
+Disallow: /404
+Disallow: /images/
+Disallow: /js/
