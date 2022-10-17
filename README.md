@@ -1,38 +1,19 @@
-# create-svelte
+# Openbooru Website (Svelte)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This is the sveltekit rewrite of the Open Booru [website](https://github.com/TheOpenBooru/website) ported from next.js and mostly rewritten.
 
-## Creating a project
+## Contributing
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+The app is written in sveltekit, to start a development server run the commands
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
+npm install
 npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
+To build it and preview it run:
 
 ```bash
 npm run build
+npm run preview
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
