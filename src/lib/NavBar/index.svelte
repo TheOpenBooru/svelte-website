@@ -4,6 +4,8 @@
 
 <nav>
 	<Item path="/" name="Home" image="/images/home.svg" />
+	<Item path="/info" name="Info" image="/images/info.svg" />
+	<Item path="/account" name="Login" image="/images/profile.svg" />
 </nav>
 
 <style>

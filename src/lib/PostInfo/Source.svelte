@@ -18,7 +18,7 @@
     <div title={url.hostname}>
         <span>{source}</span>
         <a href={source}>
-            <img src="/images/link.svg" height={10} width={10} />
+            <img src="/images/link.svg" height={10} width={10} alt="Link to Source"/>
         </a>
     </div>
 {/if}

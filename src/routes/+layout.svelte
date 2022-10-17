@@ -1,6 +1,6 @@
 <script>
 	import { QueryClient, QueryClientProvider } from '@sveltestack/svelte-query'
-	import NavigationBar from 'lib/NavBar/NavBar.svelte';
+	import NavigationBar from 'lib/NavBar/index.svelte';
 
 	const queryClient = new QueryClient()
 </script>

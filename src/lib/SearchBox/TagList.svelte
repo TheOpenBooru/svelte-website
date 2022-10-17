@@ -32,8 +32,9 @@
 <div class="container">
 	{#each allTags as tag, index}
 		<div class={includeTags.includes(tag) ? 'removed-tag' : ''}>
-			<Tag {tag} callback={removeTagCallback(tag)}>
-				<RemoveTagImage src="/images/cross.svg" alt="Remove Tag" onClick={toggleTagCallback(tag)} />
+			<Tag tagName={tag} callback={removeTagCallback(tag)}>
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<img src="/images/cross.svg" alt="Remove Tag" on:click={toggleTagCallback(tag)} />
 			</Tag>
 		</div>
 	{/each}

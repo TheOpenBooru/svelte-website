@@ -8,7 +8,7 @@
 	function create_link(tag: string) {
 		let query: Types.PostQuery = { include_tags: [tag] };
 		let bsl = BSL.encode(query);
-		let href = `/posts/query=${bsl}`;
+		let href = `/posts/?query=${bsl}`;
 		return href;
 	}
 </script>

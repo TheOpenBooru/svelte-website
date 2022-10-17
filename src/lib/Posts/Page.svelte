@@ -3,9 +3,9 @@
 	import { BSL, Posts } from 'openbooru';
 	import type { SvelteComponent } from 'svelte';
 	import Search from 'js/search';
-	import Grid from 'lib/Posts/Grid/Grid.svelte';
+	import Grid from 'lib/Posts/Grid/index.svelte';
 	import Button from 'lib/Button.svelte';
-	import SearchBox from 'lib/SearchBox/SearchBox.svelte';
+	import SearchBox from 'lib/SearchBox/index.svelte';
 	import AutoComplete from 'lib/AutoComplete.svelte';
 
 	export let layout = Grid;

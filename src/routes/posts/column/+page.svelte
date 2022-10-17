@@ -1,6 +1,6 @@
 <script lang="ts">
 	import PostsPage from "lib/Posts/Page.svelte";
-	import Column from "lib/Posts/Column/Column.svelte"
+	import Column from "lib/Posts/Column/index.svelte"
 	import HeadInfo from "lib/HeadInfo.svelte";
 </script>
 

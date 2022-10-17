@@ -3,7 +3,7 @@ import { error } from '@sveltejs/kit';
 import { Post } from 'openbooru';
 
 export const load: PageLoad = async ({ params }) => {
-  const post = await Post.get(Number(params.slug));
+  const post = await Post.get(Number(params.slug), { apiUrl: "https://api.openbooru.org"});
   
   if (post) {
     return { post };

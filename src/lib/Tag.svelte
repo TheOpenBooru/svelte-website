@@ -19,7 +19,7 @@
 </script>
 
 <a {href} on:click={onClick}>
-	<span class={`namespace-${namespace}`}>
+	<span class={namespace}>
 		{name}
 	</span>
 	{#if showCount && count !== null}
@@ -29,6 +29,12 @@
 </a>
 
 <style>
+	a {
+		text-decoration: none;
+		width: fit-content;
+		height: 1rem;
+	}
+
 	span {
 		display: flex;
 		gap: 0.2rem;
@@ -38,32 +44,29 @@
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-
-		text-decoration: none;
-		width: fit-content;
-
+		
 		border: 0.1rem solid var(--BORDER-2);
 		border-radius: 1rem;
 		background: var(--BACKGROUND-4);
-
+		
 		padding: 0 0.3rem;
 
 		color: black;
 	}
 
-	span .namespace-copyright {
+	span.copyright {
 		color: #f0a0f0;
 	}
 
-	span .namespace-character {
+	span.character {
 		color: #f0f0a0;
 	}
 
-	span .namespace-creator {
+	span.creator {
 		color: #f0a0a0;
 	}
 
-	span .namespace-meta {
+	span.meta {
 		color: #90d9ed;
 	}
 </style>

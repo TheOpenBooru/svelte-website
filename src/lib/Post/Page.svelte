@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
-	import PostInfo from 'lib/PostInfo/PostInfo.svelte';
+	import PostInfo from 'lib/PostInfo/index.svelte';
 	export let post: Types.Post;
 </script>
 
