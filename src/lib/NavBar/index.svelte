@@ -17,13 +17,21 @@
 		width: 100vw;
 		z-index: 1;
 
-		/* Look */
-		background-color: var(--BACKGROUND-2);
-		border-bottom: black 1px solid;
-
 		/* Grid */
 		display: flex;
 		object-fit: fill;
 		align-items: center;
 	}
+
+	nav {
+		background-color: var(--BACKGROUND-2);
+		border-bottom: black 1px solid;
+	}
+
+	@media screen and (max-width: 40rem), (orientation: portrait){
+		nav {
+				justify-content: space-around;
+		}
+	}
+
 </style>

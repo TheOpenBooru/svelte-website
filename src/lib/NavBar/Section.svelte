@@ -2,13 +2,11 @@
 	export let image: string;
 	export let name: string;
 	export let path: string;
-let icon_loading = true;
-
 </script>
 
 <a href={path} title={name}>
-	<div class={"icon " + (icon_loading ? "loading" : "loaded")}>
-		<img src={image} alt={name} height="32" width="32" on:load={() => (icon_loading = false)} />
+	<div class="icon">
+		<img src={image} alt={name} height="32" width="32"/>
 	</div>
 
 	<span class="text">
@@ -21,23 +19,20 @@ let icon_loading = true;
 		/* Shape */
 		min-width: fit-content;
 		width: 5rem;
-		height: calc(var(--NAVBAR-HEIGHT) - 0.6rem);
+		height: calc(100% - 0.6rem);
 		border-radius: 1rem;
 		margin: .3rem;
-		padding-left: .5rem;
-		padding-right: .5rem;
+		padding: 0 .5rem;
 
 		/* Center containinng items */
 		display: flex;
 		gap: 1rem;
-		flex-flow: row nowrap;
-		justify-content: left;
 		align-items: center;
 	}
 
 	a {
 		/* Look */
-		font-size: 1.2rem;
+		font-size: 1.3rem;
 		color: black;
 		justify-content: center;
 		text-decoration: none;
@@ -45,6 +40,14 @@ let icon_loading = true;
 		cursor: pointer;
 		border: 3px solid var(--BORDER-1);
 		background-color: var(--BACKGROUND-3);
+	}
+
+	@media screen and (max-width: 40rem), (orientation: portrait){
+		a {
+			width: 100% !important;
+			padding: 0 !important;
+			margin: .1rem !important;
+		}
 	}
 
 	.section:hover {
@@ -60,13 +63,6 @@ let icon_loading = true;
 		height: 100%;
 		width: 100%;
 	}
-
-	.loaded {
-		animation: forwards fadeIn ease-in .4s;
-	}
-
-	.text {
-	}
 	
 	@keyframes fadeIn{
 		from {
@@ -76,5 +72,4 @@ let icon_loading = true;
 			opacity: 1;
 		}
 	}
-
 </style>
