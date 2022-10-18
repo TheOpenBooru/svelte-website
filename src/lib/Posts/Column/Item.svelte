@@ -16,13 +16,16 @@
 	let adjustedHeight = (image.height / aspectRatio) * aspectRatio;
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
 	on:click={postCallback({ id: post.id, index })}
 	on:load={isTarget ? () => scrollTo() : null}
 	class={post.media_type}
 >
-	<a title={`Post: ${post.id}`} href={`/post/${post.id}`} on:click={(e) => e.preventDefault()}>
+	<a
+		title="Post: {post.id}"
+		href="/post/{post.id}"
+		on:click={(e) => e.preventDefault()}
+	>
 		<img
 			src={image.url}
 			width={image.width}
@@ -44,14 +47,17 @@
 		margin-bottom: 1rem;
 		outline: 0.3rem solid;
 		background: var(--BACKGROUND-3);
+	}
+
+	div.image {
 		outline-color: var(--BACKGROUND-3);
 	}
 
-	div .video {
+	div.video {
 		outline-color: #008600;
 	}
 
-	div .animation {
+	div.animation {
 		outline-color: #000085;
 	}
 
