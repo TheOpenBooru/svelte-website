@@ -25,15 +25,14 @@
 		}
 	}
 	
-	afterUpdate(CheckNewPosts);
+	let column_count = 0;
+	column_count = Clamp(column_count, 2 , 8)
+	$: columns = SplitPosts(posts, column_count);;
+	
+	onMount(CheckNewPosts);
 	onMount(() => {
-		let column_count = Math.floor(window.document.body.clientWidth / 400)
-		column_count = Clamp(column_count, 2 , 8)
-		console.log({column_count})
-		columns = SplitPosts(posts, column_count);
+		column_count = Math.floor(window.document.body.clientWidth / 400)
 	});
-
-	let columns: Types.Post[][] = [];
 </script>
 
 <main bind:this={container} on:scroll={() => CheckNewPosts()}>

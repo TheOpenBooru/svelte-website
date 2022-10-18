@@ -3,31 +3,29 @@
 	import Image from 'lib/Media/image.svelte';
 	export let post: Types.Post;
 	export let callback: Function;
-	let loading = true;
+	export let priority: boolean;
+
 	let image = post.thumbnail;
+	let loaded = false;
 </script>
 
-<main>
-	<a href="/post/{post.id}" on:click={(e) => {e.preventDefault(); callback(e)}}>
-		<div class="border {loading ? 'loading' : 'loaded'}">
-			<img
-				class="border"
-				src={image.url}
-				alt="Post {post.id} {post.tags.join(',')}"
-				width={image.width}
-				height={image.height}
-				on:load={() => (loading = false)}
-			/>
-		</div>
-	</a>
-</main>
+<a
+	class="border"
+	href="/post/{post.id}"
+	on:click={(e) => {e.preventDefault(); callback(e)}}
+>
+	<img
+		class="border"
+		src={image.url}
+		alt="Post {post.id} {post.tags.join(',')}"
+		width={image.width}
+		height={image.height}
+		loading={priority ? "eager" : "lazy"}
+	/>
+</a>
 
 <style>
-	main {
-		--IMAGE-SIZE: 192px;
-	}
-
-	div {
+	a {
 		--MAX-SIZE: var(--IMAGE-SIZE);
 		--MIN-SIZE: calc(var(--IMAGE-SIZE) / 6);
 
@@ -44,22 +42,12 @@
 	}
 	
 	.loading {
-		background: var(--BACKGROUND-2);
-		opacity: 0.2;
+		opacity: 0;
 	}
 	
 	.loaded {
-		animation: fadeIn forwards 0.3s;
-	}
-	@keyframes fadeIn {
-		from {
-			opacity: 0.2;
-			background: var(--BACKGROUND-2);
-		}
-		to {
-			background: var(--BACKGROUND-3);
-			opacity: 1;
-		}
+		transition: ease-in-out 100ms;
+		opacity: 1;
 	}
 
 	img {

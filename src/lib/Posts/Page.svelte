@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
 	import { BSL, Posts } from 'openbooru';
+	import { onMount } from 'svelte';
 	import Grid from 'lib/Posts/Grid/index.svelte';
 	import SearchButton from './SearchButton.svelte';
 
@@ -11,6 +12,14 @@
 	let index = 0;
 	let query: Types.PostQuery = {};
 	let posts: Types.Post[] = [];
+
+	async function postQueryFromParams(){
+		let params = new URLSearchParams(window.location.search)
+    let bsl = params.get("query") || "";
+    if (typeof bsl === "object") bsl = bsl[0]
+    let query = BSL.decode(bsl);
+		updateQuery(query);
+	}
 
 	async function requestPosts() {
 		if (finished || loading) return;
@@ -48,6 +57,8 @@
 			location.href = `/post/${id}`;
 		};
 	}
+
+	onMount(postQueryFromParams)
 </script>
 
 <SearchButton {query} {updateQuery}/>

@@ -28,7 +28,7 @@
 	<div id="grid">
 		{#if posts.length > 0}
 			{#each posts as post, index}
-				<GridItem {post} callback={callback({ id: post.id, index })} />
+				<GridItem {post} priority={index < 30} callback={callback({ id: post.id, index })} />
 			{/each}
 			{#if finished}
 				<hr />
@@ -41,7 +41,7 @@
 
 <style>
 	main {
-		--IMAGE-SIZE: 192px;
+		--IMAGE-SIZE: 14rem;
 
 		/* Position */
 		max-width: 100vw;
