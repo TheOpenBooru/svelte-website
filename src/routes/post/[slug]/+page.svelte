@@ -1,18 +1,24 @@
 <script lang="ts">
-  import type { PageData } from './$types';
+	import { onMount } from 'svelte';
+  import { Post } from 'openbooru';
+  import type { Types } from 'openbooru';
 	import HeadInfo from "lib/HeadInfo.svelte"
 	import PostPage from "lib/Post/Page.svelte"
 
-
-  export let data: PageData;
-	let post = data.post;
+  let post: Types.Post
+  onMount(async () => {
+    let post_id = window.location.href.split("/").at(-1)
+    post = await Post.get(Number(post_id))
+  })
 </script>
 
-<HeadInfo
-  title={`Post ${post.id}`}
-  description={`${post.tags.join(", ")}`}
-  keywords={["post", "media", "openbooru"].concat(post.tags)}
-  path={`/post/${post.id}`}
-  media={post.full}
-/>
-<PostPage {post}/>
+{#if post}
+  <HeadInfo
+    title={`Post ${post.id}`}
+    description={`${post.tags.join(", ")}`}
+    keywords={["post", "media", "openbooru"].concat(post.tags)}
+    path={`/post/${post.id}`}
+    media={post.full}
+  />
+  <PostPage {post}/>
+{/if}
