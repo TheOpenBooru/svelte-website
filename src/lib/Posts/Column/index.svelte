@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
-	import { onMount } from 'svelte';
+	import { onMount, afterUpdate } from 'svelte';
 	import LoadingIcon from 'lib/LoadingIcon.svelte';
 	import Item from './Item.svelte';
 	import { SplitPosts } from './utils';
@@ -11,24 +11,29 @@
 	export let posts: Types.Post[];
 	export let requestPosts: Function;
 	export let callback: Function;
-
+	
 	const Clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
 	let container: Element;
 	async function CheckNewPosts() {
-		if (!container) return;
+		if (!container || finished) return;
 		const { scrollTop, offsetHeight, scrollHeight } = container;
 		let distanceFromTop = scrollTop + offsetHeight;
 		let distanceFromBottom = scrollHeight - distanceFromTop;
-		console.log(distanceFromBottom);
 		if (distanceFromBottom < 2000) {
 			await requestPosts();
 		}
 	}
 	
-	onMount(CheckNewPosts);
+	afterUpdate(CheckNewPosts);
+	onMount(() => {
+		let column_count = Math.floor(window.document.body.clientWidth / 400)
+		column_count = Clamp(column_count, 2 , 8)
+		console.log({column_count})
+		columns = SplitPosts(posts, column_count);
+	});
 
-	let columns = SplitPosts(posts, 4);
+	let columns: Types.Post[][] = [];
 </script>
 
 <main bind:this={container} on:scroll={() => CheckNewPosts()}>
@@ -45,17 +50,17 @@
 				{/each}
 			</div>
 		{/each}
-
-		{#if finished}
-			<hr />
-		{:else if loading}
-      <div id="loading">
-        <LoadingIcon fadeIn />
-      </div>
-		{:else}
-			<hr />
-		{/if}
 	</div>
+
+	{#if loading && columns.length === 0}
+		<div id="loading" class="center">
+			<LoadingIcon />
+		</div>
+	{:else if loading}
+		<div id="loading" class="bottom">
+			<LoadingIcon fadeIn />
+		</div>
+	{/if}
 </main>
 
 <style>
@@ -71,6 +76,13 @@
 		justify-items: center;
 		gap: 1rem;
 		grid-template-columns: repeat(auto-fit, 200px, 1fr);
+	}
+	
+	@media screen and (min-width: 30rem){
+		main {
+			padding-left: 5vw;
+			padding-right: 5vw;
+		}
 	}
 
 	#columns {
@@ -97,6 +109,18 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-bottom: 2rem;
+	}
+
+	#loading.center{
+		position: absolute;
+		top:0;
+		left:0;
+		width: 100%;
+		height: 100%;
+	}
+
+	#loading.bottom{
+		bottom: 0rem;
+		position: static;
 	}
 </style>

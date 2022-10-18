@@ -27,7 +27,7 @@
 			src={image.url}
 			width={image.width}
 			height={adjustedHeight}
-			alt={index.toString()}
+			alt={post.tags.join(", ")}
       loading={priority ? null : "lazy"}
 		/>
 	</a>
@@ -59,12 +59,6 @@
 		height: 100%;
 		width: 100%;
 		object-fit: cover;
-		
-		text-align: center;
-		vertical-align: middle;
-		font-size: 4rem;
-		color: black;
-		vertical-align: middle;
 	}
 
 	div,
