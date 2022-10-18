@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
-	import { onMount, afterUpdate } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
 	import LoadingIcon from 'lib/LoadingIcon.svelte';
-	import Item from './Item.svelte';
+	import Column from './Column.svelte';
 	import { SplitPosts } from './utils';
 
 	export let index: number;
@@ -27,10 +27,10 @@
 	
 	let column_count = 0;
 	column_count = Clamp(column_count, 2 , 8)
-	$: columns = SplitPosts(posts, column_count);;
+	$: columns = SplitPosts(posts, column_count);
 	
 	onMount(CheckNewPosts);
-	onMount(() => {
+	afterUpdate(() => {
 		column_count = Math.floor(window.document.body.clientWidth / 400)
 	});
 </script>
@@ -38,16 +38,7 @@
 <main bind:this={container} on:scroll={CheckNewPosts}>
 	<div id="columns">
 		{#each columns as posts}
-			<div class="column">
-				{#each posts as post, index}
-					<Item
-						{index}
-						{post}
-						priority={index < 5}
-						postCallback={callback({ id: post.id, index })}
-					/>
-				{/each}
-			</div>
+			<Column posts={posts} callback={callback}/>
 		{/each}
 	</div>
 
@@ -90,18 +81,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-	}
-
-	.column {
-    --IMAGE-WIDTH: 300px;
-    --IMAGE-MARGIN: 8px;
-
-    width: var(--IMAGE-WIDTH);
-    margin: var(--IMAGE-MARGIN);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 	}
 
 	#loading {
