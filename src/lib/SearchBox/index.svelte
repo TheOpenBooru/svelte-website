@@ -29,23 +29,17 @@
 	}
 </script>
 
-<div class="container">
-	<div class="top">
+<main>
+	<div>
 		<SortSelect {sort} />
 		<OrderButton {descending} />
 		<TagSearch {addTagCallback} />
 	</div>
-	<!-- <TagList
-        includeTags={includeTags}
-        setIncludeTags={setIncludeTags}
-        excludeTags={excludeTags}
-        setExcludeTags={setExcludeTags}
-    /> -->
-	<button class="search-button" on:click={saveQuery}> Search </button>
-</div>
+	<button on:click={saveQuery}> Search </button>
+</main>
 
 <style>
-	.container {
+	main {
 		/* Position */
 		aspect-ratio: 16/9;
 		min-height: 15rem;
@@ -62,19 +56,17 @@
 		border-radius: 1rem;
 	}
 
-	.top {
+	div {
 		border-bottom: 0.2em solid var(--BORDER-1);
-		display: flex;
 		padding: 0.2rem;
-
+		
+		display: flex;
+		gap: .3rem;
 		align-items: center;
 		justify-content: space-around;
 	}
-	.top > * {
-		margin: 0.2rem;
-	}
 
-	.search-button {
+	button {
 		width: 100%;
 		height: 2.5rem;
 		min-height: 1rem;
@@ -85,7 +77,7 @@
 		background-color: var(--BACKGROUND-2);
 		font-weight: bold;
 	}
-	.search-button:active {
+	button:active {
 		background-color: var(--BACKGROUND-4);
 		font-size: 1.1rem;
 	}

@@ -2,7 +2,7 @@
 	import TagAutocomplete from "lib/AutoComplete.svelte"
 	export let addTagCallback: Function;
 
-	let search_text = '';
+	let search_text = "";
 
 	function NormaliseText(text: string): string {
 		return text
@@ -37,9 +37,11 @@
 	on:change={onInput}
 />
 
-<div>
-    <TagAutocomplete input={search_text} addTagCallback={confirmTag} />
-</div>
+{#if search_text = ""}
+	<div>
+		<TagAutocomplete input={search_text} addTagCallback={confirmTag} />
+	</div>
+{/if}
 
 <style>
 	input {
@@ -48,10 +50,10 @@
 		justify-self: flex-start;
 	}
 
-	/* div {
-        z-index: 1;
-        position: absolute;
-        top: 2.5rem;
-        left: 9rem;
-    } */
+	div {
+		z-index: 1;
+		position: absolute;
+		top: 3.2rem;
+		left: 10.2rem;
+	}
 </style>

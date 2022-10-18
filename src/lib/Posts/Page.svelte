@@ -1,12 +1,8 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
 	import { BSL, Posts } from 'openbooru';
-	import type { SvelteComponent } from 'svelte';
-	import Search from 'js/search';
 	import Grid from 'lib/Posts/Grid/index.svelte';
-	import Button from 'lib/Button.svelte';
-	import SearchBox from 'lib/SearchBox/index.svelte';
-	import AutoComplete from 'lib/AutoComplete.svelte';
+	import SearchButton from './SearchButton.svelte';
 
 	export let layout = Grid;
 
@@ -52,56 +48,16 @@
 			location.href = `/post/${id}`;
 		};
 	}
-
-	let searchModal: HTMLDialogElement;
-	function showSearch(){
-		searchModal.showModal();
-	}
-	function hideSearch(){
-		searchModal.close();
-	}
 </script>
 
-<dialog bind:this={searchModal}>
-	<SearchBox setQuery={updateQuery} closeCallback={hideSearch} {query} />
-</dialog>
-
-<div>
-	<Button name="Search" src="/images/search.svg" callback={showSearch} />
-</div>
+<SearchButton {query} {updateQuery}/>
 
 <svelte:component
 	this={layout}
-	{requestPosts}
 	{index}
 	{finished}
 	{loading}
 	{posts}
+	{requestPosts}
 	callback={PostCallback}
 />
-
-<style>
-	div {
-		position: absolute;
-		left: 0;
-		margin: 0.2rem;
-	}
-
-	dialog::backdrop{
-		background: rgba(0,0,0);
-		opacity: 0.95;
-		animation-name: fadeIn;
-		animation-duration: 2s;
-		animation-direction: forwards;
-	}
-
-	@keyframes fadeIn{
-		from { opacity: 0.5;}
-		to { opacity: 1;}
-	}
-	
-	dialog {
-		background: none;
-		border: none;
-	}
-</style>

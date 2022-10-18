@@ -13,12 +13,10 @@
 	
 	let container: Element;
 	async function CheckNewPosts() {
-		console.log(container);
 		if (!container) return;
 		const { scrollTop, offsetHeight, scrollHeight } = container;
 		let distanceFromTop = scrollTop + offsetHeight;
 		let distanceFromBottom = scrollHeight - distanceFromTop;
-		console.log(distanceFromBottom);
 		if (distanceFromBottom < 2000) {
 			await requestPosts();
 		}
@@ -27,7 +25,7 @@
 </script>
 
 <main bind:this={container} on:scroll={() => CheckNewPosts()}>
-	<div class="grid">
+	<div id="grid">
 		{#if posts.length > 0}
 			{#each posts as post, index}
 				<GridItem {post} callback={callback({ id: post.id, index })} />
@@ -52,7 +50,7 @@
 		overflow-x: hidden;
 	}
 
-	.grid {
+	#grid {
 		overflow-x: hidden;
 		padding: 2rem 10vw 2rem 10vw;
 
