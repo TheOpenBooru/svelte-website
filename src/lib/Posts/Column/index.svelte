@@ -35,7 +35,7 @@
 	});
 </script>
 
-<main bind:this={container} on:scroll={() => CheckNewPosts()}>
+<main bind:this={container} on:scroll={CheckNewPosts}>
 	<div id="columns">
 		{#each columns as posts}
 			<div class="column">

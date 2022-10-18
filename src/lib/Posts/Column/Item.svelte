@@ -16,28 +16,27 @@
 	let adjustedHeight = (image.height / aspectRatio) * aspectRatio;
 </script>
 
-<div
-	on:click={postCallback({ id: post.id, index })}
-	on:load={isTarget ? () => scrollTo() : null}
+<a
+	title="Post: {post.id}"
+	href="/post/{post.id}"
 	class={post.media_type}
+	on:load={isTarget ? () => scrollTo() : null}
+	on:click={(e) => {
+		e.preventDefault();
+		postCallback({ id: post.id, index })
+	}}
 >
-	<a
-		title="Post: {post.id}"
-		href="/post/{post.id}"
-		on:click={(e) => e.preventDefault()}
-	>
-		<img
-			src={image.url}
-			width={image.width}
-			height={adjustedHeight}
-			alt={post.tags.join(", ")}
-      loading={priority ? null : "lazy"}
-		/>
-	</a>
-</div>
+	<img
+		src={image.url}
+		width={image.width}
+		height={adjustedHeight}
+		alt={post.tags.join(", ")}
+		loading={priority ? null : "lazy"}
+	/>
+</a>
 
 <style>
-	div {
+	a {
 		display: block;
 		height: auto;
 		width: 100%;
@@ -49,15 +48,15 @@
 		background: var(--BACKGROUND-3);
 	}
 
-	div.image {
+	a.image {
 		outline-color: var(--BACKGROUND-3);
 	}
 
-	div.video {
+	a.video {
 		outline-color: #008600;
 	}
 
-	div.animation {
+	a.animation {
 		outline-color: #000085;
 	}
 
@@ -67,12 +66,12 @@
 		object-fit: cover;
 	}
 
-	div,
+	a,
 	img {
 		transition: all 0.1s ease-in;
 		border-radius: 1rem;
 	}
-  div:hover,
+  a:hover,
 	img:hover {
     outline-width: 0.3rem;
     border-radius: 2rem;
