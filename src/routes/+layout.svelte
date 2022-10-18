@@ -8,7 +8,9 @@
 
 <QueryClientProvider client={queryClient}>
 	<NavigationBar />
-	<slot />
+	<div style="height: calc(100vh - var(--NAVBAR-HEIGHT));">
+    <slot />
+	</div>
 </QueryClientProvider>
 
 <style global>
@@ -36,12 +38,12 @@
 		--BORDER-1-HOVER: var(--COLOR-6);
 		
 		--BORDER-2: var(--COLOR-6);
-		--BORDER-2-HOVER: var(--COLOR-7);
-	}
+--BORDER-2-HOVER: var(--COLOR-7);
 
-	:root{
-		--NAVBAR-HEIGHT: 2.8rem;
-		--PAGE-HEIGHT: calc(100vh - var(--NAVBAR-HEIGHT));
+
+--NAVBAR-HEIGHT: 2.8rem;
+
+
 	}
 
 
@@ -56,6 +58,10 @@
 
 	img {
 		font-size: 0;
+	}
+
+	a{
+		text-decoration: none;
 	}
 	/* latin-ext */
 	@font-face {

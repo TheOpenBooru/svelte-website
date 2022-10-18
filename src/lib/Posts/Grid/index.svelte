@@ -47,7 +47,7 @@
 
 		/* Position */
 		max-width: 100vw;
-		max-height: var(--PAGE-HEIGHT);
+		max-height: 100%;
 		overflow-y: auto;
 		overflow-x: hidden;
 	}

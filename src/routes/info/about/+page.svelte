@@ -2,4 +2,4 @@
   import InfoPage from "lib/Info/index.svelte"
 </script>
 
-<InfoPage/>
+<InfoPage page="about"/>

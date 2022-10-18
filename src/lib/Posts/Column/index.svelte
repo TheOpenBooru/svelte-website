@@ -60,8 +60,7 @@
 
 <style>
 	main {
-		height: var(--PAGE-HEIGHT);
-
+		height: 100%;
 		padding-top: 3rem;
 		padding-left: 20vw;
 		padding-right: 20vw;

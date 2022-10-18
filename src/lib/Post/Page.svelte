@@ -29,7 +29,7 @@
 
 <style>
 	main {
-		height: var(--PAGE-HEIGHT);
+		height: 100%;
 		overflow-y: scroll;
 		display: grid;
 		grid-template-rows: calc(100% - 1.5rem) 1fr;
