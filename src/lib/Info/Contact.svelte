@@ -1,13 +1,23 @@
 <div>
-	{`Contact
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-`}
+	GDPR:&nbsp;
+	<a href={"mailto:gdpr@openbooru.org"}>
+			gdpr@openbooru.org
+	</a>
+	<br/>
+	Support:&nbsp;
+	<a href={"mailto:support@openbooru.org"}>
+			support@openbooru.org
+	</a>
+	<br/>
+	DMCA Contact:&nbsp;
+	<a href={"mailto:dmca@openbooru.org"}>
+			dmca@openbooru.org
+	</a>
 </div>
 
 <style>
 	div {
     padding: .5rem;
 		font-size-adjust: 0.7;
-		white-space: pre-line;
 	}
 </style>
