@@ -4,14 +4,17 @@
 	import { onMount } from 'svelte';
 	import Grid from 'lib/Posts/Grid/index.svelte';
 	import SearchButton from './SearchButton.svelte';
+	import LayoutSelector from './LayoutSelector.svelte';
 
 	export let layout = Grid;
+	export let initialPosts: Types.Post[] = [];
 
 	let finished = false;
 	let loading = false;
 	let index = 0;
 	let query: Types.PostQuery = {};
 	let posts: Types.Post[] = [];
+
 
 	async function postQueryFromParams(){
 		let params = new URLSearchParams(window.location.search)
@@ -62,13 +65,13 @@
 </script>
 
 <SearchButton {query} {updateQuery}/>
-
+<LayoutSelector layout={layout}/>
 <svelte:component
 	this={layout}
 	{index}
 	{finished}
 	{loading}
-	{posts}
+	posts={posts || initialPosts}
 	{requestPosts}
 	callback={PostCallback}
 />

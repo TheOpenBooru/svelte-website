@@ -32,7 +32,7 @@
 	div {
 		position: absolute;
 		left: 0;
-		margin: 0.2rem;
+		margin: 0.4rem;
 		z-index: 1;
 	}
 
