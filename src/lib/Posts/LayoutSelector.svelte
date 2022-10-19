@@ -4,7 +4,6 @@
   import Grid from "lib/Posts/Grid/index.svelte";
   
   export let layout: string;
-  console.log(layout)
 </script>
 
 <div>
