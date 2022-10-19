@@ -3,7 +3,7 @@
 	import { afterUpdate, onMount } from 'svelte';
 	import LoadingIcon from 'lib/LoadingIcon.svelte';
   import Item from "./Item.svelte"
-	import { SplitPosts } from './utils';
+	import { SplitPosts } from './utils.svelte';
 
 	export let index: number;
 	export let finished: boolean;
