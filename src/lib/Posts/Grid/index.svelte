@@ -61,4 +61,10 @@
 		gap: 1rem;
 		grid-template-columns: repeat(auto-fit, minmax(min(calc(40vw - 2rem), var(--IMAGE-SIZE)), 1fr));
 	}
+	
+	@media screen and (max-width: 40rem), (orientation: portrait){
+		#grid {
+			padding: 1rem;
+		}
+	}
 </style>
