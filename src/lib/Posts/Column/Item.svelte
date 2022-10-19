@@ -43,7 +43,6 @@
 		cursor: pointer;
 
 		margin: 0.2rem;
-		margin-bottom: 1rem;
 		outline: 0.3rem solid;
 		background: var(--BACKGROUND-3);
 	}
@@ -64,11 +63,10 @@
 		height: 100%;
 		width: 100%;
 		object-fit: cover;
-	}
 
+	}
 	a,
 	img {
-		transition: all 0.1s ease-in;
 		border-radius: 1rem;
 	}
   a:hover,

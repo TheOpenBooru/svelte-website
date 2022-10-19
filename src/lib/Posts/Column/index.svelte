@@ -2,7 +2,7 @@
 	import type { Types } from 'openbooru';
 	import { afterUpdate, onMount } from 'svelte';
 	import LoadingIcon from 'lib/LoadingIcon.svelte';
-	import Column from './Column.svelte';
+  import Item from "./Item.svelte"
 	import { SplitPosts } from './utils';
 
 	export let index: number;
@@ -25,20 +25,38 @@
 		}
 	}
 	
-	let column_count = 0;
-	column_count = Clamp(column_count, 2 , 8)
-	$: columns = SplitPosts(posts, column_count);
-	
+	let column_count = 3;
+	$: columns = SplitPosts(posts, Clamp(column_count, 2 , 8));
+	function updateColumnCount(element: Element){
+		column_count = Math.floor((element.clientWidth - 200) / 400)
+	}
 	onMount(CheckNewPosts);
-	afterUpdate(() => {
-		column_count = Math.floor(window.document.body.clientWidth / 400)
+	onMount(() => {
+		let ro = new ResizeObserver(entries => {
+			entries.forEach(
+				entry => updateColumnCount(entry.target))
+		})
+		ro.observe(container);
 	});
 </script>
 
-<main bind:this={container} on:scroll={CheckNewPosts}>
+<main
+	bind:this={container}
+	on:scroll={CheckNewPosts}
+	on:load={(e) => updateColumnCount(e.target)}
+>
 	<div id="columns">
 		{#each columns as posts}
-			<Column posts={posts} callback={callback}/>
+			<div class="column">
+				{#each posts as post, index}
+					<Item
+						{index}
+						{post}
+						priority={index < 5}
+						postCallback={callback({ id: post.id, index })}
+					/>
+				{/each}
+			</div>
 		{/each}
 	</div>
 
@@ -56,22 +74,38 @@
 <style>
 	main {
 		height: 100%;
-		padding-top: 3rem;
-		padding-left: 20vw;
-		padding-right: 20vw;
+		padding: 3rem 20vw;
 		overflow-y: auto;
 
-		display: grid;
-		align-items: center;
+		display: flex;
 		justify-items: center;
 		gap: 1rem;
-		grid-template-columns: repeat(auto-fit, 200px, 1fr);
 	}
 	
-	@media screen and (min-width: 30rem){
+	div.column {
+		--IMAGE-WIDTH: 300px;
+    --IMAGE-MARGIN: 8px;
+		
+    width: var(--IMAGE-WIDTH);
+    margin: var(--IMAGE-MARGIN);
+		
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+	}
+	
+	@media screen and (max-width: 40rem), (orientation: portrait){
 		main {
 			padding-left: 5vw;
 			padding-right: 5vw;
+		}
+		div.column{
+			--MARGIN: 2vw;
+			--IMAGE-WIDTH: 40vw;
+			width: calc(45vw - (var(--MARGIN) * 2));
+			margin: var(--MARGIN);
+
 		}
 	}
 
