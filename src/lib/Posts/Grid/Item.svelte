@@ -7,10 +7,11 @@
 
 	let image = post.thumbnail;
 	let loaded = false;
+	
 </script>
 
 <a
-	class="border"
+	class="border {post.media_type}"
 	href="/post/{post.id}"
 	on:click={(e) => {e.preventDefault(); callback(e)}}
 >
@@ -38,9 +39,21 @@
 		align-items: center;
 
 		background: var(--BACKGROUND-3);
-		outline: 0.3rem solid var(--BACKGROUND-3);
+		outline: 0.3rem solid;
 	}
 	
+	a.image {
+		outline-color: var(--BACKGROUND-3);
+	}
+
+	a.video {
+		outline-color: #008600;
+	}
+
+	a.animation {
+		outline-color: #000085;
+	}
+
 	.loading {
 		opacity: 0;
 	}
