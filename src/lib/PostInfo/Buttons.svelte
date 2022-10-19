@@ -1,8 +1,8 @@
 <script lang="ts">
     export let canEdit: boolean = true;
     export let canDelete: boolean = true;
-    export let editCallback: Function;
-    export let deleteCallback: Function;
+    export let editCallback: () => void;
+    export let deleteCallback: () => void;
 </script>
 
 <main>

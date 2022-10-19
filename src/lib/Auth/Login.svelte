@@ -1,18 +1,26 @@
 <script lang="ts">
   export let error: string = "";
+  export let callback: (username: string, password: string) => void;
+
+  function submit(){
+    callback(usernameField.value, passwordField.value)
+  };
+
+  let usernameField: HTMLInputElement;
+  let passwordField: HTMLInputElement;
 </script>
 
 <main>
-  <form>
-      {#if error}
-      <span>{error}</span>
-      {/if}
-      <div>
-          <input class="input" type="username" placeholder="Username" />
-          <input class="input" type="password" placeholder="Password" />
-          <input id="submit" type="submit" value="Login"/>
-      </div>
-  </form>
+  <div id="container">
+    {#if error}
+    <span>{error}</span>
+    {/if}
+    <div id="input-container">
+        <input bind:this={usernameField} class="input" type="username" placeholder="Username" />
+        <input bind:this={passwordField} class="input" type="password" placeholder="Password" />
+        <input on:click={submit} id="submit" type="submit" value="Login"/>
+    </div>
+  </div>
 </main>
 
 <style>
@@ -34,11 +42,11 @@
     gap: 1rem;
   }
 
-  form {
+  div#container {
     width:100%;
   }
 
-  div{
+  div#input-container{
     width:100%;
     display:flex;
     flex-flow: nowrap column;

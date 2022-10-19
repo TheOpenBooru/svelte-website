@@ -4,7 +4,7 @@
 	import Button from 'lib/Button.svelte';
 
 	export let query: Types.PostQuery;
-	export let updateQuery: Function;
+	export let updateQuery: (query: Types.PostQuery) => void;
 
 	export function toggle(){
 		if (searchModal.open) {

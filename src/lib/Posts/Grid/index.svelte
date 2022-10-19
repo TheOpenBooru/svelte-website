@@ -8,7 +8,7 @@
 	export let finished: boolean;
 	export let loading: boolean;
 	export let posts: Types.Post[];
-	export let requestPosts: Function;
+	export let requestPosts: () => void;
 	export let callback: Function;
 	
 	let container: Element;
@@ -41,7 +41,8 @@
 
 <style>
 	main {
-		--IMAGE-SIZE: 14rem;
+		--IMAGE-SIZE: 180px;
+		/* API Thumbnail Size */
 
 		/* Position */
 		max-width: 100vw;

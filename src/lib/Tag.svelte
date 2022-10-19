@@ -3,7 +3,7 @@
 	export let tagName: string | null = null;
 	export let data: Types.Tag | null = null;
 	export let href: string | null = null;
-	export let callback: Function | null = null;
+	export let callback: () => void = () => {};
 	export let showCount: boolean = false;
 
 	const name = tagName ?? data?.name ?? 'Foo';

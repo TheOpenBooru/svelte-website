@@ -2,7 +2,7 @@
   export let src: string = "/favicon.ico";
   export let name: string = "Lorum";
   export let href: string = "";
-  export let callback: Function = () => {};
+  export let callback: () => void = () => {};
   export let active: boolean = false;
 </script>
 

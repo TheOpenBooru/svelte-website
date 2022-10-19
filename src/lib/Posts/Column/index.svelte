@@ -9,7 +9,7 @@
 	export let finished: boolean;
 	export let loading: boolean;
 	export let posts: Types.Post[];
-	export let requestPosts: Function;
+	export let requestPosts: () => void;
 	export let callback: Function;
 	
 	const Clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import TagAutocomplete from "lib/AutoComplete.svelte"
-	export let addTagCallback: Function;
+	export let addTagCallback: (tag: string) => void;
 
 	let search_text = "";
 

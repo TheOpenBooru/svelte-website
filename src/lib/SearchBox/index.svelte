@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let query: Types.PostQuery = {};
-	export let setQuery: Function;
-	export let closeCallback: Function;
+	export let setQuery: (query: Types.PostQuery) => void;
+	export let closeCallback: () => void;
 
 	import type { Types } from 'openbooru';
 	import SortSelect from './SortSelect.svelte';

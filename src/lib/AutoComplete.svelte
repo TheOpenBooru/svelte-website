@@ -2,8 +2,8 @@
   import type { Types } from "openbooru"
   import Tag from "./Tag.svelte"
 
-  export let input: string = "";
-  export let addTagCallback: Function|null = null;
+  export const input: string = "";
+  export const callback: (tag:string) => void = () => {};
 
   let tags: Types.Tag[] = []
 </script>
@@ -11,7 +11,7 @@
 {#if tags && tags.length === 0}
   <div>
     {#each tags as tag}
-      <Tag tagName={tag.name} data={tag} callback={() => clickCallback(tag.name)} />
+      <Tag tagName={tag.name} data={tag} callback={() => callback(tag.name)} />
     {/each}
   </div>
 {/if}
