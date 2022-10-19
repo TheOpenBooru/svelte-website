@@ -3,17 +3,21 @@
 	import About from './About.svelte';
 	import Contact from './Contact.svelte';
 	import Api from './Api.svelte';
-	export let page = 'about';
+	import PatchNotes from './PatchNotes.svelte';
+	
+	export let page: "about" | "contact" | "patchnotes" | "api" = "about";
 </script>
 
 <main>
 	<Sidebar current={page}/>
 	<div>
-		{#if page == 'about'}
+		{#if page == "about"}
 			<About />
-		{:else if page == 'contact'}
+		{:else if page == "contact"}
 			<Contact />
-		{:else if page == 'api'}
+		{:else if page == "patchnotes"}
+			<PatchNotes />
+		{:else if page == "api"}
 			<Api />
 		{/if}
 	</div>

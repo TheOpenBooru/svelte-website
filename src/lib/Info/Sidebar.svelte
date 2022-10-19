@@ -3,10 +3,10 @@
 </script>
 
 <div>
-<a href="/info/about"> About </a>
-
 	<a href="/info/api">API</a>
-	<a href="/info/contact">Contact</a>
+	<a href="/info/patchnotes">Patch Notes</a>
+	<a href="/info/about"> About Us</a>
+	<a href="/info/contact">Contact Us</a>
 </div>
 
 <style>
