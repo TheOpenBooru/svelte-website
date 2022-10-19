@@ -71,9 +71,7 @@
 </script>
 
 <SearchButton {query} {updateQuery}/>
-<div id="layout">
-	<LayoutSelector layout={layout}/>
-</div>
+<LayoutSelector layout={layout}/>
 <svelte:component
 	this={LayoutElement}
 	{index}
@@ -83,12 +81,3 @@
 	{requestPosts}
 	callback={PostCallback}
 />
-
-<style>
-	@media screen and (max-width: 40rem), (orientation: portrait){
-		div#layout{
-			display: none;
-		}
-	}
-
-</style>
