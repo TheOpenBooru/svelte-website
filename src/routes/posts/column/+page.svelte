@@ -5,4 +5,4 @@
 </script>
 
 <HeadInfo path="/posts/column"/>
-<PostsPage layout={Column}/>
+<PostsPage layout="column"/>

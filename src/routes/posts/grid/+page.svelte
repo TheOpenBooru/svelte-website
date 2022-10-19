@@ -5,4 +5,4 @@
 </script>
 
 <HeadInfo path="/posts/grid"/>
-<PostsPage layout={Grid}/>
+<PostsPage layout="grid"/>

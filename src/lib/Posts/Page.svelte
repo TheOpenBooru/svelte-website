@@ -3,10 +3,11 @@
 	import { BSL, Posts } from 'openbooru';
 	import { onMount } from 'svelte';
 	import Grid from 'lib/Posts/Grid/index.svelte';
+	import Column from 'lib/Posts/Column/index.svelte';
 	import SearchButton from './SearchButton.svelte';
 	import LayoutSelector from './LayoutSelector.svelte';
 
-	export let layout = Grid;
+	export let layout: "grid"|"column" = "grid";
 	export let initialPosts: Types.Post[] = [];
 
 	let finished = false;
@@ -60,14 +61,21 @@
 			location.href = `/post/${id}`;
 		};
 	}
-
+	
+	const LayoutLookup = {
+		grid:Grid,
+		column: Column
+	};
+	const LayoutElement = LayoutLookup[layout] ?? Grid
 	onMount(postQueryFromParams)
 </script>
 
 <SearchButton {query} {updateQuery}/>
-<LayoutSelector layout={layout}/>
+<div id="layout">
+	<LayoutSelector layout={layout}/>
+</div>
 <svelte:component
-	this={layout}
+	this={LayoutElement}
 	{index}
 	{finished}
 	{loading}
@@ -75,3 +83,12 @@
 	{requestPosts}
 	callback={PostCallback}
 />
+
+<style>
+	@media screen and (max-width: 40rem), (orientation: portrait){
+		div#layout{
+			display: none;
+		}
+	}
+
+</style>

@@ -3,7 +3,8 @@
   import Column from "lib/Posts/Column/index.svelte";
   import Grid from "lib/Posts/Grid/index.svelte";
   
-  export let layout: String = "";
+  export let layout: string;
+  console.log(layout)
 </script>
 
 <div>
@@ -11,13 +12,13 @@
     name="Grid"
     src="/images/grid.svg"
     href="/posts/grid"
-    active={layout === Grid}
+    active={layout === "grid"}
     />
     <Button
     name="Column"
     src="/images/columns.svg"
     href="/posts/column"
-    active={layout === Column}
+    active={layout === "column"}
   />
 </div>
 

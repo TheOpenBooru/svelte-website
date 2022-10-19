@@ -8,13 +8,13 @@
 
 {#if href}
   <a href={href}>
-    <button>
+    <button class={active ? "active" : ""}>
         <img src={src} alt={name}/>
     </button>
   </a>
 {:else}
-  <button>
-      <img src={src} alt={name} on:click={() => callback()}/>
+  <button class={active ? "active" : ""} on:click={() => callback()}>
+      <img src={src} alt={name}/>
   </button>
 {/if}
 
@@ -37,7 +37,8 @@
     transition: 0.2s ease-in-out;
   }
 
-  button:hover {
+  button:hover,
+  button.active {
       background-color: var(--BACKGROUND-3-HOVER);
   }
 
@@ -51,8 +52,7 @@
     transition: 0.2s ease-in-out;
   }
 
-  button:hover img,
-  a.active {
+  button:hover img {
       filter: invert(90%);
   }
 </style>
