@@ -5,10 +5,8 @@ import * as Account from 'lib/AccountModule';
 
 export const load: PageLoad = async ({ params }) => {
   if (browser) {
-    let token = Account.token();
-    if (token) {
-      throw redirect(302, '/profile')
-    } else {
+    const token = Account.token();
+    if (token === null) {
       throw redirect(302, '/account/login')
     }
   }

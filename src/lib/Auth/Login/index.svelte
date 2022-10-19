@@ -1,10 +1,10 @@
 <script lang="ts">
-  import Login from "lib/Auth/Login/index.svelte";
+  import Form from "./Form.svelte";
 </script>
 
 <main>
   <div>
-    <Login/>
+    <Form/>
   </div>
 </main>
 
