@@ -28,7 +28,7 @@
 	let column_count = 3;
 	$: columns = SplitPosts(posts, Clamp(column_count, 2 , 8));
 	function updateColumnCount(element: Element){
-		column_count = Math.floor((element.clientWidth - 200) / 400)
+		column_count = Math.floor((element.clientWidth - 200) / 300)
 	}
 	onMount(CheckNewPosts);
 	onMount(() => {
@@ -74,7 +74,7 @@
 <style>
 	main {
 		height: 100%;
-		padding: 3rem 20vw;
+		padding: 3rem 10vw;
 		overflow-y: auto;
 
 		display: flex;
@@ -86,7 +86,7 @@
 		--IMAGE-WIDTH: 300px;
     --IMAGE-MARGIN: 8px;
 		
-    width: var(--IMAGE-WIDTH);
+    width: 100%;
     margin: var(--IMAGE-MARGIN);
 		
     display: flex;
@@ -103,7 +103,6 @@
 		div.column{
 			--MARGIN: 2vw;
 			--IMAGE-WIDTH: 40vw;
-			width: calc(45vw - (var(--MARGIN) * 2));
 			margin: var(--MARGIN);
 
 		}
