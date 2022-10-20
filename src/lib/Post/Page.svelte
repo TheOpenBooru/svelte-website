@@ -1,29 +1,14 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
 	import PostInfo from 'lib/PostInfo/index.svelte';
+	import Media from 'lib/Media/index.svelte';
 	export let post: Types.Post;
 </script>
 
 <main>
-	{#if post.media_type === 'video'}
-		<video
-			id="media"
-			src={post.full.url}
-			width={post.full.width}
-			height={post.full.height}
-			alt={post.tags.join(', ')}
-			controls
-		>
-		</video>
-	{:else}
-		<img
-			id="media"
-			src={post.full.url}
-			width={post.full.width}
-			height={post.full.height}
-			alt={post.tags.join(', ')}
-		/>
-	{/if}
+	<div>
+		<Media post={post}/>
+	</div>
 	<PostInfo {post} />
 </main>
 
@@ -35,7 +20,7 @@
 		grid-template-rows: calc(100% - 1.5rem) 1fr;
 	}
 
-	#media {
+	div {
 		width: 100%;
 		height: 100%;
 		object-fit: contain;
