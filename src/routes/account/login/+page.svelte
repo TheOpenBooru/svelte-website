@@ -1,28 +1,5 @@
 <script lang="ts">
-  import Login from "lib/Auth/Login/index.svelte";
+  import Login from "lib/Auth/index.svelte";
 </script>
 
-<main>
-  <div>
-    <Login/>
-  </div>
-</main>
-
-<style>
-  main{
-    height: 100%;
-    width: 100%;
-    margin-top: 5%;
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-
-  }
-  div{
-    height: 10rem;
-    width: clamp(200px, 40%,  400px);
-
-    display: flex;
-    place-items: center;
-  }
-</style>
+<Login/>

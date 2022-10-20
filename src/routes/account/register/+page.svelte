@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Register from "lib/Auth/Regsiter/index.svelte";
+  import Auth from "lib/Auth/index.svelte";
 </script>
 
-<Register/>
+<Auth mode="register"/>

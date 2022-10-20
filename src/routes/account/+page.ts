@@ -1,7 +1,7 @@
 import type { PageLoad } from './$types';
 import { redirect } from '@sveltejs/kit';
 import { browser } from '$app/environment';
-import * as Account from 'lib/AccountModule';
+import * as Account from 'js/Booru/Account';
 
 export const load: PageLoad = async ({ params }) => {
   if (browser) {
