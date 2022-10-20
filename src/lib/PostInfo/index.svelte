@@ -6,7 +6,7 @@
 	import TagList from "./TagList.svelte"
 	import Buttons from "./Buttons.svelte"
 
-	export let post: Types.Post;
+	export let post: Types.Post|null;
 
 	let editting = false;
 	const deleteCallback = async () => {
@@ -20,18 +20,22 @@
 </script>
 
 <div>
-	<span class="source">
-		<Source source={post.source}/>
-	</span>
+	{#if post}
+		<span class="source">
+			<Source source={post.source}/>
+		</span>
+	{/if}
 	<div class="inner">
+		{#if post}
 		<Info post={post}/>
-		<div>
-			{#if editting}
+			<div>
+				{#if editting}
 				<span>Editting</span>
-			{:else}
+				{:else}
 				<TagList tags={post.tags}/>
-			{/if}
-		</div>
+				{/if}
+			</div>
+		{/if}
 		<Buttons editCallback={toggleEditting} deleteCallback={deleteCallback} />
 	</div>
 </div>
