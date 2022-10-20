@@ -32,12 +32,11 @@
 		const limit = 100;
 		let new_posts;
 		try {
-			new_posts = await Posts.search(query, index, limit);
+			new_posts = await Posts.search(query, posts.length, limit);
 		} catch (e) {
 			return;
 		}
 
-		index = index + new_posts.length;
 		posts = posts.concat(new_posts);
 
 		loading = false;
@@ -51,17 +50,17 @@
 		posts = [];
 	}
 
-	interface PostCallbackParams {
-		id: number;
-		index: number;
-	}
 
-	function PostCallback({ id, index }: PostCallbackParams) {
+	function PostCallback({ id, index }) {
 		return () => {
 			location.href = `/post/${id}`;
 		};
 	}
 	
+	function setIndex(new_index: number){
+		index = new_index;
+	}
+
 	const LayoutLookup = {
 		grid:Grid,
 		column: Column
@@ -75,6 +74,7 @@
 <svelte:component
 	this={LayoutElement}
 	{index}
+	{setIndex}
 	{finished}
 	{loading}
 	posts={posts || initialPosts}

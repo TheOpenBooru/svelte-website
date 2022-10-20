@@ -1,0 +1,56 @@
+<script lang="ts">
+  import type { Types } from "openbooru";
+	import { onMount } from "svelte";
+  import DesktopPosts from "./desktop.svelte";
+
+  export let loading: boolean;
+  export let finished: boolean;
+  export let posts: Types.Post[];
+  export let requestPosts: () => void;
+  export let exitCallback: () => void;
+  export let index: number;
+  export let setIndex: (index: number) => void;
+
+  const post = posts[index];
+  const prevPost = posts[index - 1];
+  const nextPost = posts[index + 1];
+  
+  function CheckForMorePosts(){
+    const postsRemaining = posts.length - (index + 1);
+    if (postsRemaining < 32) {
+      requestPosts();
+    }
+  }
+
+  function visit(){
+    window.location.href = `/post/${post.id}`
+  }
+
+  function gotoNextPost() {
+      CheckForMorePosts();
+      if (index !== posts.length - 1) {
+          setIndex(index + 1)
+      }
+  }
+  
+  function gotoPrevPost() {
+      if (index > 0) {
+          setIndex(index - 1)
+      }
+  }
+
+  onMount(CheckForMorePosts)
+  console.log({post, nextPost, prevPost, index})
+</script>
+
+<DesktopPosts
+  exit={exitCallback}
+  {visit}
+  {gotoNextPost}
+  {gotoPrevPost}
+  {prevPost}
+  {post}
+  {nextPost}
+  {loading}
+  {finished}
+/>
