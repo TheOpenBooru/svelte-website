@@ -1,12 +1,28 @@
-<script>
-	export let current = '';
+<script lang="ts">
+	export let current = "";
+
+	function getActiveClass(mode: string){
+		if (current === mode){
+			return "active"
+		} else {
+			return ""
+		}
+	}
 </script>
 
 <div>
-	<a href="/info/api">API</a>
-	<a href="/info/patchnotes">Patch Notes</a>
-	<a href="/info/about"> About Us</a>
-	<a href="/info/contact">Contact Us</a>
+	<a href="/info/api" class={getActiveClass("api")}>
+		API
+	</a>
+	<a href="/info/patchnotes" class={getActiveClass("patchnotes")}>
+		Patch Notes
+	</a>
+	<a href="/info/about" class={getActiveClass("about")}>
+		About Us
+	</a>
+	<a href="/info/contact" class={getActiveClass("contact")}>
+		Contact Us
+	</a>
 </div>
 
 <style>
@@ -23,5 +39,9 @@
 	a {
 		font-size: 1.5rem;
 		color: black;
+	}
+	
+	a.active {
+		font-weight: bolder;
 	}
 </style>
