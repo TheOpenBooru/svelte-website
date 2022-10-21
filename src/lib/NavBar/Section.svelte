@@ -50,7 +50,7 @@
 		}
 	}
 
-	.section:hover {
+	a:hover {
 		border-color: var(--BORDER-1-HOVER);
 	}
 
