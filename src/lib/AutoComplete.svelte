@@ -3,7 +3,7 @@
   import Tag from "./Tag.svelte"
 
   export const input: string = "";
-  export const callback: (tag:string) => void = () => {};
+  export const callback: (tag: string) => void = console.log;
 
   let tags: Types.Tag[] = []
 </script>
