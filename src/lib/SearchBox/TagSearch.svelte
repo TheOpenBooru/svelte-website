@@ -1,11 +1,10 @@
 <script lang="ts">
-	import TagAutocomplete from "lib/AutoComplete.svelte"
-	export let addTagCallback: (tag: string) => void;
+	export let includeTags: string[];
 
-	let search_text = "";
+	let text = "";
 
-	function NormaliseText(text: string): string {
-		return text
+	function normaliseText(): string {
+		text = text
 			.replace(' ', '_')
 			.toLowerCase()
 			.split('')
@@ -13,35 +12,26 @@
 			.join('');
 	}
 
-	function keyPressHandler(e) {
-		if (e.key !== 'Enter') return;
-		confirmTag(search_text);
+	function keyPressHandler(e: KeyboardEvent) {
+		if (e.key === 'Enter') {
+			addTag(text);
+		}
 	}
-
-	function onInput(e) {
-		let text = e.target.value;
-		search_text = NormaliseText(text);
-	}
-
-	function confirmTag(tag: string) {
-		search_text = '';
-		addTagCallback(tag);
+	
+	function addTag(tag: string) {
+		text = "";
+		if (tag && !includeTags.includes(tag)) {
+			includeTags = includeTags.concat(tag);
+		}
 	}
 </script>
 
 <input
-	class=""
-	type="search"
-	bind:value={search_text}
+type="search"
+	bind:value={text}
+	on:input={normaliseText}
 	on:keypress={keyPressHandler}
-	on:change={onInput}
 />
-
-{#if search_text = ""}
-	<div>
-		<TagAutocomplete input={search_text} addTagCallback={confirmTag} />
-	</div>
-{/if}
 
 <style>
 	input {

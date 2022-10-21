@@ -3,7 +3,6 @@
     export let sort: Types.Sort;
 </script>
 
-
 <select bind:value={sort}>
     <option value="created_at">Creation Date</option>
     <option value="id">ID</option>

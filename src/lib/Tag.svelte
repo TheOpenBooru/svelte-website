@@ -21,11 +21,11 @@
 <a {href} on:click={onClick}>
 	<span class={namespace}>
 		{name}
+		{#if showCount && count !== null}
+			{count}
+		{/if}
+		<slot />
 	</span>
-	{#if showCount && count !== null}
-		{count}
-	{/if}
-	<slot />
 </a>
 
 <style>

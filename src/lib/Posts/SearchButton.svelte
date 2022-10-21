@@ -3,9 +3,6 @@
 	import SearchBox from "lib/SearchBox/index.svelte";
 	import Button from 'lib/Button.svelte';
 
-	export let query: Types.PostQuery;
-	export let updateQuery: (query: Types.PostQuery) => void;
-
 	export function toggle(){
 		if (searchModal.open) {
 			searchModal.close();
@@ -20,12 +17,17 @@
 	let searchModal: HTMLDialogElement;
 </script>
 
+<script lang="ts">
+	export let query: Types.PostQuery;
+	export let setQuery: (query: Types.PostQuery) => void;
+</script>
+
 <div>
 	<Button name="Search" src="/images/search.svg" callback={toggle} />
 </div>
 
 <dialog bind:this={searchModal}>
-	<SearchBox setQuery={updateQuery} closeCallback={hide} {query} />
+	<SearchBox {setQuery} closeCallback={hide} {query} />
 </dialog>
 
 <style>

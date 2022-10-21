@@ -4,39 +4,38 @@
 
 	import Tag from 'lib/Tag.svelte';
 
-	function removeTagCallback(tag: string) {
-		return () => {
-			if (includeTags.includes(tag)) {
-				includeTags = includeTags.filter((t) => t !== tag);
-			} else {
-				excludeTags = excludeTags.filter((t) => t !== tag);
-			}
-		};
-	}
+	const removeTagCallback = (tag: string)  => () => {
+		if (includeTags.includes(tag)) {
+			includeTags = includeTags.filter((t) => t !== tag);
+		} else {
+			excludeTags = excludeTags.filter((t) => t !== tag);
+		}
+	};
 
-	function toggleTagCallback(tag: string) {
-		return () => {
-			if (!includeTags.includes(tag)) {
-				removeTagCallback(tag);
-				includeTags = includeTags.concat(tag);
-			} else {
-				removeTagCallback(tag);
-				excludeTags = excludeTags.concat(tag);
-			}
-		};
-	}
-
-	let allTags = includeTags.concat(excludeTags);
+	const toggleTagCallback = (tag: string) => () => {
+		if (!includeTags.includes(tag)) {
+			includeTags = includeTags.concat(tag);
+		} else {
+			excludeTags = excludeTags.concat(tag);
+		}
+		removeTagCallback(tag);
+	};
 </script>
 
 <div class="container">
-	{#each allTags as tag, index}
-		<div class={includeTags.includes(tag) ? 'removed-tag' : ''}>
+	{#each includeTags as tag}
+		<div>
 			<Tag tagName={tag} callback={removeTagCallback(tag)}>
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<img src="/images/cross.svg" alt="Remove Tag" on:click={toggleTagCallback(tag)} />
 			</Tag>
 		</div>
+		{/each}
+		{#each excludeTags as tag}
+			<div class="removed-tag">
+				<Tag tagName={tag} callback={removeTagCallback(tag)}>
+					<img src="/images/cross.svg" alt="Remove Tag" on:click={toggleTagCallback(tag)} />
+				</Tag>
+			</div>
 	{/each}
 </div>
 
