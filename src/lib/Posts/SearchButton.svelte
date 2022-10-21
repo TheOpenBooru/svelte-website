@@ -33,7 +33,7 @@
 <style>
 	div {
 		position: absolute;
-		left: 0;
+		right: 1.2rem;
 		margin: 0.4rem;
 		z-index: 1;
 	}
