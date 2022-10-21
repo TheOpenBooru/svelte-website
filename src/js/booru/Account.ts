@@ -1,4 +1,5 @@
 import { browser } from "$app/environment";
+import { API_URL} from "js/config"
 import * as Openbooru from "openbooru";
 import type { Types } from "openbooru";
 
@@ -19,7 +20,7 @@ export function token(){
 
 export async function proflie(): Promise<Types.Profile>{
   const profile = await Openbooru.Profile.profile({
-    apiUrl: import.meta.env.VITE_API_URL,
+    apiUrl: API_URL,
     token: token(),
   })
   return profile

@@ -1,6 +1,7 @@
 <script lang="ts" context="module">
   import type { Types } from "openbooru";
   import { Posts } from "openbooru";
+  import { API_URL } from "js/config"
   
   export let finished = false;
   export let loading = false;
@@ -20,7 +21,7 @@
         query,
         index,
         limit,{
-          apiUrl: import.meta.env.VITE_API_URL
+          apiUrl: API_URL
         }
       );
     } catch (e){

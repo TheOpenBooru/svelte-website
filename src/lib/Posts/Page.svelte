@@ -2,6 +2,7 @@
 	import type { Types } from 'openbooru';
 	import { BSL, Posts } from 'openbooru';
 	import { onMount } from 'svelte';
+	import { API_URL } from 'js/config';
 	import Grid from 'lib/Posts/Grid/index.svelte';
 	import Column from 'lib/Posts/Column/index.svelte';
 	import SearchButton from './SearchButton.svelte';
@@ -17,13 +18,13 @@
 	let posts: Types.Post[] = [];
 
 
-	async function postQueryFromParams(){
-		let params = new URLSearchParams(window.location.search)
-    let bsl = params.get("query") || "";
-    if (typeof bsl === "object") bsl = bsl[0]
-    let query = BSL.decode(bsl);
-		updateQuery(query);
-	}
+	// async function postQueryFromParams(){
+	// 	let params = new URLSearchParams(window.location.search)
+  //   let bsl = params.get("query") || "";
+  //   if (typeof bsl === "object") bsl = bsl[0]
+  //   let query = BSL.decode(bsl);
+	// 	updateQuery(query);
+	// }
 
 	async function requestPosts() {
 		if (finished || loading) return;
@@ -36,7 +37,7 @@
 				query,
 				posts.length,
 				limit, {
-					apiUrl: import.meta.env.VITE_API_URL
+					apiUrl: API_URL
 				});
 		} catch (e) {
 			return;
@@ -47,12 +48,8 @@
 		loading = false;
 	}
 
-	async function updateQuery(query: Types.PostQuery) {
-		index = 0;
-		finished = false;
-		loading = false;
-		query = query;
-		posts = [];
+	function updateQuery(query: Types.PostQuery) {
+		window.location.search = "?query=" + BSL.encode(query)
 	}
 
 
@@ -71,7 +68,7 @@
 		column: Column
 	};
 	const LayoutElement = LayoutLookup[layout] ?? Grid
-	onMount(postQueryFromParams)
+	debugger;
 </script>
 
 <SearchButton {query} {updateQuery}/>

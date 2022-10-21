@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Types } from "openbooru";
+  import { API_URL, SITE_NAME, SITE_DESC, SITE_URL } from "js/config"
 
 	export let path: string;
 	export let title:string = "";
@@ -7,12 +8,8 @@
 	export let keywords: string[] = [];
 	export let media: Types.Media|null = null;
 
-  const SiteUrl = import.meta.env.BASE_URL;
-  const SiteName = import.meta.env.VITE_SITE_NAME;
-  const SiteDescription = import.meta.env.VITE_SITE_DESC;
-
-  let RenderedTitle = title ? `${SiteName} | ${title}` : SiteName
-  let RenderedDescription = description ? SiteDescription + "\n" + description : SiteDescription
+  let RenderedTitle = title ? `${SITE_NAME} | ${title}` : SITE_NAME
+  let RenderedDescription = description ? SITE_DESC + "\n" + description : SITE_DESC
 </script>
 
 
@@ -23,17 +20,17 @@
     <meta name="keywords" content={keywords.join(", ")}/>
     <meta name="author" content="Ben Brady" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
-    <link rel="canonical" href={SiteUrl + path} />
+    <link rel="canonical" href={SITE_URL + path} />
     
     <meta property="og:locale" content="en_US" />
-    <meta property="og:site_name" content={SiteName} />
+    <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:title" content={RenderedTitle} />
     <meta property="og:description" content={RenderedDescription} />
     <meta property="og:url" content={path} />
 
     <meta property="twitter:title" content={RenderedTitle} />
     <meta property="twitter:description" content={RenderedDescription}/>
-    <meta property="twitter:url" content={SiteUrl + path} />
+    <meta property="twitter:url" content={SITE_URL + path} />
     
     {#if media?.type == "image" || media?.type == "animation"}
       <meta property="og:image:url" content={media.url} />

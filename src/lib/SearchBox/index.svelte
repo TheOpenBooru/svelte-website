@@ -20,6 +20,7 @@
 		if (includeTags !== undefined) NewQuery['include_tags'] = includeTags;
 		if (excludeTags !== undefined) NewQuery['exclude_tags'] = excludeTags;
 		setQuery(NewQuery);
+		closeCallback();
 	}
 
 	function addTagCallback(tag: string) {
