@@ -4,9 +4,7 @@
 	import LoadingIcon from 'lib/LoadingIcon.svelte';
 	import GridItem from './Item.svelte';
 	
-	export let index: number;
 	export let finished: boolean;
-	export let loading: boolean;
 	export let posts: Types.Post[];
 	export let requestPosts: () => void;
 	export let callback: Function;
