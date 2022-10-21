@@ -2,6 +2,7 @@
 	import type { Types } from 'openbooru';
 	import { BSL, Posts } from 'openbooru';
 	import { onMount } from 'svelte';
+	import { page } from "$app/stores"
 	import { API_URL } from 'js/config';
 	import Grid from 'lib/Posts/Grid/index.svelte';
 	import Column from 'lib/Posts/Column/index.svelte';
@@ -14,17 +15,12 @@
 	let finished = false;
 	let loading = false;
 	let index = 0;
-	let query: Types.PostQuery = {};
 	let posts: Types.Post[] = [];
-
-
-	// async function postQueryFromParams(){
-	// 	let params = new URLSearchParams(window.location.search)
-  //   let bsl = params.get("query") || "";
-  //   if (typeof bsl === "object") bsl = bsl[0]
-  //   let query = BSL.decode(bsl);
-	// 	updateQuery(query);
-	// }
+	
+	let params = new URLSearchParams($page.params)
+	let bsl = params.get("query") || "";
+	if (typeof bsl === "object") bsl = bsl[0]
+	const query = BSL.decode(bsl);
 
 	async function requestPosts() {
 		if (finished || loading) return;
@@ -47,7 +43,6 @@
 
 		loading = false;
 	}
-
 	function updateQuery(query: Types.PostQuery) {
 		window.location.search = "?query=" + BSL.encode(query)
 	}
