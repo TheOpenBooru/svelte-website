@@ -43,12 +43,16 @@
 
 		loading = false;
 	}
+
 	function setQuery(query: Types.PostQuery) {
 		window.location.search = "?query=" + BSL.encode(query)
 	}
 
-
-	function PostCallback({ id, index }) {
+	interface PostCallbackInterface{
+		id: number,
+		index: number,
+	}
+	function PostCallback({ id, index }: PostCallbackInterface) {
 		return () => {
 			location.href = `/post/${id}`;
 		};
