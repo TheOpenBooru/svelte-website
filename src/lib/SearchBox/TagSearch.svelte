@@ -1,15 +1,11 @@
 <script lang="ts">
+	import { normaliseTag } from "js/utils"
 	export let includeTags: string[];
 
 	let text = "";
 
-	function normaliseText(): string {
-		text = text
-			.replace(' ', '_')
-			.toLowerCase()
-			.split('')
-			.filter((char) => /[_()a-z0-9]/.test(char))
-			.join('');
+	function normaliseText(){
+		text = normaliseTag(text)
 	}
 
 	function keyPressHandler(e: KeyboardEvent) {
