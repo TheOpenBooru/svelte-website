@@ -45,7 +45,9 @@
 	}
 
 	function setQuery(query: Types.PostQuery) {
-		window.location.search = "?query=" + BSL.encode(query)
+		let bsl = BSL.encode(query)
+		let search = bsl ? "?query=" + bsl : "";
+		window.location.search = search
 	}
 
 	interface PostCallbackInterface{
