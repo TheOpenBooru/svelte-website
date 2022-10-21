@@ -7,9 +7,9 @@
 	export let keywords: string[] = [];
 	export let media: Types.Media|null = null;
 
-  const SiteUrl = "https://ptr.openbooru.org";
-  const SiteName = "Open Booru";
-  const SiteDescription = "The Open Booru";
+  const SiteUrl = import.meta.env.BASE_URL;
+  const SiteName = import.meta.env.VITE_SITE_NAME;
+  const SiteDescription = import.meta.env.VITE_SITE_DESC;
 
   let RenderedTitle = title ? `${SiteName} | ${title}` : SiteName
   let RenderedDescription = description ? SiteDescription + "\n" + description : SiteDescription

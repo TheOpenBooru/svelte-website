@@ -19,7 +19,9 @@
       new_posts = await Posts.search(
         query,
         index,
-        limit
+        limit,{
+          apiUrl: import.meta.env.VITE_API_URL
+        }
       );
     } catch (e){
         return;

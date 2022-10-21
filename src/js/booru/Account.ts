@@ -19,7 +19,7 @@ export function token(){
 
 export async function proflie(): Promise<Types.Profile>{
   const profile = await Openbooru.Profile.profile({
-    apiUrl: "https://api.openbooru.org",
+    apiUrl: import.meta.env.VITE_API_URL,
     token: token(),
   })
   return profile

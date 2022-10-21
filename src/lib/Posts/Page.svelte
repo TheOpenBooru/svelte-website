@@ -32,7 +32,12 @@
 		const limit = 100;
 		let new_posts;
 		try {
-			new_posts = await Posts.search(query, posts.length, limit);
+			new_posts = await Posts.search(
+				query,
+				posts.length,
+				limit, {
+					apiUrl: import.meta.env.VITE_API_URL
+				});
 		} catch (e) {
 			return;
 		}

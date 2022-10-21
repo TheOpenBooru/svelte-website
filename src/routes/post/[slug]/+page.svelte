@@ -8,7 +8,10 @@
   let post: Types.Post
   onMount(async () => {
     let post_id = window.location.href.split("/").at(-1)
-    post = await Post.get(Number(post_id))
+    post = await Post.get(
+      Number(post_id), {
+      apiUrl: import.meta.env.VITE_API_URL
+    })
   })
 </script>
 
