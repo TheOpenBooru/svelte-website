@@ -3,7 +3,7 @@
 </script>
 
 <div id="container">
-  <a href="/account/login" class="left {mode === 'register' ? 'active' : ''}">
+  <a href="/account/login" class="left {mode === 'login' ? 'active' : ''}">
     Login
   </a>
   <a href="/account/register" class="right {mode === 'register' ? 'active' : ''}">
@@ -21,13 +21,12 @@
   }
 
   a.active{
-    background: var(--BACKGROUND-5);
-    border-color: var(--BORDER-2);
+    background: var(--BACKGROUND-4);
   }
 
   a{
     width: 100%;
-    background: var(--BACKGROUND-4);
+    background: var(--BACKGROUND-3);
 
     cursor: pointer;
     user-select: none;
