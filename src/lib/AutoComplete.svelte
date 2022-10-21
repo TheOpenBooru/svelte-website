@@ -8,7 +8,7 @@
   let tags: Types.Tag[] = []
 </script>
 
-{#if tags && tags.length === 0}
+{#if tags && tags.length !== 0}
   <div>
     {#each tags as tag}
       <Tag tagName={tag.name} data={tag} callback={() => callback(tag.name)} />
