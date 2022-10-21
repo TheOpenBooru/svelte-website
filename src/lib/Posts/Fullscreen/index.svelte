@@ -40,7 +40,6 @@
   }
 
   onMount(CheckForMorePosts)
-  console.log({post, nextPost, prevPost, index})
 </script>
 
 <DesktopPosts

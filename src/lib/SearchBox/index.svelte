@@ -31,7 +31,6 @@
 		setQuery(NewQuery);
 		closeCallback();
 	}
-	console.log("SearchBox", setQuery)
 </script>
 
 
