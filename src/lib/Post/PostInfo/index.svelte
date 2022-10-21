@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
 	import { Post } from 'openbooru';
+	import PostEdit from "lib/Post/PostEdit/index.svelte"
 	import Source from "./Source.svelte"
 	import Info from "./Info.svelte"
 	import TagList from "./TagList.svelte"
@@ -30,9 +31,9 @@
 		<Info post={post}/>
 			<div>
 				{#if editting}
-				<span>Editting</span>
+					<PostEdit {post}/>
 				{:else}
-				<TagList tags={post.tags}/>
+					<TagList tags={post.tags}/>
 				{/if}
 			</div>
 		{/if}

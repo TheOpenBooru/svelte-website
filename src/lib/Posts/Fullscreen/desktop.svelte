@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { Types } from "openbooru";
     import Media from "lib/Media/index.svelte";
-    import PostInfo from "lib/PostInfo/index.svelte";
+    import PostInfo from "lib/Post/PostInfo/index.svelte";
     import Button from "./button.svelte";
     
     export let exit: () => void;
