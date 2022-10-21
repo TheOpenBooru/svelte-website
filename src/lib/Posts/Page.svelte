@@ -17,7 +17,7 @@
 	let index = 0;
 	let posts: Types.Post[] = [];
 	
-	let params = new URLSearchParams($page.params)
+	let params = $page.url.searchParams
 	let bsl = params.get("query") || "";
 	if (typeof bsl === "object") bsl = bsl[0]
 	const query = BSL.decode(bsl);
@@ -43,7 +43,7 @@
 
 		loading = false;
 	}
-	function updateQuery(query: Types.PostQuery) {
+	function setQuery(query: Types.PostQuery) {
 		window.location.search = "?query=" + BSL.encode(query)
 	}
 
@@ -63,10 +63,9 @@
 		column: Column
 	};
 	const LayoutElement = LayoutLookup[layout] ?? Grid
-	debugger;
 </script>
 
-<SearchButton {query} {updateQuery}/>
+<SearchButton {query} {setQuery}/>
 <LayoutSelector layout={layout}/>
 <svelte:component
 	this={LayoutElement}
