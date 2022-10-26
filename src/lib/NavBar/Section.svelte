@@ -50,9 +50,10 @@
 
 	@media screen and (max-width: 40rem), (orientation: portrait){
 		a {
-			width: 100% !important;
-			padding: 0 !important;
-			margin: .1rem !important;
+			width: 100%;
+			padding: 0;
+			margin: .1rem;
+			justify-content: center;
 		}
 	}
 
