@@ -8,12 +8,20 @@
 
 <QueryClientProvider client={queryClient}>
 	<NavigationBar />
-	<div style="height: calc(100vh - var(--NAVBAR-HEIGHT));">
-    <slot />
-	</div>
+	<main id="__main">
+		<slot />
+	</main>
 </QueryClientProvider>
 
 <style global>
+	main#__main {
+		display: block;
+		max-height: calc(100vh - var(--NAVBAR-HEIGHT));
+		height: calc(100vh - var(--NAVBAR-HEIGHT));
+		width: 100%;
+		overflow-y: auto;
+	}
+
 	:root{
 		--COLOR-1: #9ac9d5;
 		--COLOR-2: #62b6cb;
@@ -38,12 +46,9 @@
 		--BORDER-1-HOVER: var(--COLOR-6);
 		
 		--BORDER-2: var(--COLOR-6);
---BORDER-2-HOVER: var(--COLOR-7);
+	--BORDER-2-HOVER: var(--COLOR-7);
 
-
---NAVBAR-HEIGHT: 2.8rem;
-
-
+	--NAVBAR-HEIGHT: 2.8rem;
 	}
 
 
@@ -60,19 +65,9 @@
 		font-size: 0;
 	}
 
-	a{
+	a {
 		text-decoration: none;
 	}
-	/* latin-ext */
-	@font-face {
-		font-family: 'Lato';
-		font-style: normal;
-		font-weight: 400;
-		src: url(https://fonts.gstatic.com/s/lato/v23/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
-		unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-		font-display: swap;
-	}
-
 	/* latin */
 	@font-face {
 		font-family: 'Lato';
@@ -80,6 +75,16 @@
 		font-weight: 400;
 		src: url(https://fonts.gstatic.com/s/lato/v23/S6uyw4BMUTPHjx4wXg.woff2) format('woff2');
 		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		font-display: swap;
+	}
+
+	/* latin-ext */
+	@font-face {
+		font-family: 'Lato';
+		font-style: normal;
+		font-weight: 400;
+		src: url(https://fonts.gstatic.com/s/lato/v23/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
+		unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 		font-display: swap;
 	}
 </style>
