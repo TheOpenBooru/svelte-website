@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
-	import PostInfo from 'lib/Post/PostInfo/index.svelte';
-	import Media from 'lib/Media/index.svelte';
+	import PostInfo from 'lib/Post/Info/index.svelte';
+	import Media from 'lib/Post/Media/index.svelte';
 	export let post: Types.Post;
 </script>
 
@@ -24,5 +24,6 @@
 		width: 100%;
 		height: 100%;
 		object-fit: contain;
+		overflow: hidden;
 	}
 </style>

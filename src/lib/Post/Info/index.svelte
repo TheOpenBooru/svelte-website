@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
 	import { Post } from 'openbooru';
-	import PostEdit from "lib/Post/PostEdit/index.svelte"
+	import PostEdit from "lib/Post/Edit/index.svelte"
 	import Source from "./Source.svelte"
 	import Info from "./Info.svelte"
 	import TagList from "./TagList.svelte"
@@ -50,6 +50,7 @@
 		min-height: 14rem;
 		background-color: var(--BACKGROUND-3);
 	}
+
 	.source {
 		margin-right: 2rem;
 		margin-left: 2rem;
