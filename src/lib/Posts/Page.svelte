@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
-	import { BSL, Posts } from 'openbooru';
-	import { onMount } from 'svelte';
+	import { BSL } from "openbooru"
 	import { page } from "$app/stores"
-	import { API_URL } from 'js/config';
+	
+	import { posts_search } from 'js/booru';
 	import Grid from 'lib/Posts/Grid/index.svelte';
 	import Column from 'lib/Posts/Column/index.svelte';
 	import SearchButton from './SearchButton.svelte';
@@ -29,18 +29,20 @@
 		const limit = 100;
 		let new_posts;
 		try {
-			new_posts = await Posts.search(
+			new_posts = await posts_search(
 				query,
 				posts.length,
-				limit, {
-					apiUrl: API_URL
-				});
+				limit
+			);
 		} catch (e) {
 			return;
 		}
 
+		// Helps to test loading
+		// if (import.meta.env.DEV){
+		// 	await new Promise(resolve => setTimeout(resolve, 2000))
+		// }
 		posts = posts.concat(new_posts);
-
 		loading = false;
 	}
 

@@ -5,7 +5,6 @@
   import Item from "./Item.svelte"
 	import { SplitPosts } from './utils.svelte';
 
-	export let index: number;
 	export let finished: boolean;
 	export let loading: boolean;
 	export let posts: Types.Post[];
@@ -30,6 +29,7 @@
 	function updateColumnCount(element: Element){
 		column_count = Math.floor((element.clientWidth - 200) / 300)
 	}
+	
 	onMount(CheckNewPosts);
 	onMount(() => {
 		let ro = new ResizeObserver(entries => {
@@ -60,13 +60,9 @@
 		{/each}
 	</div>
 
-	{#if loading && columns.length === 0}
-		<div id="loading" class="center">
+	{#if loading}
+		<div id="loading" class={columns.length === 0 ? "center" : "bottom"}>
 			<LoadingIcon />
-		</div>
-	{:else if loading}
-		<div id="loading" class="bottom">
-			<LoadingIcon fadeIn />
 		</div>
 	{/if}
 </main>
@@ -79,6 +75,7 @@
 
 		display: flex;
 		justify-items: center;
+		flex-flow: column;
 		gap: 1rem;
 	}
 
@@ -129,7 +126,10 @@
 	}
 
 	#loading.bottom{
-		bottom: 0rem;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		bottom: 1rem;
 		position: static;
 	}
 </style>

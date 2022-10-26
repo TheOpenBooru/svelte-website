@@ -29,7 +29,7 @@
 		position: absolute;
 		left: 0;
 
-		z-index: 1;
+		z-index: 2;
     border-radius: .5rem;
     margin: .4rem;
     

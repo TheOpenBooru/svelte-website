@@ -35,15 +35,20 @@
 		position: absolute;
 		right: 1.2rem;
 		margin: 0.4rem;
-		z-index: 1;
+		z-index: 2;
 	}
 
 	dialog::backdrop{
-		background: rgba(0,0,0);
+		background: black;
 		opacity: 0.95;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
 	}
 	
 	dialog {
+		position: fixed;
+		top: calc(var(--NAVBAR-HEIGHT) + 3rem);
 		z-index: 1;
 		background: none;
 		border: none;

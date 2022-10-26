@@ -1,19 +1,26 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
-	import Image from 'lib/Media/image.svelte';
+	import Image from 'lib/Post/Media/image.svelte';
+	import { onMount } from 'svelte';
+	import About from 'lib/Info/About.svelte';
+	
 	export let post: Types.Post;
-	export let callback: Function;
-	export let priority: boolean;
+	export let callback: (() => void)|null;
+	export let lazy: boolean;
 
 	let image = post.thumbnail;
-	let loaded = false;
-	
+	function onClick(e: Event){
+		if (callback){
+			e.preventDefault();
+			callback();
+		}
+	}
 </script>
 
 <a
 	class="border {post.media_type}"
 	href="/post/{post.id}"
-	on:click={(e) => {e.preventDefault(); callback(e)}}
+	on:click={onClick}
 >
 	<img
 		class="border"
@@ -21,7 +28,7 @@
 		alt="Post {post.id} {post.tags.join(',')}"
 		width={image.width}
 		height={image.height}
-		loading={priority ? "eager" : "lazy"}
+		loading={lazy ? "lazy" : "eager"}
 	/>
 </a>
 

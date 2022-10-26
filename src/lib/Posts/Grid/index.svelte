@@ -4,10 +4,11 @@
 	import LoadingIcon from 'lib/LoadingIcon.svelte';
 	import GridItem from './Item.svelte';
 	
-	export let finished: boolean;
-	export let posts: Types.Post[];
-	export let requestPosts: () => void;
-	export let callback: Function;
+	export let finished: boolean = false;
+	export let useScroll: boolean = true;
+	export let posts: Types.Post[] = [];
+	export let requestPosts: () => void = () => {};
+	export let callback: ((data: object) => () => void)|null = null;
 	
 	let container: Element;
 	async function CheckNewPosts() {
@@ -15,22 +16,24 @@
 		const { scrollTop, offsetHeight, scrollHeight } = container;
 		let distanceFromTop = scrollTop + offsetHeight;
 		let distanceFromBottom = scrollHeight - distanceFromTop;
-		if (distanceFromBottom < 2000) {
+		if (distanceFromBottom < 2000 && !finished) {
 			await requestPosts();
 		}
 	}
+
 	onMount(CheckNewPosts);
 </script>
 
-<main bind:this={container} on:scroll={() => CheckNewPosts()}>
+<main bind:this={container} on:scroll={() => CheckNewPosts()} data-scroll={useScroll}>
 	<div id="grid">
 		{#if posts.length > 0}
 			{#each posts as post, index}
-				<GridItem {post} priority={index < 30} callback={callback({ id: post.id, index })} />
+				<GridItem
+					post={post}
+					lazy={index > 30}
+				 	callback={callback ? callback({ id: post.id, index }) : null}
+				/>
 			{/each}
-			{#if finished}
-				<hr />
-			{/if}
 		{:else}
 			<LoadingIcon fadeIn />
 		{/if}
@@ -38,6 +41,11 @@
 </main>
 
 <style>
+	main[data-scroll="false"] {
+		overflow-y: visible;
+		max-height: unset;
+	}
+
 	main {
 		--IMAGE-SIZE: 180px;
 		/* API Thumbnail Size */

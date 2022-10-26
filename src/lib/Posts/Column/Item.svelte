@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
-	import Image from 'lib/Media/image.svelte';
+	import Image from 'lib/Post/Media/image.svelte';
 	export let index: number;
 	export let post: Types.Post;
 	export let postCallback: Function;
@@ -29,7 +29,8 @@
 	<img
 		src={image.url}
 		width={image.width}
-		height={adjustedHeight}
+		height={image.height}
+		style="aspect-ratio: {image.width}/{adjustedHeight}"
 		alt={post.tags.join(", ")}
 		loading={priority ? null : "lazy"}
 	/>

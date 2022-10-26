@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { normaliseTag } from "js/utils"
+	import AutoComplete from "lib/AutoComplete.svelte"
 	export let includeTags: string[];
 
 	let text = "";
@@ -28,6 +29,9 @@ type="search"
 	on:input={normaliseText}
 	on:keypress={keyPressHandler}
 />
+<div>
+	<AutoComplete input={text} callback={addTag}/>
+</div>
 
 <style>
 	input {

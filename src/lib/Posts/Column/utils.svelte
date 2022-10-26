@@ -28,5 +28,4 @@
             return total + height + 15
         },0)
     }
-
-</script>    
+</script>
