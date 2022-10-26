@@ -32,7 +32,7 @@
 	a {
 		text-decoration: none;
 		width: fit-content;
-		height: 1rem;
+		height: fit-content;
 	}
 
 	span {
