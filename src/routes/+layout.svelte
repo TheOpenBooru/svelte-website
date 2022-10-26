@@ -20,6 +20,7 @@
 		height: calc(100vh - var(--NAVBAR-HEIGHT));
 		width: 100%;
 		overflow-y: auto;
+		overflow-x: hidden;
 	}
 
 	:root{
