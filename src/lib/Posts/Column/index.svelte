@@ -69,6 +69,7 @@
 
 <style>
 	main {
+		box-sizing: border-box;
 		height: 100%;
 		padding: 3rem 10vw;
 		overflow-y: auto;
