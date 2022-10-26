@@ -1,44 +1,31 @@
 <script lang="ts">
   import { profile, posts_search } from "js/booru"
-  import GridPosts from "lib/Posts/Grid/index.svelte"
-
-  const postsSearch = new Search()
-  async function getPosts(ids: number[]){
-    postsSearch.updateQuery({ids})
-  }
+  import PostsSection from "./PostsSection.svelte"
 
   async function getData(){
     let profileData = await profile();
     let creationDate = new Date(Number(profileData.created_at)  * 1000)
+
     return {
       data: profileData,
-      name: profileData.username,
-      postsPromise: getPosts(profileData.posts),
       creationDate
     }
   }
 </script>
 
-{#await getData() then { data, name, creationDate, postsPromise }}
+{#await getData() then { data, creationDate }}
   <h1>
-    {name}
+    {data.username}
   </h1>
   <h2>
     {creationDate.toLocaleDateString()}
   </h2>
-  {#await postsPromise then posts}
-    <h2>
-      Posts
-    </h2>
-    <div>
-      <GridPosts
-        useScroll={false}
-        finished={postsSearch.finished}
-        requestPosts={postsSearch.requestPosts}
-        posts={postsSearch.posts}
-      />
-    </div>
-  {/await}
+  <h2>
+    Posts
+  </h2>
+  <div>
+    <PostsSection ids={data.posts}/>
+  </div>
 {/await}
 
 <style>
@@ -49,8 +36,10 @@
   h2 { 
     font-size: 2rem;
   }
-  
+
   div {
-    height: 50rem;
+    position: fixed;
+    width: 90%;
+    left: min(5%, 2rem);
   }
 </style>
