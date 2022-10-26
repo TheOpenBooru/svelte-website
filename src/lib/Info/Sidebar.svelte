@@ -14,9 +14,6 @@
 	<a href="/info/api" class={getActiveClass("api")}>
 		API
 	</a>
-	<a href="/info/patchnotes" class={getActiveClass("patchnotes")}>
-		Patch Notes
-	</a>
 	<a href="/info/about" class={getActiveClass("about")}>
 		About Us
 	</a>

@@ -6,21 +6,19 @@
 
 <nav>
 	<Item path="/" name="Home" image="/images/home.svg" />
-	<Item path="/info" name="Info" image="/images/info.svg" />
 	<Item path="/tags" name="Tags" image="/images/tags.svg" />
+	<Item path="/info" name="Info" image="/images/info.svg" />
 
-	{#if browser}
-		{#if Account.loggedIn()}
-			{#await profile()}
-				<Item path="/account" name="" image="/images/profile.svg" />
-			{:then data}
-				<Item path="/account" name={data.username} image="/images/profile.svg" />
-			{:catch}
-				<Item path="/account" name="" image="/images/profile.svg" />
-			{/await}
-		{:else}
-			<Item path="/account" name="Login" image="/images/profile.svg" />
-		{/if}
+	{#if Account.loggedIn()}
+		{#await profile()}
+			<Item path="/account" name="" image="/images/profile.svg" />
+		{:then data}
+			<Item path="/account" name={data.username} image="/images/profile.svg" />
+		{:catch}
+			<Item path="/account" name="" image="/images/profile.svg" />
+		{/await}
+	{:else}
+		<Item path="/account" name="Login" image="/images/profile.svg" />
 	{/if}
 </nav>
 

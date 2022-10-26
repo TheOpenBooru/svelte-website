@@ -1,12 +1,21 @@
+<script lang="ts">
+	import { API_URL }  from "js/config";
+</script>
+
 <div>
 	Open Booru is built around a backend API, this is accessbile to users so that custom clients can be made.
 	<br/>
-	All functions built-in this site are implemented through the API.
+	All functions on this site are implemented through the API.
 	<br/>
 	<br/>
 	You can access the api and documentation at
-	<a href="https://api.openbooru.org">
-		https://api.openbooru.org
+	<a href={API_URL}>
+		{API_URL}
+	</a>
+	<br/>
+	Source Code:
+	<a href="https://github.com/TheOpenBooru/api">
+		https://github.com/TheOpenBooru/api
 	</a>
 </div>
 
