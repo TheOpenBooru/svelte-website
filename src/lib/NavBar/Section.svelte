@@ -1,14 +1,21 @@
 <script lang="ts">
+	import About from "lib/Info/About.svelte";
+
+
 	export let image: string;
 	export let name: string;
 	export let path: string;
+	export let callback: (() => void)|null = null;
+
+	function onClick(e: Event){
+		if (callback === null) return;
+		e.preventDefault();
+		callback();
+	}
 </script>
 
-<a href={path} title={name}>
-	<div class="icon">
-		<img src={image} alt={name} height="32" width="32"/>
-	</div>
-
+<a href={path} title={name} on:click={onClick}>
+	<img src={image} alt={name} height="32" width="32"/>
 	<span class="text">
 		{name}
 	</span>
@@ -17,8 +24,7 @@
 <style>
 	a {
 		/* Shape */
-		min-width: fit-content;
-		width: 5rem;
+		min-width: 5rem;
 		height: calc(100% - 0.6rem);
 		border-radius: 1rem;
 		margin: .3rem;
@@ -28,13 +34,13 @@
 		display: flex;
 		gap: 1rem;
 		align-items: center;
+		justify-content: left;
 	}
 
 	a {
 		/* Look */
 		font-size: 1.3rem;
 		color: black;
-		justify-content: center;
 		text-decoration: none;
 
 		cursor: pointer;
@@ -54,14 +60,9 @@
 		border-color: var(--BORDER-1-HOVER);
 	}
 
-	div {
+	img {
 		height: 1.5rem;
 		width: 1.5rem;
-	}
-
-	img {
-		height: 100%;
-		width: 100%;
 	}
 	
 	@keyframes fadeIn{
