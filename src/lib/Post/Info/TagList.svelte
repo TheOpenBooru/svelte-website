@@ -22,9 +22,8 @@
 <style>
 	div {
 		position: relative;
-		min-height: 13rem;
+		height: fit-content;
 		width: 100%;
-		padding: 0.5rem;
 
 		display: flex;
 		flex-flow: row wrap;

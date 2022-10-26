@@ -27,7 +27,6 @@
 <style>
     main {
         margin: 0.5rem;
-        height: 100%;
 
         display: flex;
         flex-flow: column nowrap;
@@ -58,6 +57,11 @@
     img {
         width: 100%;
         height: 100%;
+    }
 
+    @media screen and (max-width: 40rem), (orientation: portrait){
+        main {
+            flex-direction: row;
+        }
     }
 </style>

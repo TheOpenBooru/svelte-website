@@ -20,53 +20,51 @@
 	}
 </script>
 
-<div>
+<div id="main">
 	{#if post}
-		<span class="source">
+		<span id="source">
 			<Source source={post.source}/>
 		</span>
 	{/if}
-	<div class="inner">
+	<div id="inner">
 		{#if post}
-		<Info post={post}/>
-			<div>
-				{#if editting}
-					<PostEdit {post}/>
-				{:else}
-					<TagList tags={post.tags}/>
-				{/if}
-			</div>
+			<Info post={post}/>
+			{#if editting}
+				<PostEdit {post}/>
+			{:else}
+				<TagList tags={post.tags}/>
+			{/if}
 		{/if}
 		<Buttons editCallback={toggleEditting} deleteCallback={deleteCallback} />
 	</div>
 </div>
 
 <style>
-	div {
+	div#main {
 		display: grid;
 		grid-template-rows: 1.2rem 1fr;
-
+		
 		position: relative;
+		height: fit-content;
 		min-height: 14rem;
 		background-color: var(--BACKGROUND-3);
 	}
 
-	.source {
-		margin-right: 2rem;
-		margin-left: 2rem;
+	#source {
+		width: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
-	.inner {
+	div#inner {
 		display: grid;
 		grid-template-columns: 14rem 1fr 4rem;
 		padding-bottom: 1rem;
 	}
 
-	@media (max-width: 30rem) {
-		.inner {
+	@media screen and (max-width: 40rem), (orientation: portrait){
+		div#inner {
 			display: flex;
 			flex-flow: column;
 			align-items: center;
