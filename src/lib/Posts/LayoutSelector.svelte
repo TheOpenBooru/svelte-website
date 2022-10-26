@@ -38,8 +38,4 @@
     align-items: center;
     gap: .2rem
   }
-  
-  div.mobile{
-    margin-right: 0rem;
-  }
 </style>
