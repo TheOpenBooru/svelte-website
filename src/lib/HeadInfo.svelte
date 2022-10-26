@@ -8,6 +8,7 @@
 	export let keywords: string[] = [];
 	export let media: Types.Media|null = null;
 
+  keywords = keywords.concat(["openbooru"]);
   let RenderedTitle = title ? `${SITE_NAME} | ${title}` : SITE_NAME
   let RenderedDescription = description ? SITE_DESC + "\n" + description : SITE_DESC
 </script>
