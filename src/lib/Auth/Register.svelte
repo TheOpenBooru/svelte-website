@@ -1,20 +1,41 @@
 <script lang="ts">
-  function submit(){
+  import { Account, getPermission } from "js/booru"
+  import HCaptcha from "lib/Captcha.svelte"
+  export let error: string;
+  
+  
+  async function submit(){
     let username = usernameField.value;
     let password = passwordField.value;
     let confrimPassword = confrimPasswordField.value;
-    let captcha = null;
+    
+    if (getPermission("canRegister") && captcha === null) {
+      error = "Captcha Required"
+      return;
+    }
+    try {
+      await Account.register(username, password, confrimPassword, captcha)
+    } catch (e){
+      if (e instanceof Error) error = e.message
+      if (e instanceof String) error = e.toString()
+      return;
+    }
+    location.href = "/profile"
   };
 
   let usernameField: HTMLInputElement;
   let passwordField: HTMLInputElement;
   let confrimPasswordField: HTMLInputElement;
+  let captcha: string|null = null;
 </script>
 
 <div>
     <input bind:this={usernameField} class="input" type="username" placeholder="Username" />
     <input bind:this={passwordField} class="input" type="password" placeholder="Confirm Password" />
     <input bind:this={confrimPasswordField} class="input" type="password" placeholder="Password" />
+    {#if needsCaptcha("canRegister")}
+      <HCaptcha bind:token={captcha}/>
+    {/if} 
     <input on:click={submit} id="submit" type="submit" value="Login"/>
 </div>
 

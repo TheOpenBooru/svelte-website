@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Login from "lib/Auth/index.svelte";
+  import Auth from "lib/Auth/index.svelte";
 </script>
 
-<Login/>
+<Auth mode="login"/>

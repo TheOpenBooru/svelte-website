@@ -1,10 +1,16 @@
 <script lang="ts">
-  import { login } from "js/booru/Account"
-  import { Account } from "openbooru"
+  import { Account } from "js/booru"
 
-  function submit(){
-    Account.login(usernameField.value, passwordField.value, )
-    Account.login()
+  export let error: string;
+  
+  async function submit(){
+    try{
+      await Account.login(usernameField.value, passwordField.value)
+    } catch (e){
+      if (e instanceof Error)error = e.message
+      return;
+    }
+    location.href = "/profile"
   };
 
   let usernameField: HTMLInputElement;
