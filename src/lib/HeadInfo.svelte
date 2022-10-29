@@ -16,6 +16,8 @@
 
 
 <svelte:head>
+    <link rel="preconnect" href="{API_URL}">
+
     <title>{RenderedTitle}</title>
     <meta name="description" content={RenderedDescription} />
     <meta name="keywords" content={keywords.join(", ")}/>
