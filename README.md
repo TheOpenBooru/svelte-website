@@ -1,4 +1,5 @@
-# Openbooru Website (Svelte)
+
+# ![](https://github.com/TheOpenBooru/svelte-website/blob/master/static/favicon.ico) Openbooru Website (Svelte)
 
 This is the sveltekit rewrite of the Open Booru [website](https://github.com/TheOpenBooru/website) ported from next.js and mostly rewritten.
 
