@@ -24,13 +24,13 @@
 	}
 
 	:root{
-		--COLOR-1: #9ac9d5;
-		--COLOR-2: #62b6cb;
-		--COLOR-3: #3f8098;
-		--COLOR-4: #306173;
-		--COLOR-5: #1e3d48;
-		--COLOR-6: #0c181d;
-		--COLOR-7: #070e11;
+		--COLOR-1: #303a30;
+		--COLOR-2: #2f3e37;
+		--COLOR-3: #2b3832;
+		--COLOR-4: #26322c;
+		--COLOR-5: #1c2520;
+		--COLOR-6: #131815;
+		--COLOR-7: #090b09;
 
 		--BACKGROUND-1: var(--COLOR-1);
 
