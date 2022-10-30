@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Types } from "openbooru";
+  import { generateUrl } from "js/proxy";
   export let video:Types.Video;
   export let poster: Types.Image|null = null;
 
@@ -20,13 +21,13 @@
   bind:this={videoElement}
   on:load={setVolume}
   on:volumechange={updateVolume}
-  poster={poster?.url}
+  poster={generateUrl(poster?.url)}
   controls
   loop
 >
   <track kind="captions"/>
   <source
-    src={video.url}
+    src={generateUrl(video.url)}
     width={video.width}
     height={video.height}
     type={video.mimetype}
