@@ -3,7 +3,7 @@ import { Account } from "openbooru";
 import { getBooruConfig } from "js/booru/misc";
 
 
-type Permission =
+export type Permission =
     "canViewPosts" |
     "canSearchPosts" |
     "canEditPosts" |
@@ -13,10 +13,17 @@ type Permission =
     "canViewUsers" |
     "canSearchUsers" |
     "canEditUsers" |
-    "canDeleteUsers";
+    "canDeleteUsers" |
+    "canLogin"
+    ;
 
 
 export async function getPermission(permission: Permission): Promise<Types.Permission> {
     const permissions = await Account.permissions(getBooruConfig())
     return permissions[permission];
+}
+
+export async function hasPermission(permission: Permission): Promise<boolean> {
+    const perm = await getPermission(permission)
+    return perm.has_permission;
 }
