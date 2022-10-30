@@ -9,6 +9,7 @@
 
 	export let post: Types.Post|null;
 
+
 	let editting = false;
 	const deleteCallback = async () => {
 		if (post) {
@@ -36,7 +37,10 @@
 					<TagList tags={post.tags}/>
 				{/if}
 			</div>
-			<Buttons editCallback={toggleEditting} deleteCallback={deleteCallback} />
+			<Buttons
+				editCallback={toggleEditting}
+				deleteCallback={deleteCallback}
+			/>
 		</div>
 	{/if}
 </div>
