@@ -19,7 +19,7 @@
 </script>
 
 <a
-	class="border {post.media_type}"
+	class="border {post.type}"
 	href="/post/{post.id}"
 	on:click={onClick}
 >

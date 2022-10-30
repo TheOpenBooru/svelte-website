@@ -1,8 +1,9 @@
 <script lang="ts">
-    import type { Types } from "openbooru";
-    export let source: string = "";
+    export let sources: string[] = [];
     
-    let url;
+    let source = sources[0];
+    
+    let url: URL|null;
     try {
         url = new URL(source);
     } catch {
@@ -10,17 +11,19 @@
     }
 </script>
 
-{#if url === null}
-    <div title={source}>
-        <span>{source}</span>
-    </div>
-{:else}
-    <div title={url.hostname}>
-        <span>{source}</span>
-        <a href={source}>
-            <img src="/images/link.svg" height={10} width={10} alt="Link to Source"/>
-        </a>
-    </div>
+{#if source}
+    {#if url === null}
+        <div title={source}>
+            <span>{source}</span>
+        </div>
+    {:else}
+        <div title={url.hostname}>
+            <span>{source}</span>
+            <a href={source}>
+                <img src="/images/link.svg" height={10} width={10} alt="Link to Source"/>
+            </a>
+        </div>
+    {/if}
 {/if}
 
 

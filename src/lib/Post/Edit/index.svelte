@@ -11,13 +11,13 @@
 
 	let captcha: string|null = null;
 	let tags = post.tags;
-	let source = post.source;
+	let sources = post.sources;
 	let rating = post.rating;
 
 
 	async function AttemptEdit() {
 			try {
-					await post_edit(post.id, source, rating, Array.from(tags));
+					await post_edit(post.id, sources, rating, Array.from(tags));
 			} catch (error){
 					alert("An Error has occured: " + error.message);
 					return;
@@ -32,7 +32,7 @@
 			<TagEditor baseTags={post.tags} bind:tags={tags} />
 	</div>
 	<div id="inputs">
-			<SourceInput bind:source={source} originalSource={post.source}/>
+			<SourceInput bind:sources={sources} originalSource={post.sources}/>
 			<RatingSelector bind:rating={rating} />
 			<div id="captcha">
 					<Captcha bind:token={captcha}/>
