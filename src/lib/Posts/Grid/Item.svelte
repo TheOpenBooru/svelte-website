@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
+	import { generateUrl } from 'js/proxy';
 	import Image from 'lib/Post/Media/image.svelte';
 	import { onMount } from 'svelte';
 	import About from 'lib/Info/About.svelte';
@@ -24,7 +25,7 @@
 >
 	<img
 		class="border"
-		src={image.url}
+		src={generateUrl(image.url)}
 		alt="Post {post.id} {post.tags.join(',')}"
 		width={image.width}
 		height={image.height}

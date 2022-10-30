@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
+	import { generateUrl } from 'js/proxy';
 	import Image from 'lib/Post/Media/image.svelte';
 	export let index: number;
 	export let post: Types.Post;
@@ -27,7 +28,7 @@
 	}}
 >
 	<img
-		src={image.url}
+		src={generateUrl(image.url)}
 		width={image.width}
 		height={image.height}
 		style="aspect-ratio: {image.width}/{adjustedHeight}"

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { browser } from "$app/environment";
+	import { generateUrl } from "js/proxy";
   import type { Types } from "openbooru";
 	import { onMount, onDestroy } from "svelte";
   export let media: Types.Image;
@@ -48,14 +49,14 @@
     on:mousemove={mouseMove}
     bind:this={elem}
 
-    src={media.url}
+    src={generateUrl(media.url)}
     width={media.width}
     height={media.height}
     alt=""
   />
 {:else}
   <img
-    src={media.url}
+    src={generateUrl(media.url)}
     width={media.width}
     height={media.height}
     alt=""
