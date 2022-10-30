@@ -25,8 +25,7 @@
 
 <div id="main">
 	{#if post}
-		<span id="source">
-			<Source source={post.source}/>
+		<span id="source"><Source sources={post.sources}/>
 		</span>
 		<div id="inner">
 			<Info post={post}/>

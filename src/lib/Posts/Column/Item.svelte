@@ -20,7 +20,7 @@
 <a
 	title="Post: {post.id}"
 	href="/post/{post.id}"
-	class={post.media_type}
+	class={post.type}
 	on:load={isTarget ? () => scrollTo() : null}
 	on:click={(e) => {
 		e.preventDefault();
