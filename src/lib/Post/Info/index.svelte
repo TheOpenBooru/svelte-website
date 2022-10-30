@@ -11,8 +11,10 @@
 
 	let editting = false;
 	const deleteCallback = async () => {
-		await Post.Delete(post.id);
-		window.location.reload();
+		if (post) {
+			await Post.Delete(post.id);
+			window.location.reload();
+		}
 	};
 
 	function toggleEditting(){
@@ -25,18 +27,18 @@
 		<span id="source">
 			<Source source={post.source}/>
 		</span>
-	{/if}
-	<div id="inner">
-		{#if post}
+		<div id="inner">
 			<Info post={post}/>
-			{#if editting}
-				<PostEdit {post}/>
-			{:else}
-				<TagList tags={post.tags}/>
-			{/if}
-		{/if}
-		<Buttons editCallback={toggleEditting} deleteCallback={deleteCallback} />
-	</div>
+			<div id="content">
+				{#if editting}
+					<PostEdit {post}/>
+				{:else}
+					<TagList tags={post.tags}/>
+				{/if}
+			</div>
+			<Buttons editCallback={toggleEditting} deleteCallback={deleteCallback} />
+		</div>
+	{/if}
 </div>
 
 <style>
@@ -61,6 +63,10 @@
 		display: grid;
 		grid-template-columns: 14rem 1fr 4rem;
 		padding-bottom: 1rem;
+	}
+	
+	div#content{
+		padding: 1rem;
 	}
 
 	@media screen and (max-width: 40rem), (orientation: portrait){
