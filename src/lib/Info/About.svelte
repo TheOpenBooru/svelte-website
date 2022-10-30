@@ -4,12 +4,7 @@
 
 <HeadInfo title="Info | About" path="/info/about" />
 <div>
-	Open Booru is a modern booru framework designed to replace existing implementations and allow for the creation of custom clients.
-	<br /><br />
-	Source Code:&nbsp;
-	<a href="https://github.com/TheOpenBooru">
-			github.com/TheOpenBooru
-	</a>
+	Rule34 Pics is a public search engine for e621.net, rule34.xxx, and other sites based on OpenBooru.
 </div>
 
 <style>

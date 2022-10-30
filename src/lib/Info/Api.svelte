@@ -3,7 +3,7 @@
 </script>
 
 <div>
-	Open Booru is built around a backend API, this is accessbile to users so that custom clients can be made.
+	Rule34 Pics is built around a backend API, this is accessbile to users so that custom clients can be made.
 	<br/>
 	All functions on this site are implemented through the API.
 	<br/>

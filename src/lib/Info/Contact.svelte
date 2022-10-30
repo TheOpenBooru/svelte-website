@@ -1,17 +1,21 @@
+<script lang="ts">
+	import { SITE_URL }  from "js/config";
+</script>
+
 <div>
 	GDPR:&nbsp;
-	<a href={"mailto:gdpr@openbooru.org"}>
-			gdpr@openbooru.org
+	<a href="mailto:gdpr@{SITE_URL}">
+			gdpr@{SITE_URL}
 	</a>
 	<br/>
 	Support:&nbsp;
-	<a href={"mailto:support@openbooru.org"}>
-			support@openbooru.org
+	<a href="mailto:support@{SITE_URL}">
+			support@{SITE_URL}
 	</a>
 	<br/>
 	DMCA Contact:&nbsp;
-	<a href={"mailto:dmca@openbooru.org"}>
-			dmca@openbooru.org
+	<a href="mailto:dmca@{SITE_URL}">
+			dmca@{SITE_URL}
 	</a>
 </div>
 
