@@ -47,9 +47,9 @@
 		--BORDER-1-HOVER: var(--COLOR-6);
 		
 		--BORDER-2: var(--COLOR-6);
-	--BORDER-2-HOVER: var(--COLOR-7);
+		--BORDER-2-HOVER: var(--COLOR-7);
 
-	--NAVBAR-HEIGHT: 2.8rem;
+		--NAVBAR-HEIGHT: 2.8rem;
 	}
 
 
