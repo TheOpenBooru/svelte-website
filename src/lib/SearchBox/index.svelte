@@ -9,14 +9,14 @@
 	import TagSearch from './TagSearch.svelte';
 	import TagList from './TagList.svelte';
 
-	let sort: Types.Sort = query.sort ?? "created_at";
+	let sort: Types.Sort = query.sort ?? "upvotes";
 	let descending: boolean = query.descending ?? true;
 	let includeTags: string[] = query.include_tags ?? [];
 	let excludeTags: string[] = query.exclude_tags ?? [];
 
 	function saveQuery() {
 		let NewQuery: Types.PostQuery = {};
-		if (sort !== undefined && sort !== "created_at") {
+		if (sort !== undefined && sort !== "upvotes") {
 			NewQuery['sort'] = sort;
 		}
 		if (descending !== undefined && descending !== true){
