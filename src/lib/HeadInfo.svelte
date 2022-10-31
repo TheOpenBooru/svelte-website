@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Types } from "openbooru";
-  import { API_URL, SITE_NAME, SITE_DESC, SITE_URL } from "js/config"
+  import { API_URL, SITE_NAME, SITE_DESC, SITE_URL, SITE_KEYWORDS } from "js/config"
 
 	export let path: string;
 	export let title:string = "";
@@ -8,7 +8,7 @@
 	export let keywords: string[] = [];
 	export let media: Types.Media|null = null;
 
-  keywords = keywords.concat(["openbooru"]);
+  let RenderedKeywords = SITE_KEYWORDS.concat(keywords);
   let RenderedTitle = title ? `${SITE_NAME} | ${title}` : SITE_NAME
   let RenderedDescription = description ? SITE_DESC + "\n" + description : SITE_DESC
 </script>
@@ -20,7 +20,7 @@
 
     <title>{RenderedTitle}</title>
     <meta name="description" content={RenderedDescription} />
-    <meta name="keywords" content={keywords.join(", ")}/>
+    <meta name="keywords" content={RenderedKeywords.join(", ")}/>
     <meta name="author" content="Ben Brady" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
     <link rel="canonical" href={SITE_URL + path} />
