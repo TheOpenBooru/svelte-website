@@ -8,8 +8,8 @@
     let upvoted = false;
     const loggedIn = false;
 
-    const upvoteUrl = upvoted ? "/thumbs-up-solid.svg" : "/thumbs-up-regular.svg";
-    const downvoteUrl = downvoted ? "/thumbs-down-solid.svg" : "/thumbs-down-regular.svg";
+    const upvoteUrl = upvoted ? "thumbs-up-solid.svg" : "thumbs-up-regular.svg";
+    const downvoteUrl = downvoted ? "thumbs-down-solid.svg" : "thumbs-down-regular.svg";
     
     function upvoteCallback() {
         if (!loggedIn) return;
