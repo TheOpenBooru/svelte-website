@@ -21,6 +21,7 @@
 	title="Post: {post.id}"
 	href="/post/{post.id}"
 	class={post.type}
+	style="aspect-ratio: {image.width}/{adjustedHeight}"
 	on:load={isTarget ? () => scrollTo() : null}
 	on:click={(e) => {
 		e.preventDefault();
@@ -31,7 +32,6 @@
 		src={generateUrl(image.url)}
 		width={image.width}
 		height={image.height}
-		style="aspect-ratio: {image.width}/{adjustedHeight}"
 		alt={post.tags.join(", ")}
 		loading={priority ? null : "lazy"}
 	/>
