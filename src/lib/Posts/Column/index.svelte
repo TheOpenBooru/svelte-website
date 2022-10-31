@@ -3,7 +3,7 @@
 	import { afterUpdate, onMount } from 'svelte';
 	import LoadingIcon from 'lib/LoadingIcon.svelte';
   import Item from "./Item.svelte"
-	import { SplitPosts } from './utils.svelte';
+	import { SplitPosts } from './utils';
 
 	export let finished: boolean;
 	export let loading: boolean;
@@ -89,8 +89,6 @@
 	}
 
 	div.column {
-		--IMAGE-WIDTH: 300px;
-		
 		width: 100%;
 		margin: 1rem;
 		
