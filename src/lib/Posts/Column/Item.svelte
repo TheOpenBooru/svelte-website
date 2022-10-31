@@ -13,8 +13,9 @@
 	let image = post.preview?.type === 'image' ? post.preview : post.thumbnail;
 	image ??= post.thumbnail;
 
-	let aspectRatio = clamp(image.height / image.width, 0.5, 2);
-	let adjustedHeight = (image.height / aspectRatio) * aspectRatio;
+	let aspectRatio = image.height / image.width;
+	let adjustedAspectRatio = clamp(aspectRatio, 0.5, 2);
+	let adjustedHeight = (image.height / aspectRatio) * adjustedAspectRatio;
 </script>
 
 <a
