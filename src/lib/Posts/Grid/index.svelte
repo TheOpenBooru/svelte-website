@@ -8,7 +8,7 @@
 	export let useScroll: boolean = true;
 	export let posts: Types.Post[] = [];
 	export let requestPosts: () => void = () => {};
-	export let callback: ((data: object) => () => void)|null = null;
+	export let callback: (({id, index}: {id:number, index:number}) => () => void)|null = null;
 	
 	let container: Element;
 	async function CheckNewPosts() {
