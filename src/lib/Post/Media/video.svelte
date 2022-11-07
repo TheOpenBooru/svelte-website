@@ -26,7 +26,6 @@
   controls
   loop
 >
-  <track kind="captions"/>
   <source
     src={generateUrl(video.url)}
     width={video.width}
