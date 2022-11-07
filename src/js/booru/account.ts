@@ -15,11 +15,11 @@ export async function login(username: string, password:string, hcatpcha_response
 }
 
 export async function register(username: string, password: string, confrimPassword: string, hcatpcha_response: string | null = null) {
-  const UsernameRegex = /^[a-zA-Z0-9_]{4,32}$/;
   if (import.meta.env.SSR) return;
+
   if (password !== confrimPassword) {
     throw "The Passwords Don't Match";
-  } else if (!UsernameRegex.test(username)) {
+  } else if (!/^[a-zA-Z0-9_]{4,32}$/.test(username)) {
     throw "Username Doesn't Meet Requirements";
   }
 
@@ -46,7 +46,9 @@ export async function register(username: string, password: string, confrimPasswo
 
 
 export function token(){
-  if (browser){
+  if (import.meta.env.SSR) {
+    return null;
+  } else if (browser){
     return localStorage.getItem("token");
   } else {
     return null
