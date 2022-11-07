@@ -46,9 +46,7 @@ export async function register(username: string, password: string, confrimPasswo
 
 
 export function token(){
-  if (import.meta.env.SSR) {
-    return null;
-  } else if (browser){
+  if (browser){
     return localStorage.getItem("token");
   } else {
     return null

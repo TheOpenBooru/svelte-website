@@ -6,8 +6,8 @@ export async function tagAutocomplete(search: string, limit = 5): Promise<Types.
     if (search === "") {
         return [];
     }
+    
     try {
-        
         return await Tags.search({name_like: search,limit: limit,},getBooruConfig())
     } catch (e) {
         return [];
