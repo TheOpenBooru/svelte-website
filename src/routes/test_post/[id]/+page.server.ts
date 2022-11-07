@@ -7,9 +7,9 @@ export const load: PageServerLoad = async ({ params }) => {
   try {
     post = await post_get(params.id)
   } catch (e) {
-    throw error(500, JSON.stringify(e));
+    throw error(500, e + "," + JSON.stringify(e));
   }
-  
+
   if (post) {
     return { post };
   } else {
