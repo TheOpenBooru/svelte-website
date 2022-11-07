@@ -22,6 +22,7 @@
   on:load={setVolume}
   on:volumechange={updateVolume}
   poster={generateUrl(poster?.url)}
+  preload="auto"
   controls
   loop
 >

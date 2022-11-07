@@ -22,7 +22,13 @@
     let { top, left, width, height } = elem.getBoundingClientRect();
     let xPercent = ((e.clientX + left) / width) - 0.5
     let yPercent = ((e.clientY + top) / height) - 0.5
-    style = `transform: translate(${xPercent * 10}%, ${yPercent * 10}% );`
+    const translateScale = -100;
+    style = `transform:
+      translate(
+        ${xPercent * translateScale}%,
+        ${yPercent * translateScale}%
+      );
+    `
   }
 
   // onMount(() => {
@@ -60,6 +66,7 @@
     width={media.width}
     height={media.height}
     alt=""
+    loading="eager"
   />
 {/if}
 
