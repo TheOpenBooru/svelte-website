@@ -4,7 +4,7 @@ import { getBooruConfig } from "js/booru/misc";
 
 
 type id = string|number
-export function posts_search(query: Types.PostQuery, index = 0, limit = 100): Promise<Types.Post[]> {
+export function posts_search(query: Types.PostQuery, index = 0, limit = 100, key: string|null = null): Promise<Types.Post[]> {
     return Posts.search(query, index, limit, getBooruConfig())
 }
 
@@ -16,12 +16,14 @@ export function posts_import(url: string): Promise <Types.Post[]> {
     return Posts.Import(url, getBooruConfig())
 }
 
-export function post_edit(post_id: id, source: string, rating: Types.Rating, tags: string[]): Promise<void> {
-    return Post.edit(post_id, source, rating, tags, getBooruConfig())
+export function post_edit(post_id: id, sources: string[], rating: Types.Rating, tags: string[]): Promise<void> {
+    return Post.edit(post_id, sources, rating, tags, getBooruConfig())
 }
 
-export function post_get(post_id: id): Promise<Types.Post> {
-    return Post.get(post_id, getBooruConfig())
+export function post_get(post_id: id, key: string|null = null): Promise<Types.Post> {
+    const config = getBooruConfig();
+    if (key) config.token = key;
+    return Post.get(post_id, config)
 }
 
 export function post_delete(post_id: id): Promise<void> {
