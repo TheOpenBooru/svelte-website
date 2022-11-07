@@ -8,9 +8,9 @@ async function updateIds(): Promise<number[]> {
   const curDate = new Date()
   const timeSinceUpdated = (Number(curDate) - Number(lastUpdated)) / 1000;
   if (timeSinceUpdated > 3600) {
-    const r = await fetch(API_URL + "/posts/ids");
-    // ids = await r.json();
-    ids = [2922547438, 849676739, 2623644357];
+    const r = await fetch(API_URL + "/posts/search");
+    const posts: Array<object> = await r.json();
+    ids = posts.map(post => post.id)
     lastUpdated = new Date();
   }
 }
