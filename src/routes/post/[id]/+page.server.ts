@@ -3,12 +3,7 @@ import { error } from '@sveltejs/kit';
 import { post_get } from 'js/booru';
 
 export const load: PageServerLoad = async ({ params }) => {
-  let post;
-  try {
-    post = await post_get(params.id)
-  } catch (e) {
-    throw error(500, e + "," + JSON.stringify(e));
-  }
+  const post = await post_get(params.id)
 
   if (post) {
     return { post };

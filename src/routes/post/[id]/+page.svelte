@@ -11,7 +11,7 @@
 <HeadInfo
   title={`Post ${post.id}`}
   description={`${post.tags.join(", ")}`}
-  keywords={["post", "media", "openbooru"].concat(post.tags)}
+  keywords={["post", "media"].concat(post.tags)}
   path={`/post/${post.id}`}
   media={post.full}
 />
