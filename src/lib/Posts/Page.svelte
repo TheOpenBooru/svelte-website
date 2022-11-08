@@ -6,7 +6,7 @@
 	import { posts_search } from 'js/booru';
 	import Grid from 'lib/Posts/Grid/index.svelte';
 	import Column from 'lib/Posts/Column/index.svelte';
-	import SearchButton from './SearchButton.svelte';
+	import SearchButton from './Buttons/Search.svelte';
 	import LayoutSelector from './LayoutSelector.svelte';
 
 	export let layout: "grid"|"column" = "grid";
