@@ -6,11 +6,13 @@
 
 <nav>
 	<Item path="/" name="Home" image="/images/home.svg" />
-	{#if !READ_ONLY}
+	<!-- {#if !READ_ONLY}
 		<Item path="/tags" name="Tags" image="/images/tags.svg" />
 		<Item path="/subscriptions" name="Subs" image="/images/profile.svg" />
-	{/if}
+	{/if} -->
+
 	<Item path="/info" name="Info" image="/images/info.svg" />
+
 	{#if !READ_ONLY}
 		{#await profile()}
 			<Item path="/account" name="Login" image="/images/profile.svg" />
