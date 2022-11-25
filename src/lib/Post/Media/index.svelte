@@ -6,7 +6,7 @@
 </script>
 
 {#if post}
-  {#if post.type === "video"}
+  {#if post.full.type === "video"}
     <Video video={post.full} poster={post.thumbnail} />
   {:else}
     <Image media={post.full}/>

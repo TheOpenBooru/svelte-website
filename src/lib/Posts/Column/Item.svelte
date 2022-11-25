@@ -21,7 +21,7 @@
 <a
 	title="Post: {post.id}"
 	href="/post/{post.id}"
-	class={post.type}
+	class={post.full.type}
 	style="aspect-ratio: {image.width}/{adjustedHeight}"
 	on:load={isTarget ? () => scrollTo() : null}
 	on:click={(e) => {
