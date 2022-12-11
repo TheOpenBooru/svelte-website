@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { posts_search } from "js/booru";
 	import { generateUrl } from "js/proxy";
+	import Links from "js/links";
 	import type { Types } from "openbooru";
 
   export let ids: number[]|bigint[] = [];
@@ -17,7 +18,7 @@
 {#await getPosts() then posts}
   <div>
     {#each posts as post}
-      <a href="/post/{post.id}">
+      <a href={Links.post(post.id)}>
         <img
           src={generateUrl(post.thumbnail.url)}
           alt=""
