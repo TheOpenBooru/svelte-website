@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Types } from "openbooru";
 	import { onMount } from "svelte";
+  import Links from "js/links";
   import DesktopPosts from "./desktop.svelte";
 
   export let loading: boolean;
@@ -23,7 +24,7 @@
   }
 
   function visit(){
-    window.location.href = `/post/${post.id}`
+    window.location.href = Links.post(post.id);
   }
 
   function gotoNextPost() {

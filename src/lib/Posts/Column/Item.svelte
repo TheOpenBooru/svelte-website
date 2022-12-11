@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
 	import { generateUrl } from 'js/proxy';
+	import Links from 'js/links';
 	import Image from 'lib/Post/Media/image.svelte';
 	export let index: number;
 	export let post: Types.Post;
@@ -16,13 +17,14 @@
 	let aspectRatio = image.height / image.width;
 	let adjustedAspectRatio = clamp(aspectRatio, 0.5, 2);
 	let adjustedHeight = (image.height / aspectRatio) * adjustedAspectRatio;
+	let aspectRatioStyle = "aspect-ratio: {image.width}/{adjustedHeight}"
 </script>
 
 <a
 	title="Post: {post.id}"
-	href="/post/{post.id}"
+	href={Links.post(post.id)}
 	class={post.full.type}
-	style="aspect-ratio: {image.width}/{adjustedHeight}"
+	style={aspectRatioStyle}
 	on:load={isTarget ? () => scrollTo() : null}
 	on:click={(e) => {
 		e.preventDefault();

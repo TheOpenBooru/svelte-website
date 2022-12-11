@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Types } from 'openbooru';
 	import { generateUrl } from 'js/proxy';
+	import Links from 'js/links';
 	import Image from 'lib/Post/Media/image.svelte';
 	import { onMount } from 'svelte';
 	import About from 'lib/Info/About.svelte';
@@ -20,13 +21,13 @@
 
 <a
 	class="border {post.full.type}"
-	href="/post/{post.id}"
+	href={Links.post(post.id)}
 	on:click={onClick}
 >
 	<img
 		class="border"
 		src={generateUrl(image.url)}
-		alt="Post {post.id} {post.tags.join(',')}"
+		alt="{post.tags.join(',')}"
 		width={image.width}
 		height={image.height}
 		loading={lazy ? "lazy" : "eager"}

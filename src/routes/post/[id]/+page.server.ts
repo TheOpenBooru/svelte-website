@@ -1,17 +1,14 @@
 import type { PageServerLoad } from './$types';
 import { API_KEY } from '$env/static/private';
 import { error } from '@sveltejs/kit';
-import { getBooruConfig } from 'js/booru';
-import { Post } from 'openbooru';
+import { ID, post_get } from 'js/booru';
 
 export const load: PageServerLoad = async ({ params }) => {
-  const config = getBooruConfig()
-  config.token = API_KEY
-  const post = await Post.get(params.id, config);
-
-  if (post) {
+  try {
+    const id = ID.decode(params.id);
+    const post = await post_get(id, API_KEY);
     return { post };
-  } else {
-    throw error(404, 'Post Not Found');
+  } catch (e: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+    throw error(404, "Post Not Found");
   }
 }

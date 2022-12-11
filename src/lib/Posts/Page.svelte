@@ -4,6 +4,7 @@
 	import { page } from "$app/stores"
 	
 	import { posts_search } from 'js/booru';
+	import Links from 'js/links';
 	import Grid from 'lib/Posts/Grid/index.svelte';
 	import Column from 'lib/Posts/Column/index.svelte';
 	import SearchButton from './Buttons/Search.svelte';
@@ -14,13 +15,12 @@
 
 	let finished = false;
 	let loading = false;
-	let index = 0;
 	let posts: Types.Post[] = [];
 	
-	let params = $page.url.searchParams
-	let bsl = params.get("query") || "";
+	$: params = $page.url.searchParams
+	$: bsl = params.get("query") || "";
 	if (typeof bsl === "object") bsl = bsl[0]
-	const query = BSL.decode(bsl);
+	$: query = BSL.decode(bsl);
 
 	async function requestPosts() {
 		if (finished || loading) return;
@@ -58,14 +58,10 @@
 	}
 	function PostCallback({ id, index }: PostCallbackInterface) {
 		return () => {
-			location.href = `/post/${id}`;
+			location.href = Links.post(id);
 		};
 	}
 	
-	function setIndex(new_index: number){
-		index = new_index;
-	}
-
 	const LayoutLookup = {
 		grid:Grid,
 		column: Column
@@ -77,8 +73,6 @@
 <LayoutSelector layout={layout}/>
 <svelte:component
 	this={LayoutElement}
-	{index}
-	{setIndex}
 	{finished}
 	{loading}
 	posts={posts || initialPosts}

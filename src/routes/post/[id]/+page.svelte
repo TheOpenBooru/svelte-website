@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { PageData } from './$types';
+	import { ID } from "js/booru"
+	import * as Links from "js/links"
 	import HeadInfo from "lib/HeadInfo.svelte"
 	import PostPage from "lib/Post/Page.svelte"
 
@@ -9,10 +11,8 @@
 </script>
 
 <HeadInfo
-  title={`Post ${post.id}`}
-  description={`${post.tags.join(", ")}`}
-  keywords={["post", "media"].concat(post.tags)}
-  path={`/post/${post.id}`}
+  title={`Post ${ID.encode(post.id)}`}
+	path={Links.post(post.id)}
   media={post.full}
 />
 <PostPage {post}/>
