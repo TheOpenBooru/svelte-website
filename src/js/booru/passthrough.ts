@@ -1,5 +1,7 @@
 import type { Types } from "openbooru";
 import { Posts, Post, Profile, Tags } from "openbooru";
+import { browser } from "$app/environment";
+import { getToken } from "js/booru/account";
 import { getBooruConfig } from "js/booru/misc";
 
 
@@ -46,8 +48,24 @@ export function remove_downvote(post_id: id): Promise<void> {
     return Post.remove_downvote(post_id, getBooruConfig())
 }
 
-export function profile(): Promise<Types.Profile> {
-    return Profile.profile(getBooruConfig())
+export async function profile(use_cache = true): Promise<Types.Profile> {
+    if (!browser) throw Error("Tried to get Server Side profile")
+    if (!getToken()) throw Error("Not Logged In")
+    
+    if (use_cache) {
+        const profile_json = localStorage.getItem("profile");
+        if (profile_json) {
+            return JSON.parse(profile_json);
+        }
+    }
+    
+    const profile = await Profile.profile(getBooruConfig());
+    localStorage.setItem("profile", JSON.stringify(profile));
+    setTimeout(() => {
+        localStorage.removeItem("profile")
+    }, 1000)
+
+    return profile;
 }
 
 export function profile_update_settings(settings: string): Promise<void> {
