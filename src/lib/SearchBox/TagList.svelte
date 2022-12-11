@@ -26,16 +26,20 @@
 	{#each includeTags as tag}
 		<div>
 			<Tag tagName={tag} callback={removeTagCallback(tag)}>
-				<img src="/images/cross.svg" alt="Remove Tag" on:click={toggleTagCallback(tag)} />
+				<button on:click={toggleTagCallback(tag)}>
+					<img src="/images/cross.svg" alt="Remove Tag"/>
+				</button>
 			</Tag>
 		</div>
-		{/each}
-		{#each excludeTags as tag}
-			<div class="removed-tag">
-				<Tag tagName={tag} callback={removeTagCallback(tag)}>
-					<img src="/images/cross.svg" alt="Remove Tag" on:click={toggleTagCallback(tag)} />
-				</Tag>
-			</div>
+	{/each}
+	{#each excludeTags as tag}
+		<div class="removed-tag">
+			<Tag tagName={tag} callback={removeTagCallback(tag)}>
+				<button on:click={toggleTagCallback(tag)}>
+					<img src="/images/cross.svg" alt="Remove Tag"/>
+				</button>
+			</Tag>
+		</div>
 	{/each}
 </div>
 
@@ -56,12 +60,15 @@
 	}
 
 	img {
-		cursor: pointer;
 		user-select: none;
 		width: 1rem;
 		height: 1rem;
 
 		/* Change colour to red */
 		filter: invert(13%) sepia(51%) saturate(6190%) hue-rotate(359deg) brightness(78%) contrast(118%);
+	}
+
+	button {
+		display: contents;
 	}
 </style>

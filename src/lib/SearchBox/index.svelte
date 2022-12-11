@@ -118,6 +118,7 @@
 		top: calc(var(--NAVBAR-HEIGHT) + 3rem);
 		background: none;
 		border: none;
+		z-index: 1;
 	}
 
 	dialog::backdrop{
@@ -127,6 +128,5 @@
 		height: 100%;
 		width: 100%;
 		background: rgba(0, 0, 0, 0.8);
-		z-index: 1;
 	}
 </style>
