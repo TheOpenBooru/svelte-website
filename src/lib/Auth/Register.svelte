@@ -3,40 +3,53 @@
   import HCaptcha from "lib/Captcha.svelte"
   export let error: string;
   
+  let permission_promise = getPermission("canRegister")
   
+  function handleError(e: Error|string|any) {
+    if (e instanceof Error) {
+      error = e.message
+    } else {
+      error = e.toString()
+    }
+}
+
   async function submit(){
     let username = usernameField.value;
     let password = passwordField.value;
     let confrimPassword = confrimPasswordField.value;
     
-    if (getPermission("canRegister") && captcha === null) {
+    let promise = await permission_promise;
+    if (promise.captcha && !captchaResponse) {
       error = "Captcha Required"
       return;
     }
+
     try {
-      await Account.register(username, password, confrimPassword, captcha)
+      await Account.register(username, password, confrimPassword, captchaResponse);
     } catch (e){
-      if (e instanceof Error) error = e.message
-      if (e instanceof String) error = e.toString()
+      handleError(e);
       return;
     }
-    location.href = "/profile"
+
+    location.href = "/"
   };
 
   let usernameField: HTMLInputElement;
   let passwordField: HTMLInputElement;
   let confrimPasswordField: HTMLInputElement;
-  let captcha: string|null = null;
+  let captchaResponse: string|null|undefined;
 </script>
 
 <div>
     <input bind:this={usernameField} class="input" type="username" placeholder="Username" />
-    <input bind:this={passwordField} class="input" type="password" placeholder="Confirm Password" />
-    <input bind:this={confrimPasswordField} class="input" type="password" placeholder="Password" />
-    {#if needsCaptcha("canRegister")}
-      <HCaptcha bind:token={captcha}/>
-    {/if} 
-    <input on:click={submit} id="submit" type="submit" value="Login"/>
+    <input bind:this={passwordField} class="input" type="password" placeholder="Confirm Password" value="asdbhjfbikasdfjasdf"/>
+    <input bind:this={confrimPasswordField} class="input" type="password" placeholder="Password" value="asdbhjfbikasdfjasdf"/>
+    {#await permission_promise then permission}
+      {#if permission.captcha}
+        <HCaptcha bind:token={captchaResponse}/>
+      {/if}
+    {/await}
+    <input on:click={submit} id="submit" type="submit" value="Register"/>
 </div>
 
 <style>
