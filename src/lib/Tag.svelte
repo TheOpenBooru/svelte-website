@@ -11,10 +11,10 @@
 	const count = data?.count ?? null;
 
 	function onClick(e: MouseEvent) {
-		if (callback){
-			e.preventDefault();
-			callback();
-		}
+		if (!callback) return;
+		
+		e.preventDefault();
+		callback();
 	}
 </script>
 
@@ -30,6 +30,7 @@
 
 <style>
 	a {
+		cursor: pointer;
 		text-decoration: none;
 		width: fit-content;
 		height: fit-content;
