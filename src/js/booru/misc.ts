@@ -9,9 +9,10 @@ type ApiData = {
     apiUrl: string,
     token: string|null,
 }
+
 export function getBooruConfig(): ApiData {
     return {
         apiUrl: API_URL,
-        token: Account.token(),
+        token: Account.getToken(),
     }
 }

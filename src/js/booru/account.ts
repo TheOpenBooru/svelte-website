@@ -27,25 +27,27 @@ export async function register(username: string, password: string, confrimPasswo
     const token = await Account.register(username, password, {
       apiUrl: API_URL,
       hcatpcha_response: hcatpcha_response,
-    })
-    localStorage.setItem("token", token)
+    });
+    localStorage.setItem("token", token);
   } catch (e) {
     if (e instanceof Errors.UserAlreadyExists) {
-      throw "A User With That Name Already Exists"
+      throw "A User With That Name Already Exists";
     } else if (e instanceof Errors.BadCaptcha) {
-      throw "Invalid Captcha Response"
+      throw "Invalid Captcha Response";
     } else if (e instanceof Errors.PasswordDoesntMeetRequirements) {
-      throw "Password does not meet requirements With That Name Already Exists"
+      throw "Password does not meet requirements With That Name Already Exists";
     } else if (e instanceof Errors.InternalServerError) {
-      throw "Interal Server Error, Try Again Later"
+      throw "Interal Server Error, Try Again Later";
     } else {
-      throw "Unknown Error"
+      if (e instanceof Error) {
+        throw e.message;
+      } else throw e;
     }
   }
 }
 
 
-export function token(){
+export function getToken(){
   if (browser){
     return localStorage.getItem("token");
   } else {
@@ -53,7 +55,7 @@ export function token(){
   }
 }
 
-export const loggedIn = () => !!token()
+export const loggedIn = () => !!getToken()
 
 export function logout(){
   if (browser){
