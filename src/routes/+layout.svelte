@@ -7,13 +7,13 @@
 
 <QueryClientProvider client="{queryClient}">
 	<NavigationBar />
-	<main id="__main">
+	<main>
 		<slot />
 	</main>
 </QueryClientProvider>
 
-<style global>
-	main#__main {
+<style>
+	main {
 		display: block;
 		max-height: calc(100vh - var(--NAVBAR-HEIGHT));
 		height: calc(100vh - var(--NAVBAR-HEIGHT));
@@ -51,7 +51,7 @@
 		--NAVBAR-HEIGHT: 2.8rem;
 	}
 
-	body {
+	:global(body) {
 		margin: 0;
 		padding: 0;
 		overflow-x: hidden;
@@ -60,13 +60,14 @@
 		background-color: var(--BACKGROUND-1);
 	}
 
-	img {
+	:global(img) {
 		font-size: 0;
 	}
 
-	a {
+	:global(a) {
 		text-decoration: none;
 	}
+	
 	/* latin */
 	@font-face {
 		font-family: "Lato";
