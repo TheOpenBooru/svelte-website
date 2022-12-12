@@ -1,14 +1,13 @@
 <script lang="ts">
-	import type { Types } from 'openbooru';
-	import { Post } from 'openbooru';
-	import PostEdit from "lib/Post/Edit/index.svelte"
-	import Source from "./Source.svelte"
-	import Info from "./Info.svelte"
-	import TagList from "./TagList.svelte"
-	import Buttons from "./Buttons.svelte"
+	import type { Types } from "openbooru";
+	import { Post } from "openbooru";
+	import PostEdit from "lib/Post/Edit/index.svelte";
+	import Source from "./Source.svelte";
+	import Info from "./Info.svelte";
+	import TagList from "./TagList.svelte";
+	import Buttons from "./Buttons.svelte";
 
-	export let post: Types.Post|null;
-
+	export let post: Types.Post | null;
 
 	let editting = false;
 	const deleteCallback = async () => {
@@ -18,28 +17,24 @@
 		}
 	};
 
-	function toggleEditting(){
+	function toggleEditting() {
 		editting = !editting;
 	}
 </script>
 
 <div id="main">
 	{#if post}
-		<span id="source"><Source sources={post.sources}/>
-		</span>
+		<span id="source"><Source sources="{post.sources}" /> </span>
 		<div id="inner">
-			<Info post={post}/>
+			<Info post="{post}" />
 			<div id="content">
 				{#if editting}
-					<PostEdit {post}/>
+					<PostEdit post="{post}" />
 				{:else}
-					<TagList tags={post.tags}/>
+					<TagList tags="{post.tags}" />
 				{/if}
 			</div>
-			<Buttons
-				editCallback={toggleEditting}
-				deleteCallback={deleteCallback}
-			/>
+			<Buttons editCallback="{toggleEditting}" deleteCallback="{deleteCallback}" />
 		</div>
 	{/if}
 </div>
@@ -48,7 +43,7 @@
 	div#main {
 		display: grid;
 		grid-template-rows: 1.2rem 1fr;
-		
+
 		position: relative;
 		height: fit-content;
 		min-height: 14rem;
@@ -67,12 +62,12 @@
 		grid-template-columns: 14rem 1fr 4rem;
 		padding-bottom: 1rem;
 	}
-	
-	div#content{
+
+	div#content {
 		padding: 1rem;
 	}
 
-	@media screen and (max-width: 40rem), (orientation: portrait){
+	@media screen and (max-width: 40rem), (orientation: portrait) {
 		div#inner {
 			display: flex;
 			flex-flow: column;

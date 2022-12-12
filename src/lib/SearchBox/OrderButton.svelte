@@ -2,9 +2,9 @@
 	export let descending: boolean;
 </script>
 
-<div on:click={() => (descending = !descending)}>
+<div on:click="{() => (descending = !descending)}">
 	<img
-		src={descending ? '/images/arrow-down.svg' : '/images/arrow-up.svg'}
+		src="{descending ? '/images/arrow-down.svg' : '/images/arrow-up.svg'}"
 		alt="Sort {descending ? 'Descending' : 'Ascending'}"
 	/>
 </div>

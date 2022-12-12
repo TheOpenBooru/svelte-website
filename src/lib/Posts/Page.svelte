@@ -1,25 +1,25 @@
 <script lang="ts">
-	import type { Types } from 'openbooru';
-	import { BSL } from "openbooru"
-	import { page } from "$app/stores"
-	
-	import { posts_search } from 'js/booru';
-	import Links from 'js/links';
-	import Grid from 'lib/Posts/Grid/index.svelte';
-	import Column from 'lib/Posts/Column/index.svelte';
-	import SearchButton from './Buttons/Search.svelte';
-	import LayoutSelector from './LayoutSelector.svelte';
+	import type { Types } from "openbooru";
+	import { BSL } from "openbooru";
+	import { page } from "$app/stores";
 
-	export let layout: "grid"|"column" = "grid";
+	import { posts_search } from "js/booru";
+	import Links from "js/links";
+	import Grid from "lib/Posts/Grid/index.svelte";
+	import Column from "lib/Posts/Column/index.svelte";
+	import SearchButton from "./Buttons/Search.svelte";
+	import LayoutSelector from "./LayoutSelector.svelte";
+
+	export let layout: "grid" | "column" = "grid";
 	export let initialPosts: Types.Post[] = [];
 
 	let finished = false;
 	let loading = false;
 	let posts: Types.Post[] = [];
-	
-	$: params = $page.url.searchParams
+
+	$: params = $page.url.searchParams;
 	$: bsl = params.get("query") || "";
-	if (typeof bsl === "object") bsl = bsl[0]
+	if (typeof bsl === "object") bsl = bsl[0];
 	$: query = BSL.decode(bsl);
 
 	async function requestPosts() {
@@ -29,11 +29,7 @@
 		const limit = 100;
 		let new_posts;
 		try {
-			new_posts = await posts_search(
-				query,
-				posts.length,
-				limit
-			);
+			new_posts = await posts_search(query, posts.length, limit);
 		} catch (e) {
 			return;
 		}
@@ -47,35 +43,35 @@
 	}
 
 	function setQuery(query: Types.PostQuery) {
-		let bsl = BSL.encode(query)
+		let bsl = BSL.encode(query);
 		let search = bsl ? "?query=" + bsl : "";
-		window.location.search = search
+		window.location.search = search;
 	}
 
-	interface PostCallbackInterface{
-		id: number,
-		index: number,
+	interface PostCallbackInterface {
+		id: number;
+		index: number;
 	}
 	function PostCallback({ id, index }: PostCallbackInterface) {
 		return () => {
 			location.href = Links.post(id);
 		};
 	}
-	
+
 	const LayoutLookup = {
-		grid:Grid,
-		column: Column
+		grid: Grid,
+		column: Column,
 	};
-	const LayoutElement = LayoutLookup[layout] ?? Grid
+	const LayoutElement = LayoutLookup[layout] ?? Grid;
 </script>
 
-<SearchButton {query} {setQuery}/>
-<LayoutSelector layout={layout}/>
+<SearchButton query="{query}" setQuery="{setQuery}" />
+<LayoutSelector layout="{layout}" />
 <svelte:component
-	this={LayoutElement}
-	{finished}
-	{loading}
-	posts={posts || initialPosts}
-	{requestPosts}
-	callback={PostCallback}
+	this="{LayoutElement}"
+	finished="{finished}"
+	loading="{loading}"
+	posts="{posts || initialPosts}"
+	requestPosts="{requestPosts}"
+	callback="{PostCallback}"
 />

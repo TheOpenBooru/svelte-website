@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Types } from 'openbooru';
-	import { generateUrl } from 'js/proxy';
-	import Links from 'js/links';
-	import Image from 'lib/Post/Media/image.svelte';
+	import type { Types } from "openbooru";
+	import { generateUrl } from "js/proxy";
+	import Links from "js/links";
+	import Image from "lib/Post/Media/image.svelte";
 	export let index: number;
 	export let post: Types.Post;
 	export let postCallback: Function;
@@ -11,32 +11,32 @@
 
 	const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
-	let image = post.preview?.type === 'image' ? post.preview : post.thumbnail;
+	let image = post.preview?.type === "image" ? post.preview : post.thumbnail;
 	image ??= post.thumbnail;
 
 	let aspectRatio = image.height / image.width;
 	let adjustedAspectRatio = clamp(aspectRatio, 0.5, 2);
 	let adjustedHeight = (image.height / aspectRatio) * adjustedAspectRatio;
-	let aspectRatioStyle = "aspect-ratio: {image.width}/{adjustedHeight}"
+	let aspectRatioStyle = "aspect-ratio: {image.width}/{adjustedHeight}";
 </script>
 
 <a
 	title="Post: {post.id}"
-	href={Links.post(post.id)}
-	class={post.full.type}
-	style={aspectRatioStyle}
-	on:load={isTarget ? () => scrollTo() : null}
-	on:click={(e) => {
+	href="{Links.post(post.id)}"
+	class="{post.full.type}"
+	style="{aspectRatioStyle}"
+	on:load="{isTarget ? () => scrollTo() : null}"
+	on:click="{e => {
 		e.preventDefault();
-		postCallback({ id: post.id, index })
-	}}
+		postCallback({ id: post.id, index });
+	}}"
 >
 	<img
-		src={generateUrl(image.url)}
-		width={image.width}
-		height={image.height}
-		alt={post.tags.join(", ")}
-		loading={priority ? null : "lazy"}
+		src="{generateUrl(image.url)}"
+		width="{image.width}"
+		height="{image.height}"
+		alt="{post.tags.join(', ')}"
+		loading="{priority ? null : 'lazy'}"
 	/>
 </a>
 
@@ -68,15 +68,14 @@
 		height: 100%;
 		width: 100%;
 		object-fit: cover;
-
 	}
 	a,
 	img {
 		border-radius: 1rem;
 	}
-  a:hover,
+	a:hover,
 	img:hover {
-    outline-width: 0.3rem;
-    border-radius: 2rem;
-  }
+		outline-width: 0.3rem;
+		border-radius: 2rem;
+	}
 </style>

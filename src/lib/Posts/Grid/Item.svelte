@@ -1,36 +1,32 @@
 <script lang="ts">
-	import type { Types } from 'openbooru';
-	import { generateUrl } from 'js/proxy';
-	import Links from 'js/links';
-	import Image from 'lib/Post/Media/image.svelte';
-	import { onMount } from 'svelte';
-	import About from 'lib/Info/About.svelte';
-	
+	import type { Types } from "openbooru";
+	import { generateUrl } from "js/proxy";
+	import Links from "js/links";
+	import Image from "lib/Post/Media/image.svelte";
+	import { onMount } from "svelte";
+	import About from "lib/Info/About.svelte";
+
 	export let post: Types.Post;
-	export let callback: (() => void)|null;
+	export let callback: (() => void) | null;
 	export let lazy: boolean;
 
 	let image = post.thumbnail;
-	function onClick(e: Event){
-		if (callback){
+	function onClick(e: Event) {
+		if (callback) {
 			e.preventDefault();
 			callback();
 		}
 	}
 </script>
 
-<a
-	class="border {post.full.type}"
-	href={Links.post(post.id)}
-	on:click={onClick}
->
+<a class="border {post.full.type}" href="{Links.post(post.id)}" on:click="{onClick}">
 	<img
 		class="border"
-		src={generateUrl(image.url)}
+		src="{generateUrl(image.url)}"
 		alt="{post.tags.join(',')}"
-		width={image.width}
-		height={image.height}
-		loading={lazy ? "lazy" : "eager"}
+		width="{image.width}"
+		height="{image.height}"
+		loading="{lazy ? 'lazy' : 'eager'}"
 	/>
 </a>
 
@@ -50,7 +46,7 @@
 		background: var(--BACKGROUND-3);
 		outline: 0.3rem solid;
 	}
-	
+
 	a.image {
 		outline-color: var(--BACKGROUND-3);
 	}
@@ -66,7 +62,7 @@
 	.loading {
 		opacity: 0;
 	}
-	
+
 	.loaded {
 		transition: ease-in-out 100ms;
 		opacity: 1;

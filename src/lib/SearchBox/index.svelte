@@ -1,20 +1,20 @@
 <script lang="ts" context="module">
-	export function show(){
+	export function show() {
 		searchModal.show();
 	}
-	
-	export function hide(){
+
+	export function hide() {
 		searchModal.close();
 	}
 
-	export function toggle(){
+	export function toggle() {
 		if (searchModal.open) {
 			hide();
 		} else {
 			show();
 		}
 	}
-	
+
 	let searchModal: HTMLDialogElement;
 </script>
 
@@ -23,12 +23,12 @@
 	export let setQuery: (query: Types.PostQuery) => void;
 	export let closeCallback: () => void;
 
-	import type { Types } from 'openbooru';
-	import { DEFAULT_SEARCH } from 'js/config';
-	import SortSelect from './SortSelect.svelte';
-	import OrderButton from './OrderButton.svelte';
-	import TagSearch from './TagSearch.svelte';
-	import TagList from './TagList.svelte';
+	import type { Types } from "openbooru";
+	import { DEFAULT_SEARCH } from "js/config";
+	import SortSelect from "./SortSelect.svelte";
+	import OrderButton from "./OrderButton.svelte";
+	import TagSearch from "./TagSearch.svelte";
+	import TagList from "./TagList.svelte";
 
 	let sort: Types.Sort = query.sort ?? DEFAULT_SEARCH;
 	let descending: boolean = query.descending ?? true;
@@ -38,33 +38,32 @@
 	function saveQuery() {
 		let NewQuery: Types.PostQuery = {};
 		if (sort !== undefined && sort !== DEFAULT_SEARCH) {
-			NewQuery['sort'] = sort;
+			NewQuery["sort"] = sort;
 		}
-		if (descending !== undefined && descending !== true){
-			NewQuery['descending'] = descending;
+		if (descending !== undefined && descending !== true) {
+			NewQuery["descending"] = descending;
 		}
 		if (includeTags !== undefined && includeTags.length > 0) {
-			NewQuery['include_tags'] = includeTags
-		};
+			NewQuery["include_tags"] = includeTags;
+		}
 		if (excludeTags !== undefined && includeTags.length > 0) {
-			NewQuery['exclude_tags'] = excludeTags
-		};
+			NewQuery["exclude_tags"] = excludeTags;
+		}
 		setQuery(NewQuery);
 		closeCallback();
 	}
 </script>
 
-
-<dialog bind:this={searchModal}>
+<dialog bind:this="{searchModal}">
 	<main>
 		<div>
-			<SortSelect bind:sort={sort} />
-			<OrderButton bind:descending={descending} />
-			<TagSearch bind:includeTags={includeTags} />
+			<SortSelect bind:sort="{sort}" />
+			<OrderButton bind:descending="{descending}" />
+			<TagSearch bind:includeTags="{includeTags}" />
 		</div>
 		<!-- {includeTags.join(",\n")} -->
-		<TagList bind:includeTags={includeTags} bind:excludeTags={excludeTags} />
-		<button on:click={saveQuery}> Search </button>
+		<TagList bind:includeTags="{includeTags}" bind:excludeTags="{excludeTags}" />
+		<button on:click="{saveQuery}"> Search </button>
 	</main>
 </dialog>
 
@@ -89,9 +88,9 @@
 	div {
 		border-bottom: 0.2em solid var(--BORDER-1);
 		padding: 0.2rem;
-		
+
 		display: flex;
-		gap: .3rem;
+		gap: 0.3rem;
 		align-items: center;
 		justify-content: space-around;
 	}
@@ -121,7 +120,7 @@
 		z-index: 1;
 	}
 
-	dialog::backdrop{
+	dialog::backdrop {
 		position: fixed;
 		top: 0;
 		left: 0;

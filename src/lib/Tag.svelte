@@ -1,25 +1,25 @@
 <script lang="ts">
-	import type { Types } from 'openbooru';
+	import type { Types } from "openbooru";
 	export let tagName: string | null = null;
 	export let data: Types.Tag | null = null;
 	export let href: string | null = null;
-	export let callback: null|(() => void) = null;
+	export let callback: null | (() => void) = null;
 	export let showCount: boolean = false;
 
-	const name = tagName ?? data?.name ?? 'Foo';
-	const namespace = data?.namespace ?? 'generic';
+	const name = tagName ?? data?.name ?? "Foo";
+	const namespace = data?.namespace ?? "generic";
 	const count = data?.count ?? null;
 
 	function onClick(e: MouseEvent) {
 		if (!callback) return;
-		
+
 		e.preventDefault();
 		callback();
 	}
 </script>
 
-<a {href} on:click={onClick}>
-	<span class={namespace}>
+<a href="{href}" on:click="{onClick}">
+	<span class="{namespace}">
 		{name}
 		{#if showCount && count !== null}
 			{count}
@@ -45,11 +45,11 @@
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		
+
 		border: 0.1rem solid var(--BORDER-2);
 		border-radius: 1rem;
 		background: var(--BACKGROUND-4);
-		
+
 		padding: 0 0.3rem;
 
 		color: black;

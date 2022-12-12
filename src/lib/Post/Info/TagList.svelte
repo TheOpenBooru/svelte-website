@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Types } from 'openbooru';
-	import { BSL } from 'openbooru';
-	import Tag from 'lib/Tag.svelte';
+	import type { Types } from "openbooru";
+	import { BSL } from "openbooru";
+	import Tag from "lib/Tag.svelte";
 	export let tags: string[] = [];
 	tags.sort();
 
@@ -15,7 +15,7 @@
 
 <div>
 	{#each tags as tag}
-		<Tag tagName={tag} href={create_link(tag)} />
+		<Tag tagName="{tag}" href="{create_link(tag)}" />
 	{/each}
 </div>
 

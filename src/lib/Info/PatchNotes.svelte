@@ -1,9 +1,8 @@
-<div>
-</div>
+<div></div>
 
 <style>
 	div {
-    padding: .5rem;
+		padding: 0.5rem;
 		font-size-adjust: 0.7;
 	}
 </style>

@@ -1,15 +1,16 @@
 <script lang="ts">
-	import type { Types } from 'openbooru';
-	import { onMount } from 'svelte';
-	import LoadingIcon from 'lib/LoadingIcon.svelte';
-	import GridItem from './Item.svelte';
-	
+	import type { Types } from "openbooru";
+	import { onMount } from "svelte";
+	import LoadingIcon from "lib/LoadingIcon.svelte";
+	import GridItem from "./Item.svelte";
+
 	export let finished: boolean = false;
 	export let useScroll: boolean = true;
 	export let posts: Types.Post[] = [];
 	export let requestPosts: () => void = () => {};
-	export let callback: (({id, index}: {id:number, index:number}) => () => void)|null = null;
-	
+	export let callback: (({ id, index }: { id: number; index: number }) => () => void) | null =
+		null;
+
 	let container: Element;
 	async function CheckNewPosts() {
 		if (!container) return;
@@ -24,14 +25,14 @@
 	onMount(CheckNewPosts);
 </script>
 
-<main bind:this={container} on:scroll={() => CheckNewPosts()} data-scroll={useScroll}>
+<main bind:this="{container}" on:scroll="{() => CheckNewPosts()}" data-scroll="{useScroll}">
 	<div id="grid">
 		{#if posts.length > 0}
 			{#each posts as post, index}
 				<GridItem
-					post={post}
-					lazy={index > 30}
-				 	callback={callback ? callback({ id: post.id, index }) : null}
+					post="{post}"
+					lazy="{index > 30}"
+					callback="{callback ? callback({ id: post.id, index }) : null}"
 				/>
 			{/each}
 		{:else}
@@ -66,10 +67,13 @@
 		align-items: center;
 		justify-items: center;
 		gap: 1rem;
-		grid-template-columns: repeat(auto-fit, minmax(min(calc(40vw - 2rem), var(--IMAGE-SIZE)), 1fr));
+		grid-template-columns: repeat(
+			auto-fit,
+			minmax(min(calc(40vw - 2rem), var(--IMAGE-SIZE)), 1fr)
+		);
 	}
-	
-	@media screen and (max-width: 40rem), (orientation: portrait){
+
+	@media screen and (max-width: 40rem), (orientation: portrait) {
 		#grid {
 			padding: 1rem;
 		}

@@ -1,21 +1,20 @@
 <script lang="ts">
 	import About from "lib/Info/About.svelte";
 
-
 	export let image: string;
 	export let name: string;
 	export let path: string;
-	export let callback: (() => void)|null = null;
+	export let callback: (() => void) | null = null;
 
-	function onClick(e: Event){
+	function onClick(e: Event) {
 		if (callback === null) return;
 		e.preventDefault();
 		callback();
 	}
 </script>
 
-<a href={path} title={name} on:click={onClick}>
-	<img src={image} alt={name} height="32" width="32"/>
+<a href="{path}" title="{name}" on:click="{onClick}">
+	<img src="{image}" alt="{name}" height="32" width="32" />
 	<span class="text">
 		{name}
 	</span>
@@ -27,8 +26,8 @@
 		min-width: 5rem;
 		height: calc(100% - 0.6rem);
 		border-radius: 1rem;
-		margin: .3rem;
-		padding: 0 .5rem;
+		margin: 0.3rem;
+		padding: 0 0.5rem;
 
 		/* Center containinng items */
 		display: flex;
@@ -48,11 +47,11 @@
 		background-color: var(--BACKGROUND-3);
 	}
 
-	@media screen and (max-width: 40rem), (orientation: portrait){
+	@media screen and (max-width: 40rem), (orientation: portrait) {
 		a {
 			width: 100%;
 			padding: 0;
-			margin: .1rem;
+			margin: 0.1rem;
 			justify-content: center;
 		}
 	}
@@ -65,8 +64,8 @@
 		height: 1.5rem;
 		width: 1.5rem;
 	}
-	
-	@keyframes fadeIn{
+
+	@keyframes fadeIn {
 		from {
 			opacity: 0;
 		}

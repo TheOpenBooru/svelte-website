@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Types } from 'openbooru';
-	import Votes from "./Votes.svelte"
-	import titleCase from 'ap-style-title-case';
+	import type { Types } from "openbooru";
+	import Votes from "./Votes.svelte";
+	import titleCase from "ap-style-title-case";
 	export let post: Types.Post;
 
 	let created_at = new Date(post.created_at * 1000).toDateString();
@@ -10,7 +10,7 @@
 
 <div>
 	<span>{created_at} - {rating}</span>
-	<Votes post={post}/>
+	<Votes post="{post}" />
 </div>
 
 <style>

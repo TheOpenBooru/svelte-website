@@ -1,15 +1,15 @@
 <script lang="ts">
-	import type { Types } from 'openbooru';
-	import PostInfo from 'lib/Post/Info/index.svelte';
-	import Media from 'lib/Post/Media/index.svelte';
+	import type { Types } from "openbooru";
+	import PostInfo from "lib/Post/Info/index.svelte";
+	import Media from "lib/Post/Media/index.svelte";
 	export let post: Types.Post;
 </script>
 
 <main>
 	<div>
-		<Media post={post}/>
+		<Media post="{post}" />
 	</div>
-	<PostInfo {post} />
+	<PostInfo post="{post}" />
 </main>
 
 <style>

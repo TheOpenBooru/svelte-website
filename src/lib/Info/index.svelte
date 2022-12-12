@@ -1,15 +1,15 @@
 <script lang="ts">
-	import Sidebar from './Sidebar.svelte';
-	import About from './About.svelte';
-	import Contact from './Contact.svelte';
-	import Api from './Api.svelte';
-	import PatchNotes from './PatchNotes.svelte';
-	
+	import Sidebar from "./Sidebar.svelte";
+	import About from "./About.svelte";
+	import Contact from "./Contact.svelte";
+	import Api from "./Api.svelte";
+	import PatchNotes from "./PatchNotes.svelte";
+
 	export let page: "about" | "contact" | "patchnotes" | "api" = "about";
 </script>
 
 <main>
-	<Sidebar current={page}/>
+	<Sidebar current="{page}" />
 	<div>
 		{#if page == "about"}
 			<About />

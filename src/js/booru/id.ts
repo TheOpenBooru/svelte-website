@@ -1,7 +1,7 @@
 export function encode(id: number): string {
-    return id.toString(32);
+	return id.toString(32);
 }
 
 export function decode(encoded: string) {
-    return parseInt(encoded, 32);
+	return parseInt(encoded, 32);
 }

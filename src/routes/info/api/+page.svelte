@@ -1,5 +1,5 @@
 <script lang="ts">
-  import InfoPage from "lib/Info/index.svelte"
+	import InfoPage from "lib/Info/index.svelte";
 </script>
 
-<InfoPage page="api"/>
+<InfoPage page="api" />

@@ -1,7 +1,7 @@
 <script>
-	import Item from './Section.svelte';
-	import { profile } from 'js/booru';
-	import { READ_ONLY } from 'js/config';
+	import Item from "./Section.svelte";
+	import { profile } from "js/booru";
+	import { READ_ONLY } from "js/config";
 </script>
 
 <nav>
@@ -17,7 +17,7 @@
 		{#await profile()}
 			<Item path="/account" name="Login" image="/images/profile.svg" />
 		{:then data}
-			<Item path="/account" name={data.username} image="/images/profile.svg" />
+			<Item path="/account" name="{data.username}" image="/images/profile.svg" />
 		{:catch}
 			<Item path="/account" name="Login" image="/images/profile.svg" />
 		{/await}
@@ -42,13 +42,13 @@
 
 	nav {
 		background-color: var(--BACKGROUND-2);
-		outline:  black 0 solid;
+		outline: black 0 solid;
 		outline-width: 1px;
 	}
 
-	@media screen and (max-width: 40rem), (orientation: portrait){
+	@media screen and (max-width: 40rem), (orientation: portrait) {
 		nav {
-				justify-content: space-around;
+			justify-content: space-around;
 		}
 	}
 </style>

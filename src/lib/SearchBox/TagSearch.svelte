@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { normaliseTag } from "js/utils"
-	import AutoComplete from "lib/AutoComplete.svelte"
+	import { normaliseTag } from "js/utils";
+	import AutoComplete from "lib/AutoComplete.svelte";
 	export let includeTags: string[];
 
 	let text = "";
 
-	function normaliseText(){
-		text = normaliseTag(text)
+	function normaliseText() {
+		text = normaliseTag(text);
 	}
 
 	function keyPressHandler(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
+		if (e.key === "Enter") {
 			addTag(text);
 		}
 	}
-	
+
 	function addTag(tag: string) {
 		text = "";
 		if (tag && !includeTags.includes(tag)) {
@@ -24,13 +24,13 @@
 </script>
 
 <input
-type="search"
-	bind:value={text}
-	on:input={normaliseText}
-	on:keypress={keyPressHandler}
+	type="search"
+	bind:value="{text}"
+	on:input="{normaliseText}"
+	on:keypress="{keyPressHandler}"
 />
 <div>
-	<AutoComplete input={text} callback={addTag}/>
+	<AutoComplete input="{text}" callback="{addTag}" />
 </div>
 
 <style>

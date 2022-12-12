@@ -4,9 +4,8 @@
 	export let removedTags: string[];
 	export let tags: string[];
 
-
 	const addTag = (tag: string) => () => {
-		tags = tags.concat(tag)
+		tags = tags.concat(tag);
 	};
 	const removeTag = (tag: string) => () => {
 		tags = tags.filter(v => v !== tag);
@@ -17,12 +16,12 @@
 	{#each originalTags as tag}
 		{#if removedTags.includes(tag)}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<div class="removed" on:click={addTag(tag)}>
+			<div class="removed" on:click="{addTag(tag)}">
 				{tag}
 			</div>
 		{:else}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<div on:click={removeTag(tag)}>
+			<div on:click="{removeTag(tag)}">
 				{tag}
 			</div>
 		{/if}
@@ -30,7 +29,7 @@
 
 	{#each addedTags as tag}
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div class="added" on:click={removeTag(tag)}>
+		<div class="added" on:click="{removeTag(tag)}">
 			{tag}
 		</div>
 	{/each}
@@ -39,7 +38,7 @@
 <style>
 	main {
 		height: fit-content;
-		padding: .5rem 0 .5rem 0;
+		padding: 0.5rem 0 0.5rem 0;
 		overflow-y: auto;
 
 		border: 0.2rem var(--BORDER-1) solid;
