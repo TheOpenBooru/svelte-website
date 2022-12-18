@@ -39,6 +39,7 @@
 		// 	await new Promise(resolve => setTimeout(resolve, 2000))
 		// }
 		posts = posts.concat(new_posts);
+		if (new_posts.length === 0) finished = true;
 		loading = false;
 	}
 
