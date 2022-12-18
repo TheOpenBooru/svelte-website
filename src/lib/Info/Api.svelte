@@ -3,7 +3,6 @@
 	import HeadInfo from "lib/HeadInfo.svelte";
 </script>
 
-<HeadInfo title="Info | API" path="/info/api" />
 <div>
 	Open Booru is built around a backend API, this is accessbile to users so that custom clients can
 	be made.
