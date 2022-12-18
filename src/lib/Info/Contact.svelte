@@ -1,3 +1,8 @@
+<script lang="ts">
+	import HeadInfo from "lib/HeadInfo.svelte";
+</script>
+
+<HeadInfo title="Info | Contact" path="/info/contact" />
 <div>
 	GDPR:&nbsp;
 	<a href="{'mailto:gdpr@openbooru.org'}"> gdpr@openbooru.org </a>
