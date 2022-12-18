@@ -8,6 +8,7 @@
 			await Account.login(usernameField.value, passwordField.value);
 		} catch (e) {
 			if (e instanceof Error) error = e.message;
+			if (e instanceof String) error = e.toString();
 			return;
 		}
 		location.href = "/profile";
@@ -17,14 +18,17 @@
 	let passwordField: HTMLInputElement;
 </script>
 
-<div>
-	<input bind:this="{usernameField}" class="input" type="username" placeholder="Username" />
-	<input bind:this="{passwordField}" class="input" type="password" placeholder="Password" />
-	<input on:click="{submit}" id="submit" type="submit" value="Login" />
-</div>
+<form on:submit="{(e) => {
+	e.preventDefault();
+	submit();
+}}">
+	<input bind:this="{usernameField}" class="input" type="username" placeholder="Username" required/>
+	<input bind:this="{passwordField}" class="input" type="password" placeholder="Password" required/>
+	<input id="submit" type="submit" value="Login" />
+</form>
 
 <style>
-	div {
+	form {
 		width: 100%;
 		display: flex;
 		flex-flow: nowrap column;
@@ -50,7 +54,7 @@
 		color: black;
 	}
 
-	input#submit {
+	input[type="submit"] {
 		height: 2rem;
 		width: 100%;
 		max-width: 30rem;

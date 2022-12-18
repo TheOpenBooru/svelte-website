@@ -40,32 +40,33 @@
 	let captchaResponse: string | null | undefined;
 </script>
 
-<div>
+<form on:submit="{(e) => {
+		e.preventDefault();
+		submit();
+	}}">
 	<input bind:this="{usernameField}" class="input" type="username" placeholder="Username" />
 	<input
 		bind:this="{passwordField}"
 		class="input"
 		type="password"
-		placeholder="Confirm Password"
-		value="asdbhjfbikasdfjasdf"
+		placeholder="Password"
 	/>
 	<input
 		bind:this="{confrimPasswordField}"
 		class="input"
 		type="password"
-		placeholder="Password"
-		value="asdbhjfbikasdfjasdf"
+		placeholder="Confirm Password"
 	/>
 	{#await permission_promise then permission}
 		{#if permission.captcha}
 			<HCaptcha bind:token="{captchaResponse}" />
 		{/if}
 	{/await}
-	<input on:click="{submit}" id="submit" type="submit" value="Register" />
-</div>
+	<input type="submit" value="Register" />
+</form>
 
 <style>
-	div {
+	form {
 		width: 100%;
 		display: flex;
 		flex-flow: nowrap column;
@@ -91,7 +92,7 @@
 		color: black;
 	}
 
-	input#submit {
+	input[type="submit"] {
 		height: 2rem;
 		width: 100%;
 		max-width: 30rem;
