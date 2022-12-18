@@ -35,7 +35,7 @@
 					callback="{callback ? callback({ id: post.id, index }) : null}"
 				/>
 			{/each}
-		{:else}
+		{:else if !finished}
 			<LoadingIcon fadeIn />
 		{/if}
 	</div>
