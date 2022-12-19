@@ -8,6 +8,7 @@
 	const zoomOut = () => (zoomed = false);
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div data-zoom="{zoomed}" on:click="{zoomed ? zoomOut : zoomIn}">
 	<img
 		src="{generateUrl(media.url)}"
