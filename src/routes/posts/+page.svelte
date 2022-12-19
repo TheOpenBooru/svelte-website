@@ -3,9 +3,11 @@
 	import { browser } from "$app/environment";
 	import PostsPage from "lib/Posts/Page.svelte";
 	import HeadInfo from "lib/HeadInfo.svelte";
+	import type { Types } from "openbooru";
 
 	export let data: PageData;
-	let posts = data.posts;
+	// @ts-ignore
+	let posts: Types.Post[] = data.posts;
 
 	let layout: "grid" | "column" = "grid";
 	if (browser) {
