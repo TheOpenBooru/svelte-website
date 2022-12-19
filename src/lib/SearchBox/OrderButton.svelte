@@ -2,30 +2,30 @@
 	export let descending: boolean;
 </script>
 
-<div on:click="{() => (descending = !descending)}">
+<button on:click={() => (descending = !descending)}>
 	<img
 		src="{descending ? '/images/arrow-down.svg' : '/images/arrow-up.svg'}"
 		alt="Sort {descending ? 'Descending' : 'Ascending'}"
 	/>
-</div>
+</button>
 
 <style>
-	div {
+	button {
 		background-color: var(--BACKGROUND-4);
-		border: 3px solid var(--BORDER-1);
-		min-height: 1.2rem;
-		min-width: 1.2rem;
-		height: 1.2rem;
-		width: 1.2rem;
+		border: .2rem solid var(--BORDER-1);
+		height: 1.575rem;
+		width: 1.575rem;
+		aspect-ratio: 1;
+		padding: 0;
 
-		transition: 0.15s ease-out;
+		transition: 150ms ease-out;
 
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
-	div:hover {
+	button:hover {
 		transition: 0.3s ease-out;
 		background-color: var(--BACKGROUND-3);
 		border-radius: 0.4rem;

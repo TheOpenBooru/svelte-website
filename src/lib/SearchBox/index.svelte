@@ -30,6 +30,7 @@
 	import TagSearch from "./TagSearch.svelte";
 	import TagList from "./TagList.svelte";
 
+	// @ts-ignore
 	let sort: Types.Sort = query.sort ?? DEFAULT_SEARCH;
 	let descending: boolean = query.descending ?? true;
 	let includeTags: string[] = query.include_tags ?? [];
