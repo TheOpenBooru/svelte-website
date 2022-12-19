@@ -1,9 +1,11 @@
 <script lang="ts">
 	import type { Types } from "openbooru";
-	import { afterUpdate, onMount } from "svelte";
+	import { afterUpdate, onMount, onDestroy } from "svelte";
 	import LoadingIcon from "lib/LoadingIcon.svelte";
 	import Item from "./Item.svelte";
 	import { SplitPosts } from "./utils";
+	import About from "lib/Info/About.svelte";
+	import type { LoadEvent } from "@sveltejs/kit";
 
 	export let finished: boolean;
 	export let loading: boolean;
@@ -14,7 +16,7 @@
 	const Clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
 	let container: Element;
-	async function CheckNewPosts() {
+	async function checkNewPosts() {
 		if (!container || finished) return;
 		const { scrollTop, offsetHeight, scrollHeight } = container;
 		let distanceFromTop = scrollTop + offsetHeight;
@@ -25,12 +27,20 @@
 	}
 
 	let column_count = 3;
-	$: columns = SplitPosts(posts, Clamp(column_count, 2, 8));
+	$: post_columns = SplitPosts(posts, Clamp(column_count, 2, 8));
 	function updateColumnCount(element: Element) {
+		if (!element) return;
 		column_count = Math.floor((element.clientWidth - 200) / 300);
 	}
 
-	onMount(CheckNewPosts);
+
+	let interval: NodeJS.Timer;
+	onMount(() => {
+		interval = setInterval(checkNewPosts, 300)
+	})
+	onDestroy(() => clearInterval(interval))
+	
+	onMount(checkNewPosts);
 	onMount(() => {
 		let ro = new ResizeObserver(entries => {
 			entries.forEach(entry => updateColumnCount(entry.target));
@@ -39,15 +49,11 @@
 	});
 </script>
 
-<main
-	bind:this="{container}"
-	on:scroll="{CheckNewPosts}"
-	on:load="{e => updateColumnCount(e.target)}"
->
+<main bind:this="{container}">
 	<div id="columns">
-		{#each columns as posts}
+		{#each post_columns as column}
 			<div class="column">
-				{#each posts as post, index}
+				{#each column as post, index}
 					<Item
 						index="{index}"
 						post="{post}"
@@ -60,7 +66,7 @@
 	</div>
 
 	{#if loading}
-		<div id="loading" class="{columns.length === 0 ? 'center' : 'bottom'}">
+		<div id="loading" class="{post_columns.length === 0 ? 'center' : 'bottom'}">
 			<LoadingIcon />
 		</div>
 	{/if}
