@@ -23,7 +23,7 @@
 <style>
 	div {
 		position: absolute;
-		right: 1.2rem;
+		right: 0;
 		margin: 0.4rem;
 		z-index: 2;
 	}
