@@ -44,13 +44,12 @@
 </script>
 
 <DesktopPosts
-	exit="{exitCallback}"
-	visit="{visit}"
-	gotoNextPost="{gotoNextPost}"
-	gotoPrevPost="{gotoPrevPost}"
-	prevPost="{prevPost}"
-	post="{post}"
-	nextPost="{nextPost}"
-	loading="{loading}"
-	finished="{finished}"
+	exit={exitCallback}
+	visit={visit}
+	gotoNextPost={gotoNextPost}
+	gotoPrevPost={gotoPrevPost}
+	prevPost={prevPost}
+	post={post}
+	nextPost={nextPost}
+	loading={loading}
 />

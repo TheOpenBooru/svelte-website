@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Types } from "openbooru";
-	import Media from "lib/Media/index.svelte";
-	import PostInfo from "lib/Post/PostInfo/index.svelte";
+	import Media from "lib/Post/Media/index.svelte";
+	import PostInfo from "lib/Post/Info/index.svelte";
 	import Button from "./button.svelte";
 
 	export let exit: () => void;
@@ -12,7 +12,6 @@
 	export let post: Types.Post;
 	export let nextPost: Types.Post | null;
 	export let loading: boolean;
-	export let finished: boolean;
 
 	function keyboardHandler(e: KeyboardEvent) {
 		// @ts-ignore
