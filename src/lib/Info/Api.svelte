@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { API_URL } from "js/config";
-	import HeadInfo from "lib/HeadInfo.svelte";
+	
+	export const csr = true;
 </script>
 
 <div>

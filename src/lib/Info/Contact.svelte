@@ -1,5 +1,5 @@
 <script lang="ts">
-	import HeadInfo from "lib/HeadInfo.svelte";
+	export const csr = true;
 </script>
 
 <div>
