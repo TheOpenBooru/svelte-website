@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { profile, posts_search } from "js/booru";
+	import { profile } from "js/booru";
 	import PostsSection from "./PostsSection.svelte";
 
 	async function getData() {
