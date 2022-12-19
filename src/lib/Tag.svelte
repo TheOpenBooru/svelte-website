@@ -1,24 +1,19 @@
 <script lang="ts">
 	import type { Types } from "openbooru";
+	import { createEventDispatcher } from "svelte";
 	export let tagName: string | null = null;
 	export let data: Types.Tag | null = null;
 	export let href: string | null = null;
-	export let callback: null | (() => void) = null;
 	export let showCount: boolean = false;
 
 	const name = tagName ?? data?.name ?? "Foo";
 	const namespace = data?.namespace ?? "generic";
 	const count = data?.count ?? null;
 
-	function onClick(e: MouseEvent) {
-		if (!callback) return;
-
-		e.preventDefault();
-		callback();
-	}
+	const dispatch = createEventDispatcher()
 </script>
 
-<a href="{href}" on:click="{onClick}">
+<a href="{href}" on:click={dispatch("click", name)}>
 	<span class="{namespace}">
 		{name}
 		{#if showCount && count !== null}

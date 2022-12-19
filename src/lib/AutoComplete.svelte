@@ -12,7 +12,7 @@
 	{#if tags.length > 0}
 		<div>
 			{#each tags as tag}
-				<Tag tagName="{tag.name}" data="{tag}" callback="{() => callback(tag.name)}" />
+				<Tag tagName="{tag.name}" data="{tag}" on:click="{() => callback(tag.name)}" />
 			{/each}
 		</div>
 	{/if}

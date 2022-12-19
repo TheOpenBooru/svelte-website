@@ -25,7 +25,7 @@
 <div class="container">
 	{#each includeTags as tag}
 		<div>
-			<Tag tagName="{tag}" callback="{removeTagCallback(tag)}">
+			<Tag tagName="{tag}" on:click={removeTagCallback(tag)}>
 				<button on:click="{toggleTagCallback(tag)}">
 					<img src="/images/cross.svg" alt="Remove Tag" />
 				</button>
@@ -34,7 +34,7 @@
 	{/each}
 	{#each excludeTags as tag}
 		<div class="removed-tag">
-			<Tag tagName="{tag}" callback="{removeTagCallback(tag)}">
+			<Tag tagName="{tag}" on:click="{removeTagCallback(tag)}">
 				<button on:click="{toggleTagCallback(tag)}">
 					<img src="/images/cross.svg" alt="Remove Tag" />
 				</button>
