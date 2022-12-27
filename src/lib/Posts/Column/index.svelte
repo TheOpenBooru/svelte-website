@@ -27,7 +27,7 @@
 	}
 
 	let column_count = 3;
-	$: post_columns = SplitPosts(posts, Clamp(column_count, 2, 8));
+	$: post_columns = SplitPosts(posts, Clamp(column_count, 1, 8));
 	function updateColumnCount(element: Element) {
 		if (!element) return;
 		column_count = Math.floor((element.clientWidth - 200) / 300);
@@ -105,8 +105,8 @@
 
 	@media screen and (max-width: 40rem), (orientation: portrait) {
 		main {
-			padding-left: 0;
-			padding-right: 0;
+			padding-left: 1rem;
+			padding-right: 1rem;
 		}
 		div.column {
 			--IMAGE-WIDTH: 40vw;
