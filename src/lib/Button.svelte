@@ -2,8 +2,10 @@
 	export let src: string = "/favicon.ico";
 	export let name: string = "Lorum";
 	export let href: string = "";
-	export let callback: () => void = () => {};
 	export let active: boolean = false;
+
+	import { createEventDispatcher } from "svelte";
+	const dispatch = createEventDispatcher()
 </script>
 
 {#if href}
@@ -13,7 +15,7 @@
 		</button>
 	</a>
 {:else}
-	<button class="{active ? 'active' : ''}" on:click="{() => callback()}">
+	<button class="{active ? 'active' : ''}" on:click={() => dispatch("click")}>
 		<img src="{src}" alt="{name}" />
 	</button>
 {/if}

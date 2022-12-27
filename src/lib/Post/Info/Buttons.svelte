@@ -11,12 +11,12 @@
 	{#if !READ_ONLY}
 		{#await hasPermission("canDeletePosts") then canDelete}
 			{#if canDelete}
-				<Button src="/images/trash.svg" callback="{deleteCallback}" />
+				<Button src="/images/trash.svg" on:click={deleteCallback} />
 			{/if}
 		{/await}
 		{#await hasPermission("canEditPosts") then canEdit}
 			{#if canEdit}
-				<Button src="/images/edit.svg" callback="{editCallback}" />
+				<Button src="/images/edit.svg" on:click={editCallback} />
 			{/if}
 		{/await}
 	{/if}
