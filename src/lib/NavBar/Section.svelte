@@ -15,7 +15,7 @@
 
 <a href="{path}" title="{name}" on:click="{onClick}">
 	<img src="{image}" alt="{name}" height="32" width="32" />
-	<span class="text">
+	<span>
 		{name}
 	</span>
 </a>
@@ -37,11 +37,6 @@
 	}
 
 	a {
-		/* Look */
-		font-size: 1.3rem;
-		color: black;
-		text-decoration: none;
-
 		cursor: pointer;
 		border: 3px solid var(--BORDER-1);
 		background-color: var(--BACKGROUND-3);
@@ -60,9 +55,20 @@
 		border-color: var(--BORDER-1-HOVER);
 	}
 
+	span {
+		font-size: 1.3rem;
+		color: black;
+		text-decoration: none;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
 	img {
 		height: 1.5rem;
 		width: 1.5rem;
+		position: relative;
+		left: 0.3rem;
 	}
 
 	@keyframes fadeIn {

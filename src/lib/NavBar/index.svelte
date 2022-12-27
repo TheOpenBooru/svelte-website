@@ -15,7 +15,7 @@
 
 	{#if !READ_ONLY}
 		{#await profile()}
-			<Item path="/account" name="Login" image="/images/profile.svg" />
+			<Item path="/account" name="" image="/images/profile.svg" />
 		{:then data}
 			<Item path="/account" name="{data.username}" image="/images/profile.svg" />
 		{:catch}
