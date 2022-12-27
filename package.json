@@ -19,6 +19,7 @@
 		"@hcaptcha/types": "^1.0.3",
 		"@rollup/plugin-typescript": "^8.5.0",
 		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-cloudflare": "^1.0.0",
 		"@sveltejs/kit": "next",
 		"@sveltestack/svelte-query": "^1.6.0",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
