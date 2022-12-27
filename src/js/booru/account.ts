@@ -43,13 +43,15 @@ export async function register(
 		} else if (e instanceof Errors.BadCaptcha) {
 			throw "Invalid Captcha Response";
 		} else if (e instanceof Errors.PasswordDoesntMeetRequirements) {
-			throw "Password does not meet requirements With That Name Already Exists";
+			throw "Password does not meet requirements";
 		} else if (e instanceof Errors.InternalServerError) {
 			throw "Interal Server Error, Try Again Later";
 		} else {
 			if (e instanceof Error) {
 				throw e.message;
-			} else throw e;
+			} else {
+				throw e;
+			}
 		}
 	}
 }

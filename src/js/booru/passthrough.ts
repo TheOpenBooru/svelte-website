@@ -1,8 +1,9 @@
 import type { Types } from "openbooru";
-import { Posts, Post, Profile, Tags } from "openbooru";
+import { Errors, Posts, Post, Profile, Tags } from "openbooru";
 import { browser } from "$app/environment";
 import { getToken } from "js/booru/account";
 import { getBooruConfig } from "js/booru/misc";
+import Cache from "js/cache";
 
 type id = string | number;
 export function posts_search(
@@ -14,12 +15,16 @@ export function posts_search(
 	return Posts.search(query, index, limit, getBooruConfig());
 }
 
-export function posts_create(file: File): Promise<Types.Post> {
-	return Posts.create(file, getBooruConfig());
+export function posts_create(file: File, captchaResponse: string | null): Promise<Types.Post> {
+	let config = getBooruConfig();
+	config.token = captchaResponse;
+	return Posts.create(file, config);
 }
 
-export function posts_import(url: string): Promise<Types.Post[]> {
-	return Posts.Import(url, getBooruConfig());
+export function posts_import(url: string, captchaResponse: string | null): Promise<Types.Post[]> {
+	let config = getBooruConfig();
+	config.token = captchaResponse;
+	return Posts.Import(url, config);
 }
 
 export function post_edit(
@@ -57,23 +62,20 @@ export function remove_downvote(post_id: id): Promise<void> {
 	return Post.remove_downvote(post_id, getBooruConfig());
 }
 
+
 export async function profile(use_cache = true): Promise<Types.Profile> {
 	if (!browser) throw Error("Tried to get Server Side profile");
 	if (!getToken()) throw Error("Not Logged In");
 
-	if (use_cache) {
-		const profile_json = localStorage.getItem("profile");
-		if (profile_json) {
-			return JSON.parse(profile_json);
-		}
+    let permissions;
+    let cache_key = "profile-" + getToken();
+    const profile_json = Cache.get(cache_key);
+	if (profile_json && use_cache) {
+		return JSON.parse(profile_json);
 	}
 
 	const profile = await Profile.profile(getBooruConfig());
-	localStorage.setItem("profile", JSON.stringify(profile));
-	setTimeout(() => {
-		localStorage.removeItem("profile");
-	}, 1000);
-
+	Cache.set(cache_key, JSON.stringify(profile), 5)
 	return profile;
 }
 
