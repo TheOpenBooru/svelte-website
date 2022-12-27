@@ -3,27 +3,26 @@
 
 	export let error: string;
 
-	async function submit() {
+	async function submit(event: Event){
+		event.preventDefault();
+
 		try {
-			await Account.login(usernameField.value, passwordField.value);
+			await Account.login(username, password);
+			location.href = "/profile";
 		} catch (e) {
 			if (e instanceof Error) error = e.message;
 			if (e instanceof String) error = e.toString();
 			return;
 		}
-		location.href = "/profile";
 	}
 
-	let usernameField: HTMLInputElement;
-	let passwordField: HTMLInputElement;
+	let username: string;
+	let password: string;
 </script>
 
-<form on:submit="{(e) => {
-	e.preventDefault();
-	submit();
-}}">
-	<input bind:this="{usernameField}" class="input" type="username" placeholder="Username" required/>
-	<input bind:this="{passwordField}" class="input" type="password" placeholder="Password" required/>
+<form on:submit={submit}>
+	<input bind:value={username} class="input" type="username" placeholder="Username" required/>
+	<input bind:value={password} class="input" type="password" placeholder="Password" required/>
 	<input id="submit" type="submit" value="Login" />
 </form>
 

@@ -14,10 +14,6 @@
 	}
 
 	async function submit() {
-		let username = usernameField.value;
-		let password = passwordField.value;
-		let confrimPassword = confrimPasswordField.value;
-
 		let promise = await permission_promise;
 		if (promise.captcha && !captchaResponse) {
 			error = "Captcha Required";
@@ -34,25 +30,27 @@
 		location.href = "/";
 	}
 
-	let usernameField: HTMLInputElement;
-	let passwordField: HTMLInputElement;
-	let confrimPasswordField: HTMLInputElement;
+	let username: string = "ExampleUser";
+	let password: string = "njkasjknjkasdf";
+	let confrimPassword: string = "njkasjknjkasdf";
 	let captchaResponse: string | null | undefined;
 </script>
 
-<form on:submit="{(e) => {
-		e.preventDefault();
-		submit();
-	}}">
-	<input bind:this="{usernameField}" class="input" type="username" placeholder="Username" />
+<form on:submit={e => {e.preventDefault(); submit();}}>
 	<input
-		bind:this="{passwordField}"
+		bind:value={username}
+		class="input"
+		type="username"
+		placeholder="Username"
+	/>
+	<input
+		bind:value={password}
 		class="input"
 		type="password"
 		placeholder="Password"
 	/>
 	<input
-		bind:this="{confrimPasswordField}"
+		bind:value={confrimPassword}
 		class="input"
 		type="password"
 		placeholder="Confirm Password"
