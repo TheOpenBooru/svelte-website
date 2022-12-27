@@ -30,9 +30,9 @@
 		location.href = "/";
 	}
 
-	let username: string = "ExampleUser";
-	let password: string = "njkasjknjkasdf";
-	let confrimPassword: string = "njkasjknjkasdf";
+	let username: string;
+	let password: string;
+	let confrimPassword: string;
 	let captchaResponse: string | null | undefined;
 </script>
 
