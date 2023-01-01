@@ -2,10 +2,10 @@
 	import type { Types } from "openbooru";
 	import { generateUrl } from "js/proxy";
 	import Links from "js/links";
-	import Image from "lib/Post/Media/image.svelte";
+
 	export let index: number;
 	export let post: Types.Post;
-	export let postCallback: Function;
+	export let postCallback: ({id, index}: {id: number,index: number}) => void;
 	export let isTarget: boolean = false;
 	export let priority: boolean = false;
 
@@ -17,7 +17,7 @@
 	let aspectRatio = image.height / image.width;
 	let adjustedAspectRatio = clamp(aspectRatio, 0.5, 2);
 	let adjustedHeight = (image.height / aspectRatio) * adjustedAspectRatio;
-	let aspectRatioStyle = "aspect-ratio: {image.width}/{adjustedHeight}";
+	let aspectRatioStyle = `aspect-ratio: ${image.width}/${adjustedHeight}`;
 </script>
 
 <a
