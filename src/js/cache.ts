@@ -4,6 +4,7 @@ type CacheStore = {
 }
 
 function get(key: string): null | any {
+    key = "cache-" + key
     let json = sessionStorage.getItem(key)
     if (json == null) return null
 
@@ -17,6 +18,8 @@ function get(key: string): null | any {
 }
 
 function set(key: string, value: any, ttl: number = 5) {
+    key = "cache-" + key
+    
     let store = {
         value: value,
         expiration: Date.now() + (ttl * 1000),
