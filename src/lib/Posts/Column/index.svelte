@@ -11,7 +11,7 @@
 	export let loading: boolean;
 	export let posts: Types.Post[];
 	export let requestPosts: () => void;
-	export let callback: Function;
+	export let callback: ({id, index}: {id: number,index: number}) => void;;
 
 	const Clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
@@ -58,7 +58,7 @@
 						index="{index}"
 						post="{post}"
 						priority="{index < 5}"
-						postCallback="{callback({ id: post.id, index })}"
+						postCallback={callback}
 					/>
 				{/each}
 			</div>
