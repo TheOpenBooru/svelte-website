@@ -3,8 +3,13 @@ type CacheStore = {
     value: any
 }
 
+function generate_cache_key(key: string) {
+    return "cache-" + key
+
+}
+
 function get(key: string): null | any {
-    key = "cache-" + key
+    key = generate_cache_key(key)
     let json = sessionStorage.getItem(key)
     if (json == null) return null
 
@@ -18,7 +23,7 @@ function get(key: string): null | any {
 }
 
 function set(key: string, value: any, ttl: number = 5) {
-    key = "cache-" + key
+    key = generate_cache_key(key)
     
     let store = {
         value: value,
