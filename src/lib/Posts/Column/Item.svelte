@@ -5,7 +5,7 @@
 
 	export let index: number;
 	export let post: Types.Post;
-	export let postCallback: ({id, index}: {id: number,index: number}) => void;
+	export let postCallback: () => void;
 	export let isTarget: boolean = false;
 	export let priority: boolean = false;
 

@@ -11,7 +11,7 @@
 	export let loading: boolean;
 	export let posts: Types.Post[];
 	export let requestPosts: () => void;
-	export let callback: ({id, index}: {id: number,index: number}) => void;;
+	export let callback: ({id, index}: {id: number,index: number}) => () => void;;
 
 	const Clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
@@ -27,11 +27,9 @@
 	}
 
 	let column_count = 3;
+	let width =  300
 	$: post_columns = SplitPosts(posts, Clamp(column_count, 1, 8));
-	function updateColumnCount(element: Element) {
-		if (!element) return;
-		column_count = Math.floor((element.clientWidth - 200) / 300);
-	}
+	$: column_count = Math.floor((width - 200) / 300);
 
 
 	let interval: NodeJS.Timer;
@@ -41,15 +39,9 @@
 	onDestroy(() => clearInterval(interval))
 	
 	onMount(checkNewPosts);
-	onMount(() => {
-		let ro = new ResizeObserver(entries => {
-			entries.forEach(entry => updateColumnCount(entry.target));
-		});
-		ro.observe(container);
-	});
 </script>
 
-<main bind:this="{container}">
+<main bind:this="{container}" bind:clientWidth={width}>
 	<div id="columns">
 		{#each post_columns as column}
 			<div class="column">
@@ -58,7 +50,7 @@
 						index="{index}"
 						post="{post}"
 						priority="{index < 5}"
-						postCallback={callback}
+						postCallback={callback({ id: post.id, index })}
 					/>
 				{/each}
 			</div>
