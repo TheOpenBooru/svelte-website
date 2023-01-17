@@ -103,10 +103,10 @@
 		:root {
 			--COLOR-1: #303a30;
 			--COLOR-2: #2f3e37;
-			--COLOR-3: #2b3832;
-			--COLOR-4: #26322c;
-			--COLOR-5: #1c2520;
-			--COLOR-6: #131815;
+			--COLOR-3: #26322c;
+			--COLOR-4: #1c2520;
+			--COLOR-5: #131815;
+			--COLOR-6: #0E120F;
 			--COLOR-7: #090b09;
 		}
 	</style>
