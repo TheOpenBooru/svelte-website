@@ -1,24 +1,25 @@
 <script lang="ts" context="module">
-	export function show() {
-		searchModal.show();
+	export let show = () => {
+		if (searchModal) searchModal.show()
 	}
-
-	export function hide() {
-		searchModal.close();
+	export let hide = () => {
+		if (searchModal) searchModal.close()
 	}
-
-	export function toggle() {
-		if (searchModal.open) {
-			hide();
-		} else {
-			show();
+	export let toggle = () => {
+		if (searchModal) {
+			searchModal.open ? hide() : show();
 		}
 	}
-
 	let searchModal: HTMLDialogElement;
 </script>
 
-<dialog bind:this="{searchModal}"></dialog>
+<script lang="ts">
+	export let visible: boolean;
+</script>
+
+<dialog open={visible} bind:this={searchModal}>
+	<slot/>
+</dialog>
 
 <style>
 	dialog {

@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
-	import { hide as _hide, toggle as _toggle } from "lib/Modal.svelte";
-	export let toggle = _toggle;
-	export let hide = _hide;
+	export let toggle = () => visible = !visible;
+	export let hide = () => visible = false;
+	let visible = false;
 </script>
 
 <script lang="ts">
@@ -48,7 +48,7 @@
 	}
 </script>
 
-<Modal>
+<Modal {visible}>
 	<form on:submit={FormHandler}>
      
     <!-- Error -->
@@ -134,11 +134,7 @@
 	input[type="submit"]:hover {
 		background: var(--BACKGROUND-3-HOVER) !important;
 	}
-
-	input[type="submit"].active {
-		border-color: var(--BORDER-2);
-	}
-
+	
 	span#error {
 		color: red;
 	}

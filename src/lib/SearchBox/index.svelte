@@ -1,30 +1,20 @@
 <script lang="ts" context="module">
-	export function show() {
-		searchModal.show();
-	}
+	import { hide as modalHide, toggle as modalToggle } from "lib/Modal.svelte";
+	export let toggle = () => { modalToggle(); };
+	export let hide = () => { modalHide(); };
 
-	export function hide() {
-		searchModal.close();
-	}
-
-	export function toggle() {
-		if (searchModal.open) {
-			hide();
-		} else {
-			show();
-		}
-	}
-
-	let searchModal: HTMLDialogElement;
+	let visible = false
 </script>
 
 <script lang="ts">
 	export let query: Types.PostQuery = {};
 	export let setQuery: (query: Types.PostQuery) => void;
-	export let closeCallback: () => void;
+	import { createEventDispatcher } from "svelte";
+	const dispatch = createEventDispatcher()
 
 	import type { Types } from "openbooru";
 	import { DEFAULT_SEARCH } from "js/config";
+	import Modal from "lib/Modal.svelte";
 	import SortSelect from "./SortSelect.svelte";
 	import OrderButton from "./OrderButton.svelte";
 	import TagSearch from "./TagSearch.svelte";
@@ -51,22 +41,22 @@
 			NewQuery["exclude_tags"] = excludeTags;
 		}
 		setQuery(NewQuery);
-		closeCallback();
+		hide();
+		dispatch("submit");
 	}
 </script>
 
-<dialog bind:this="{searchModal}">
+<Modal bind:visible={visible}>
 	<main>
 		<div>
 			<SortSelect bind:sort="{sort}" />
 			<OrderButton bind:descending="{descending}" />
 			<TagSearch bind:includeTags="{includeTags}" />
 		</div>
-		<!-- {includeTags.join(",\n")} -->
 		<TagList bind:includeTags="{includeTags}" bind:excludeTags="{excludeTags}" />
 		<button on:click="{saveQuery}"> Search </button>
 	</main>
-</dialog>
+</Modal>
 
 <style>
 	main {
@@ -113,20 +103,4 @@
 		font-size: 1.1rem;
 	}
 
-	dialog {
-		position: fixed;
-		top: calc(var(--NAVBAR-HEIGHT) + 3rem);
-		background: none;
-		border: none;
-		z-index: 1;
-	}
-
-	dialog::backdrop {
-		position: fixed;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		background: rgba(0, 0, 0, 0.8);
-	}
 </style>

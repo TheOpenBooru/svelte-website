@@ -1,7 +1,6 @@
 <script lang="ts" context="module">
-	import { hide as _hide, toggle as _toggle } from "lib/Modal.svelte";
-	export let toggle = _toggle;
-	export let hide = _hide;
+	export let toggle = () => {};
+	export let hide = () => {};
   
   // import { Errors, Posts } from "js/booru";
   // import styled from "styled-components";

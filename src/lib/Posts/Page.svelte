@@ -7,8 +7,8 @@
 	import Links from "js/links";
 	import Grid from "lib/Posts/Grid/index.svelte";
 	import Column from "lib/Posts/Column/index.svelte";
-	import SearchButton from "./Buttons/Search.svelte";
-	import LayoutSelector from "./LayoutSelector.svelte";
+	import PostButtons from "./Buttons/PostButtons.svelte";
+	import LayoutSelector from "./Buttons/LayoutSelector.svelte";
 
 	export let layout: "grid" | "column" = "grid";
 	export let initialPosts: Types.Post[] = [];
@@ -66,7 +66,7 @@
 	const LayoutElement = LayoutLookup[layout] ?? Grid;
 </script>
 
-<SearchButton query="{query}" setQuery="{setQuery}" />
+<PostButtons query="{query}" setQuery="{setQuery}" />
 <LayoutSelector layout="{layout}" />
 <svelte:component
 	this="{LayoutElement}"
