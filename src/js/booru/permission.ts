@@ -35,7 +35,7 @@ export async function getPermission(permission: Permission, use_cache: boolean =
         permissions = JSON.parse(profile_json);
     } else {
         permissions = await Account.permissions(getBooruConfig());
-		Cache.set(cache_key, JSON.stringify(permissions), 5)
+		Cache.set(cache_key, JSON.stringify(permissions), 30)
     }
 
     return permissions[permission];
