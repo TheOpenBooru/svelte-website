@@ -1,11 +1,14 @@
 <script>
 	import { QueryClient, QueryClientProvider } from "@sveltestack/svelte-query";
+	import { AGE_RESTRICTED } from "js/config";
+	import Prompts from "lib/Prompts/index.svelte";
 	import NavigationBar from "lib/NavBar/index.svelte";
 
 	const queryClient = new QueryClient();
 </script>
 
 <QueryClientProvider client="{queryClient}">
+	<Prompts/>
 	<NavigationBar />
 	<main>
 		<slot />
@@ -23,14 +26,6 @@
 	}
 
 	:root {
-		--COLOR-1: #9ac9d5;
-		--COLOR-2: #62b6cb;
-		--COLOR-3: #3f8098;
-		--COLOR-4: #306173;
-		--COLOR-5: #1e3d48;
-		--COLOR-6: #0c181d;
-		--COLOR-7: #070e11;
-
 		--BACKGROUND-1: var(--COLOR-1);
 
 		--BACKGROUND-2: var(--COLOR-2);
@@ -47,10 +42,10 @@
 
 		--BORDER-2: var(--COLOR-6);
 		--BORDER-2-HOVER: var(--COLOR-7);
-
+		
 		--NAVBAR-HEIGHT: 2.8rem;
 	}
-
+	
 	:global(body) {
 		margin: 0;
 		padding: 0;
@@ -90,3 +85,29 @@
 		font-display: swap;
 	}
 </style>
+
+{#if !AGE_RESTRICTED}
+	<style>
+		:root {
+			--COLOR-1: #293129;
+			--COLOR-2: #303a30;
+			--COLOR-3: #505a50;
+			--COLOR-4: #404540;
+			--COLOR-5: #3a3f3a;
+			--COLOR-6: #303030;
+			--COLOR-7: #242424;
+		}
+		</style>
+{:else}
+	<style>
+		:root {
+			--COLOR-1: #303a30;
+			--COLOR-2: #2f3e37;
+			--COLOR-3: #2b3832;
+			--COLOR-4: #26322c;
+			--COLOR-5: #1c2520;
+			--COLOR-6: #131815;
+			--COLOR-7: #090b09;
+		}
+	</style>
+{/if}
