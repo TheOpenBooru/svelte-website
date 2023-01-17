@@ -89,13 +89,13 @@
 {#if !AGE_RESTRICTED}
 	<style>
 		:root {
-			--COLOR-1: #293129;
-			--COLOR-2: #303a30;
-			--COLOR-3: #505a50;
-			--COLOR-4: #404540;
-			--COLOR-5: #3a3f3a;
-			--COLOR-6: #303030;
-			--COLOR-7: #242424;
+			--COLOR-1: #9ac9d5;
+			--COLOR-2: #62b6cb;
+			--COLOR-3: #3f8098;
+			--COLOR-4: #306173;
+			--COLOR-5: #1e3d48;
+			--COLOR-6: #0c181d;
+			--COLOR-7: #070e11;
 		}
 		</style>
 {:else}
