@@ -106,7 +106,7 @@
 			--COLOR-3: #26322c;
 			--COLOR-4: #1c2520;
 			--COLOR-5: #131815;
-			--COLOR-6: #0E120F;
+			--COLOR-6: #0e120f;
 			--COLOR-7: #090b09;
 		}
 	</style>
